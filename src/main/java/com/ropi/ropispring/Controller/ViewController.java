@@ -14,9 +14,9 @@ import javax.servlet.http.HttpSession;
 public class ViewController {
     private Logger logger = LoggerFactory.getLogger(ViewController.class);
 
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String indexpage(ModelAndView mav, Model model, HttpSession session){
 
-        return "/";
+        return "/home";
     }
 }
