@@ -14,11 +14,11 @@
     </select>
 
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        delete from ropi.SUMMARY_TB where user_id=#{sector_code} and user_pw=#{industry_code}
+        delete from ropi.SUMMARY_TB where SECTORCODE=#{sector_code} and INDUSTRY_CODE=#{industry_code}
     </delete>
 
     <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        update ropi.SUMMARY_TB set SYMBOL=#{symbol}, KONAME=#{ko_name}, ENNAME=#{en_name}, CNNMAE=#{cn_name}, KOSUMMARY=#{ko_summary}, ENSUMMARY=#{en_summary}, CNSUMMARY=#{cn_summary}, JPSUMMARY=#{jp_summary}, TRADUNIT=#{tradunit} where SECTORCODE=#{sector_code} and INDUSTRYCODE=#{industry_code}
+        update ropi.SUMMARY_TB set SYMBOL=#{symbol}, KONAME=#{ko_name}, ENNAME=#{en_name}, CNNMAE=#{cn_name}, KOSUMMARY=#{ko_summary}, ENSUMMARY=#{en_summary}, CNSUMMARY=#{cn_summary}, JPSUMMARY=#{jp_summary}, TRADUNIT=#{trad_unit} where SECTORCODE=#{sector_code} and INDUSTRYCODE=#{industry_code}
     </update>
 
 </mapper>
