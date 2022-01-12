@@ -7,7 +7,7 @@ import java.util.List;
 
 @RestController
 public class RopiController {
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public List home(){
         return null;
     }
