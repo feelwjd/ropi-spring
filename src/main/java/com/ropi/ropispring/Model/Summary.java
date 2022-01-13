@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class Summary {
     private String symbol;
+    private String country_code;
     private String sector_code;
     private String industry_code;
     private String ko_name;
@@ -17,6 +18,11 @@ public class Summary {
     private String cn_summary;
     private String jp_summary;
     private int trad_unit;
+    private String nation_code;
+    private String nation_ko_name;
+    private String nation_en_name;
+    private String nation_cn_name;
+    private String nation_jp_name;
 
     public String getSymbol() {
         return symbol;
@@ -104,5 +110,53 @@ public class Summary {
 
     public void setTrad_unit(int trad_unit) {
         this.trad_unit = trad_unit;
+    }
+
+    public String getCountry_code() {
+        return country_code;
+    }
+
+    public void setCountry_code(String country_code) {
+        this.country_code = country_code;
+    }
+
+    public String getNation_code() {
+        return nation_code;
+    }
+
+    public void setNation_code(String nation_code) {
+        this.nation_code = nation_code;
+    }
+
+    public String getNation_ko_name() {
+        return nation_ko_name;
+    }
+
+    public void setNation_ko_name(String nation_ko_name) {
+        this.nation_ko_name = nation_ko_name;
+    }
+
+    public String getNation_en_name() {
+        return nation_en_name;
+    }
+
+    public void setNation_en_name(String nation_en_name) {
+        this.nation_en_name = nation_en_name;
+    }
+
+    public String getNation_cn_name() {
+        return nation_cn_name;
+    }
+
+    public void setNation_cn_name(String nation_cn_name) {
+        this.nation_cn_name = nation_cn_name;
+    }
+
+    public String getNation_jp_name() {
+        return nation_jp_name;
+    }
+
+    public void setNation_jp_name(String nation_jp_name) {
+        this.nation_jp_name = nation_jp_name;
     }
 }
