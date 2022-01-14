@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 public class RopiController {	
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/hi", method = RequestMethod.GET)
     public ModelAndView home(){
     	ModelAndView mv = new ModelAndView("main");
     	System.out.println("home controller start");

@@ -1,9 +1,13 @@
 package com.ropi.ropispring.DAO;
 
 import com.ropi.ropispring.Model.Summary;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
+@Mapper
 public interface SummaryDAO {
     List<Summary> listSummary();
     void insert(Summary summary); //추가
