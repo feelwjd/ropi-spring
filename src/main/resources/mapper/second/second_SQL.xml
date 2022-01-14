@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ropi.ropispring.DAO.SummaryDAO">
+
+    <insert id="setSummary" parameterType="com.ropi.ropispring.Model.Summary">
+        INSERT INTO second_ropi.TEST_SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNMAE, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
+            VALUE (#{symbol}, #{country_code}, #{sector_code}, #{industry_code}, #{ko_name}, #{en_name}, #{cn_name}, #{ko_summary}, #{en_summary}, #{cn_summary}, #{jp_summary}, #{tradunit}, #{nation_code}, #{nation_ko_name}, #{nation_en_name}, #{nation_cn_name}, #{nation_jp_name})
+    </insert>
+
+    <select id="getSummary" parameterType="com.ropi.ropispring.Model.Summary"
+            resultType="com.ropi.ropispring.Model.Summary">
+        select * from second_ropi.TEST_SUMMARY_TB
+    </select>
+
+    <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
+        delete from second_ropi.TEST_SUMMARY_TB where SECTORCODE=#{sector_code} and INDUSTRY_CODE=#{industry_code}
+    </delete>
+
+    <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">
+        update second_ropi.TEST_SUMMARY_TB set SYMBOL=#{symbol}, COUNTRYCODE=#{country_code}, KONAME=#{ko_name}, ENNAME=#{en_name}, CNNMAE=#{cn_name}, KOSUMMARY=#{ko_summary}, ENSUMMARY=#{en_summary}, CNSUMMARY=#{cn_summary}, JPSUMMARY=#{jp_summary}, TRADUNIT=#{trad_unit}, NATIONCODE=#{nation_code}, NATIONKONAME=#{nation_ko_name}, NATIONENNAME=#{nation_en_name}, NATIONCNNAME=#{nation_cn_name}, NATIONJPNAME=#{nation_jp_name} where SECTORCODE=#{sector_code} and INDUSTRYCODE=#{industry_code}
+    </update>
+
+</mapper>
