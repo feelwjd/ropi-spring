@@ -5,16 +5,15 @@
 
     <insert id="setSummary" parameterType="com.ropi.ropispring.Model.Summary">
         INSERT INTO ropi.TEST_SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNMAE, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
-            VALUE (#{symbol}, #{country_code}, #{sector_code}, #{industry_code}, #{ko_name}, #{en_name}, #{cn_name}, #{ko_summary}, #{en_summary}, #{cn_summary}, #{jp_summary}, #{tradunit}, #{nation_code}, #{nation_ko_name}, #{nation_en_name}, #{nation_cn_name}, #{nation_jp_name})
+            VALUE (#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
     </insert>
 
-    <select id="getSummary" parameterType="com.ropi.ropispring.Model.Summary"
-            resultType="com.ropi.ropispring.Model.Summary">
-        select * from ropi.TEST_SUMMARY_TB
+    <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
+        SELECT * FROM ropi.TEST_SUMMARY_TB;
     </select>
 
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        delete from ropi.TEST_SUMMARY_TB where SECTORCODE=#{sector_code} and INDUSTRY_CODE=#{industry_code}
+        delete from ropi.TEST_SUMMARY_TB where SECTORCODE=#{sector_code} and INDUSTRY_CODE=#{industry_code};
     </delete>
 
     <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+
+<head>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+    <title>Management System</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+<div class="container my-2">
+    <h1>기업 개요</h1>
+
+    <a th:href="@{/addSummary}" class="btn btn-primary btn-sm mb-3"> Add </a>
+
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>SYMBOL</th>
+            <th>COUNTRYCODE</th>
+            <th>SECTORCODE</th>
+            <th>INDUSTRYCODE</th>
+            <th>KONAME</th>
+            <th>ENNAME</th>
+            <th>CNNAME</th>
+            <th>KOSUMMARY</th>
+            <th>ENSUMMARY</th>
+            <th>CNSUMMARY</th>
+            <th>JPSUMMARY</th>
+            <th>TRADUNIT</th>
+            <th>NATIONCODE</th>
+            <th>NATIONKONAME</th>
+            <th>NATIONENNAME</th>
+            <th>NATIONCNNAME</th>
+            <th>NATIONJPNAME</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="col:${list}">
+            <td th:text="${col.symbol}"></td>
+            <td th:text="${col.countrycode}"></td>
+            <td th:text="${col.sectorcode}"></td>
+            <td th:text="${col.industrycode}"></td>
+            <td th:text="${col.koname}"></td>
+            <td th:text="${col.enname}"></td>
+            <td th:text="${col.cnname}"></td>
+            <td th:text="${col.kosummary}"></td>
+            <td th:text="${col.ensummary}"></td>
+            <td th:text="${col.cnsummary}"></td>
+            <td th:text="${col.jpsummary}"></td>
+            <td th:text="${col.tradunit}"></td>
+            <td th:text="${col.nationcode}"></td>
+            <td th:text="${col.nationkoname}"></td>
+            <td th:text="${col.nationenname}"></td>
+            <td th:text="${col.nationcnname}"></td>
+            <td th:text="${col.nationjpname}"></td>
+            <td> <a th:href="@{/summary/{id}(id=${col.symbol})}" class="btn btn-primary">Update</a>
+                <a th:href="@{/deleteSummary/{id}(id=${col.symbol})}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
