@@ -59,13 +59,10 @@
     <h6 th:text="${list.nationcnname}"></h6><br>
     <h5>NATIONJPNAME</h5>
     <h6 th:text="${list.nationjpname}"></h6><br>
+    <br>
+    <a th:href="@{/summary/{id}(id=${list.symbol})}" class="btn btn-primary">Update</a>
+    <a th:href="@{/deleteSummary/{id}(id=${list.symbol})}" class="btn btn-danger"> Delete </a>
 </div>
 </body>
 
 </html>
-
-<script>
-    function rowClicked(value) {
-        location.href = "/summary/" + value;
-    }
-</script>
