@@ -20,45 +20,23 @@
         <thead>
         <tr>
             <th>SYMBOL</th>
-            <th>COUNTRYCODE</th>
             <th>SECTORCODE</th>
             <th>INDUSTRYCODE</th>
             <th>KONAME</th>
             <th>ENNAME</th>
             <th>CNNAME</th>
-            <th>KOSUMMARY</th>
-            <th>ENSUMMARY</th>
-            <th>CNSUMMARY</th>
-            <th>JPSUMMARY</th>
-            <th>TRADUNIT</th>
-            <th>NATIONCODE</th>
-            <th>NATIONKONAME</th>
-            <th>NATIONENNAME</th>
-            <th>NATIONCNNAME</th>
-            <th>NATIONJPNAME</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="col:${list}">
+        <tr th:each="col:${list}" style="cursor: pointer" th:some-field="${col.symbol}" onclick="rowClicked(this.getAttribute('some-field'))">
             <td th:text="${col.symbol}"></td>
-            <td th:text="${col.countrycode}"></td>
             <td th:text="${col.sectorcode}"></td>
             <td th:text="${col.industrycode}"></td>
             <td th:text="${col.koname}"></td>
             <td th:text="${col.enname}"></td>
             <td th:text="${col.cnname}"></td>
-            <td th:text="${col.kosummary}"></td>
-            <td th:text="${col.ensummary}"></td>
-            <td th:text="${col.cnsummary}"></td>
-            <td th:text="${col.jpsummary}"></td>
-            <td th:text="${col.tradunit}"></td>
-            <td th:text="${col.nationcode}"></td>
-            <td th:text="${col.nationkoname}"></td>
-            <td th:text="${col.nationenname}"></td>
-            <td th:text="${col.nationcnname}"></td>
-            <td th:text="${col.nationjpname}"></td>
             <td> <a th:href="@{/summary/{id}(id=${col.symbol})}" class="btn btn-primary">Update</a>
-                <a th:href="@{/deleteSummary/{id}(id=${col.symbol})}" class="btn btn-danger">Delete</a>
+                <a th:href="@{/deleteSummary/{id}(id=${col.symbol})}" class="btn btn-danger"> Delete </a>
             </td>
         </tr>
         </tbody>
@@ -67,3 +45,9 @@
 </body>
 
 </html>
+
+<script>
+    function rowClicked(value) {
+        location.href = "/detail/" + value;
+    }
+</script>

@@ -24,12 +24,17 @@ public class SummaryDAOImpl implements SummaryDAO {
     }
 
     @Override
-    public void delete(Summary summary) {
+    public void deleteSummary(Summary summary) {
         sqlSession.delete("deleteSummary",summary);
     }
 
     @Override
-    public void update(Summary summary) {
+    public void updateSummary(Summary summary) {
         sqlSession.update("updateSummary",summary);
+    }
+
+    @Override
+    public Summary getSummary(String symbol){
+        return sqlSession.selectOne("getSummary");
     }
 }
