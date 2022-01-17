@@ -9,6 +9,7 @@ import java.util.List;
 public interface SummaryService {
     List<Summary> listSummary();
     void setSummary(Summary summary);
-    void delete(Summary summary);
-    void update(Summary summary);
+    void deleteSummary(Summary summary);
+    void updateSummary(Summary summary);
+    Summary getSummary(String symbol);
 }

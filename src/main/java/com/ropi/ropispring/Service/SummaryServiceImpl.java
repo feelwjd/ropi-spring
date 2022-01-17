@@ -27,12 +27,15 @@ public class SummaryServiceImpl implements SummaryService{
     }
 
     @Override
-    public void delete(Summary summary) {
-        summaryDAO.delete(summary);
+    public void deleteSummary(Summary summary) {
+        summaryDAO.deleteSummary(summary);
     }
 
     @Override
-    public void update(Summary summary) {
-        summaryDAO.update(summary);
+    public void updateSummary(Summary summary) {
+        summaryDAO.updateSummary(summary);
     }
+
+    @Override
+    public Summary getSummary(String symbol){return summaryDAO.getSummary(symbol);}
 }

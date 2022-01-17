@@ -12,12 +12,16 @@
         SELECT * FROM ropi.TEST_SUMMARY_TB;
     </select>
 
+    <select id="getSummary" resultType="com.ropi.ropispring.Model.Summary">
+        SELECT * FROM ropi.TEST_SUMMARY_TB where SYMBOL=#{symbol};
+    </select>
+
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        delete from ropi.TEST_SUMMARY_TB where SECTORCODE=#{sectorcode} and INDUSTRY_CODE=#{industrycode};
+        delete from ropi.TEST_SUMMARY_TB where SYMBOL=#{symbol};
     </delete>
 
     <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        update ropi.TEST_SUMMARY_TB set SYMBOL=#{symbol}, COUNTRYCODE=#{countrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNMAE=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SECTORCODE=#{sectorcode} and INDUSTRYCODE=#{industrycode}
+        update ropi.TEST_SUMMARY_TB set COUNTRYCODE=#{countrycode},SECTORCODE=#{sectorcode},INDUSTRYCODE=#{industrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNAME=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SYMBOL=#{symbol};
     </update>
 
 </mapper>

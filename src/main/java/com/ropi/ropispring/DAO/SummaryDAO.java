@@ -11,7 +11,8 @@ import java.util.List;
 public interface SummaryDAO {
     List<Summary> listSummary();
     void setSummary(Summary summary); //추가
-    void delete(Summary summary); //삭제
-    void update(Summary summary); //수정
+    void deleteSummary(Summary summary); //삭제
+    void updateSummary(Summary summary); //수정
+    Summary getSummary(String symbol);
 
 }

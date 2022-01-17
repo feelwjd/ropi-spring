@@ -62,4 +62,30 @@ public class SummaryController {
 		mv.setViewName("redirect:/");
 		return mv;
 	}
+
+	@GetMapping(value = "/summary/{no}")
+	public ModelAndView updateSummary(@PathVariable("no")String no, Summary summary){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/summary/updateSummary");
+		mv.addObject("list",summaryService.getSummary(no));
+		return mv;
+	}
+
+	@PostMapping("/update")
+	public ModelAndView updatePostSummary(Summary summary){
+		summaryService.updateSummary(summary);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/");
+		return mv;
+	}
+
+	@GetMapping("/deleteSummary/{no}")
+	public ModelAndView deleteSummary(@PathVariable("no")String no,Summary summary){
+		ModelAndView mv = new ModelAndView();
+		Summary deletesum = new Summary();
+		deletesum = summaryService.getSummary(no);
+		summaryService.deleteSummary(deletesum);
+		mv.setViewName("redirect:/");
+		return mv;
+	}
 }
