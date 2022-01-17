@@ -55,9 +55,11 @@ public class SummaryController {
 		return mv;
 	}
 
-	@PostMapping(value = "/add")
-	public String addPostSummary(Summary summary, Model model){
-		summaryService.insert(summary);
-		return "redirect:/";
+	@PostMapping("/add")
+	public ModelAndView addPostSummary(Summary summary){
+		summaryService.setSummary(summary);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("redirect:/");
+		return mv;
 	}
 }

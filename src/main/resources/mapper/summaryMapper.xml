@@ -4,8 +4,8 @@
 <mapper namespace="com.ropi.ropispring.DAO.SummaryDAO">
 
     <insert id="setSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        INSERT INTO ropi.TEST_SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNMAE, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
-            VALUE (#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
+        INSERT INTO ropi.TEST_SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
+            VALUES (#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
     </insert>
 
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
@@ -13,11 +13,11 @@
     </select>
 
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        delete from ropi.TEST_SUMMARY_TB where SECTORCODE=#{sector_code} and INDUSTRY_CODE=#{industry_code};
+        delete from ropi.TEST_SUMMARY_TB where SECTORCODE=#{sectorcode} and INDUSTRY_CODE=#{industrycode};
     </delete>
 
     <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        update ropi.TEST_SUMMARY_TB set SYMBOL=#{symbol}, COUNTRYCODE=#{country_code}, KONAME=#{ko_name}, ENNAME=#{en_name}, CNNMAE=#{cn_name}, KOSUMMARY=#{ko_summary}, ENSUMMARY=#{en_summary}, CNSUMMARY=#{cn_summary}, JPSUMMARY=#{jp_summary}, TRADUNIT=#{trad_unit}, NATIONCODE=#{nation_code}, NATIONKONAME=#{nation_ko_name}, NATIONENNAME=#{nation_en_name}, NATIONCNNAME=#{nation_cn_name}, NATIONJPNAME=#{nation_jp_name} where SECTORCODE=#{sector_code} and INDUSTRYCODE=#{industry_code}
+        update ropi.TEST_SUMMARY_TB set SYMBOL=#{symbol}, COUNTRYCODE=#{countrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNMAE=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SECTORCODE=#{sectorcode} and INDUSTRYCODE=#{industrycode}
     </update>
 
 </mapper>

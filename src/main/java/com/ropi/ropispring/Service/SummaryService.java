@@ -8,7 +8,7 @@ import java.util.List;
 @Service
 public interface SummaryService {
     List<Summary> listSummary();
-    void insert(Summary summary);
+    void setSummary(Summary summary);
     void delete(Summary summary);
     void update(Summary summary);
 }

@@ -22,8 +22,8 @@ public class SummaryServiceImpl implements SummaryService{
     }
 
     @Override
-    public void insert(Summary summary) {
-        summaryDAO.insert(summary);
+    public void setSummary(Summary summary) {
+        summaryDAO.setSummary(summary);
     }
 
     @Override
