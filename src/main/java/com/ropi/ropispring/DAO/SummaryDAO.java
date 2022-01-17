@@ -10,7 +10,7 @@ import java.util.List;
 @Mapper
 public interface SummaryDAO {
     List<Summary> listSummary();
-    void insert(Summary summary); //추가
+    void setSummary(Summary summary); //추가
     void delete(Summary summary); //삭제
     void update(Summary summary); //수정
 

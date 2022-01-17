@@ -19,7 +19,7 @@ public class SummaryDAOImpl implements SummaryDAO {
     }
 
     @Override
-    public void insert(Summary summary) {
+    public void setSummary(Summary summary) {
         sqlSession.insert("setSummary",summary);
     }
 
