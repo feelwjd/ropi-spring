@@ -88,4 +88,12 @@ public class SummaryController {
 		mv.setViewName("redirect:/");
 		return mv;
 	}
+
+	@GetMapping(value = "/detail/{no}")
+	public ModelAndView detailSummary(@PathVariable("no")String no, Summary summary){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/summary/detailSummary");
+		mv.addObject("list",summaryService.getSummary(no));
+		return mv;
+	}
 }
