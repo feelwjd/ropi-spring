@@ -12,4 +12,5 @@ public interface SummaryService {
     void deleteSummary(Summary summary);
     void updateSummary(Summary summary);
     Summary getSummary(String symbol);
+
 }

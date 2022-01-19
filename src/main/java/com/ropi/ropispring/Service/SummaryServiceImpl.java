@@ -38,4 +38,5 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Override
     public Summary getSummary(String symbol){return summaryDAO.getSummary(symbol);}
+
 }

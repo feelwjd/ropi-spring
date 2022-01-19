@@ -12,6 +12,7 @@ import java.util.List;
 public class SummaryDAOImpl implements SummaryDAO {
     @Inject
     SqlSession sqlSession;
+    SqlSession sqlSession2;
 
     @Override
     public List<Summary> listSummary(){
@@ -37,4 +38,5 @@ public class SummaryDAOImpl implements SummaryDAO {
     public Summary getSummary(String symbol){
         return sqlSession.selectOne("getSummary");
     }
+
 }

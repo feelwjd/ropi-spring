@@ -1,6 +1,9 @@
 package com.ropi.ropispring.Controller;
 
+import com.ropi.ropispring.DAO.SecondDAO;
 import com.ropi.ropispring.DAO.SummaryDAO;
+import com.ropi.ropispring.Model.Second;
+import com.ropi.ropispring.Service.SecondService;
 import com.ropi.ropispring.Service.SummaryService;
 import com.ropi.ropispring.Service.SummaryServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +30,9 @@ public class SummaryController {
 	@Autowired
 	private SummaryService summaryService;
 
+	@Autowired
+	private SecondService secondService;
+
 	@GetMapping(value="/summary")
 	public ModelAndView createSummaryForm() {
 		ModelAndView mv = new ModelAndView("/summary/summaryForm");
@@ -36,9 +42,12 @@ public class SummaryController {
 	@GetMapping(value = "/")
 	public ModelAndView viewSummary( ModelAndView mv, Model model) {
 		List<Summary> list = summaryService.listSummary();
+		List<Second> list2 = secondService.listSummary2();
 		model.addAttribute(list);
+		model.addAttribute(list2);
 		mv.setViewName("/summary/main");
 		mv.addObject("list",summaryService.listSummary());
+		mv.addObject("list2",secondService.listSummary2());
 		return mv;
 	}
 
