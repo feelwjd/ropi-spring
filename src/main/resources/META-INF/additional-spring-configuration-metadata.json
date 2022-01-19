@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "spring.ropi1.datasource.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.ropi1.datasource.driver-class-name'"
+  },
+  {
+    "name": "spring.ropi1.datasource.jdbc-url",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.ropi1.datasource.jdbc-url'"
+  },
+  {
+    "name": "spring.ropi6.datasource.driver-class-name",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.ropi6.datasource.driver-class-name'"
+  }
+]}
