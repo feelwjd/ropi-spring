@@ -1,6 +1,7 @@
 package com.ropi.ropispring.Service;
 
 import com.ropi.ropispring.DAO.SummaryDAO;
+import com.ropi.ropispring.DAO6.SummaryRopi6DAO;
 import com.ropi.ropispring.Model.Summary;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Autowired
     SummaryDAO summaryDAO;
+    
+    @Autowired
+    SummaryRopi6DAO summaryRopi6DAO;
 
     @Override
     public List<Summary> listSummary() {
@@ -23,7 +27,10 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Override
     public void setSummary(Summary summary) {
+    	System.out.println("service start");
+        summaryRopi6DAO.setSummary(summary);
         summaryDAO.setSummary(summary);
+        System.out.println("service end");
     }
 
     @Override

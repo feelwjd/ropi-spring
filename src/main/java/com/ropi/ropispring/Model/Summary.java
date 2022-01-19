@@ -163,4 +163,14 @@ public class Summary {
     public void setNationjpname(String nationjpname) {
         this.nationjpname = nationjpname;
     }
+
+	@Override
+	public String toString() {
+		return "Summary [symbol=" + symbol + ", countrycode=" + countrycode + ", sectorcode=" + sectorcode
+				+ ", industrycode=" + industrycode + ", koname=" + koname + ", enname=" + enname + ", cnname=" + cnname
+				+ ", kosummary=" + kosummary + ", ensummary=" + ensummary + ", cnsummary=" + cnsummary + ", jpsummary="
+				+ jpsummary + ", tradunit=" + tradunit + ", nationcode=" + nationcode + ", nationkoname=" + nationkoname
+				+ ", nationenname=" + nationenname + ", nationcnname=" + nationcnname + ", nationjpname=" + nationjpname
+				+ "]";
+	}
 }
