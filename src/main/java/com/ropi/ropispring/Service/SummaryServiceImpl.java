@@ -31,7 +31,7 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Override
     public void setSummary(Summary summary) {
-    	System.out.println("service start");
+    	System.out.println("service start summary : " + summary.toString());
     	summaryDAO.setSummary(summary);
         summaryRopi6DAO.setSummary(summary);
         summaryRopi7DAO.setSummary(summary);

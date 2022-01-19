@@ -6,6 +6,8 @@
     <insert id="setSummary" parameterType="com.ropi.ropispring.Model.Summary">
         INSERT INTO second_ropi.TEST_SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
             VALUES (#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
+            ON DUPLICATE KEY
+            UPDATE(SECTORCODE={sectorcode}, INDUSTRYCODE={industrycode}, KONAME={koname}, ENNAME={enname}, CNNAME={cnname}, KOSUMMARY={kosummary}, ENSUMMARY={ensummary}, CNSUMMARY={cnsummary}, JPSUMMARY={jpsummary}, TRADUNIT={tradunit}, NATIONCODE={nationcode}, NATIONKONAME={nationkoname}, NATIONENNAME={nationenname}, NATIONCNNAME={nationcnname}, NATIONJPNAME={nationjpname})
     </insert>
 
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
