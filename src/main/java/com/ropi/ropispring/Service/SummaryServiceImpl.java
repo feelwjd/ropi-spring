@@ -34,7 +34,7 @@ public class SummaryServiceImpl implements SummaryService{
     }
     @Override
     public List<Summary> listRopi7Summary() {
-        return summaryDAO.listSummary();
+        return summaryRopi7DAO.listSummary();
     }
 
     @Override
