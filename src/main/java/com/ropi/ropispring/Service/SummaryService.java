@@ -14,4 +14,6 @@ public interface SummaryService {
     void deleteSummary(Summary summary);
     void updateSummary(Summary summary);
     Summary getSummary(String symbol);
+    List<Summary> listRopi6Summary();
+    List<Summary> listRopi7Summary();
 }

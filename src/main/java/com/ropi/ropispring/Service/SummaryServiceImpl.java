@@ -24,6 +24,14 @@ public class SummaryServiceImpl implements SummaryService{
     public List<Summary> listSummary() {
         return summaryDAO.listSummary();
     }
+    @Override
+    public List<Summary> listRopi6Summary() {
+        return summaryRopi6DAO.listSummary();
+    }
+    @Override
+    public List<Summary> listRopi7Summary() {
+        return summaryDAO.listSummary();
+    }
 
     @Override
     public void setSummary(Summary summary) {

@@ -41,6 +41,22 @@ public class SummaryController {
 		mv.addObject("list",summaryService.listSummary());
 		return mv;
 	}
+	@GetMapping(value = "/ropi6")
+	public ModelAndView viewRopi6( ModelAndView mv, Model model) {
+		List<Summary> list = summaryService.listRopi6Summary();
+		model.addAttribute(list);
+		mv.setViewName("/summary/main");
+		mv.addObject("list",summaryService.listRopi6Summary());
+		return mv;
+	}
+	@GetMapping(value = "/ropi7")
+	public ModelAndView viewRopi7( ModelAndView mv, Model model) {
+		List<Summary> list = summaryService.listRopi7Summary();
+		model.addAttribute(list);
+		mv.setViewName("/summary/main");
+		mv.addObject("list",summaryService.listRopi7Summary());
+		return mv;
+	}
 
 	@GetMapping(value = "/test")
 	public List<Summary> test(){

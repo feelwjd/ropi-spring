@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="navFragment">
+  <ul class="nav nav-pills nav-fill">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" aria-current="page" th:href="@{/}">ROPI 1</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" th:href="@{/ropi6}">ROPI 6</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" th:href="@{/ropi7}">ROPI 7</a>
+    </li>
+  </ul>
+</div>
+</html>
+<script>
+  $(document).ready(function() {
+    $( ".mr-auto .nav-link" ).bind( "click", function(event) {
+      event.preventDefault();
+      var clickedItem = $( this );
+      $( ".mr-auto .nav-link" ).each( function() {
+        $( this ).removeClass( "active" );
+      });
+      clickedItem.addClass( "active" );
+    });
+  });
+</script>
