@@ -67,14 +67,14 @@ public class SummaryServiceImpl implements SummaryService{
     public void deleteSummary(Summary summary) {
         summaryDAO.deleteSummary(summary);
         summaryRopi6DAO.deleteSummary(summary);
-        summaryRopi7DAO.deleteSummary(summary);
+//        summaryRopi7DAO.deleteSummary(summary);
     }
 
     @Override
     public void updateSummary(Summary summary) {
         summaryDAO.updateSummary(summary);
         summaryRopi6DAO.updateSummary(summary);
-        summaryRopi7DAO.updateSummary(summary);
+//        summaryRopi7DAO.updateSummary(summary);
     }
 
     @Override
