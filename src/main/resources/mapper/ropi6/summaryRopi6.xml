@@ -24,4 +24,7 @@
         update second_ropi.TEST_SUMMARY_TB set COUNTRYCODE=#{countrycode},SECTORCODE=#{sectorcode},INDUSTRYCODE=#{industrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNAME=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SYMBOL=#{symbol};
     </update>
 
+	<select id="checkSummary" parameterType="com.ropi.ropispring.Model.Summary" resultType="int">
+		select COUNT(*) from second_ropi.TEST_SUMMARY_TB WHERE countrycode = #{countrycode} and symbol = #{symbol};
+	</select>
 </mapper>
