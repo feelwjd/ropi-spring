@@ -35,26 +35,38 @@ public class SummaryController {
 
 	@GetMapping(value = "/")
 	public ModelAndView viewSummary( ModelAndView mv, Model model) {
-		List<Summary> list = summaryService.listSummary();
-		model.addAttribute(list);
-		mv.setViewName("/summary/main");
-		mv.addObject("list",summaryService.listSummary());
+		try {
+			List<Summary> list = summaryService.listSummary();
+			model.addAttribute(list);
+			mv.setViewName("/summary/main");
+			mv.addObject("list",summaryService.listSummary());
+		}catch (Exception e){
+			mv.setViewName("/summary/page404");
+		}
 		return mv;
 	}
 	@GetMapping(value = "/ropi6")
 	public ModelAndView viewRopi6( ModelAndView mv, Model model) {
-		List<Summary> list = summaryService.listRopi6Summary();
-		model.addAttribute(list);
-		mv.setViewName("/summary/main");
-		mv.addObject("list",summaryService.listRopi6Summary());
+		try {
+			List<Summary> list = summaryService.listRopi6Summary();
+			model.addAttribute(list);
+			mv.setViewName("/summary/main");
+			mv.addObject("list",summaryService.listRopi6Summary());
+		}catch (Exception e){
+			mv.setViewName("/summary/page404");
+		}
 		return mv;
 	}
 	@GetMapping(value = "/ropi7")
 	public ModelAndView viewRopi7( ModelAndView mv, Model model) {
-		List<Summary> list = summaryService.listRopi7Summary();
-		model.addAttribute(list);
-		mv.setViewName("/summary/main");
-		mv.addObject("list",summaryService.listRopi7Summary());
+		try {
+			List<Summary> list = summaryService.listRopi7Summary();
+			model.addAttribute(list);
+			mv.setViewName("/summary/main");
+			mv.addObject("list",summaryService.listRopi7Summary());
+		}catch (Exception e){
+			mv.setViewName("/summary/page404");
+		}
 		return mv;
 	}
 
