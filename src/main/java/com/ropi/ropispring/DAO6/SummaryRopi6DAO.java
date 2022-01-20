@@ -14,5 +14,5 @@ public interface SummaryRopi6DAO {
     void deleteSummary(Summary summary); //삭제
     void updateSummary(Summary summary); //수정
     Summary getSummary(String symbol);
-
+    int checkSummary(Summary summary);
 }

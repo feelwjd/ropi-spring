@@ -31,11 +31,28 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Override
     public void setSummary(Summary summary) {
-    	System.out.println("service start summary : " + summary.toString());
-    	summaryDAO.setSummary(summary);
-        summaryRopi6DAO.setSummary(summary);
-        summaryRopi7DAO.setSummary(summary);
-        System.out.println("service end");
+    	int result;
+    	
+    	//로피1
+    	result = summaryDAO.checkSummary(summary);
+    	System.out.println("service result1 : " + result);
+    	if(result == 0) {
+    		summaryDAO.setSummary(summary);
+    	}
+    	
+    	//로피6
+    	result = summaryRopi6DAO.checkSummary(summary);
+    	System.out.println("service result2 : " + result);
+    	if(result == 0) {
+    		summaryDAO.setSummary(summary);
+    	}
+    	
+    	//로피7
+//    	result = summaryRopi7DAO.checkSummary(summary);
+//    	System.out.println("service result3 : " + result);
+//    	if(result == 0) {
+//    		summaryDAO.setSummary(summary);
+//    	}
     }
 
     @Override
