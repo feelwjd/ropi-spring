@@ -36,8 +36,8 @@ public class SummaryController {
 			mv.addObject("list",summaryService.listSummary());
 			mv.addObject("db",summaryService.dbCheck());
 		}catch (Exception e){
-			mv.setViewName("/summary/page404");
-			mv.addObject("error-type","409");
+			mv.setViewName("/summary/errors/500");
+			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
@@ -50,8 +50,8 @@ public class SummaryController {
 			mv.addObject("list",summaryService.listRopi6Summary());
 			mv.addObject("db",summaryService.dbRopi6Check());
 		}catch (Exception e){
-			mv.setViewName("/summary/page404");
-			mv.addObject("error-type","409");
+			mv.setViewName("/summary/errors/500");
+			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
@@ -64,8 +64,8 @@ public class SummaryController {
 			mv.addObject("list",summaryService.listRopi7Summary());
 			mv.addObject("db",summaryService.dbRopi7Check());
 		}catch (Exception e){
-			mv.setViewName("/summary/page404");
-			mv.addObject("error-type","409");
+			mv.setViewName("/summary/errors/500");
+			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
@@ -127,8 +127,8 @@ public class SummaryController {
 			mv.setViewName("/summary/updateSummary");
 		}
 		else{
-			mv.setViewName("/summary/page404");
-			mv.addObject("error-type","409");
+			mv.setViewName("/summary/errors/500");
+			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
@@ -200,8 +200,8 @@ public class SummaryController {
 			mv.setViewName("/summary/detailSummary");
 		}
 		else{
-			mv.setViewName("/summary/page404");
-			mv.addObject("error-type","409");
+			mv.setViewName("/summary/errors/500");
+			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
