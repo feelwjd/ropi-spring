@@ -11,7 +11,7 @@
     <h1>기업 개요</h1>
 
     <a th:href="@{/addSummary}" class="btn btn-primary btn mb-3"> Add </a>
-    <form name="csvFileForm" action="#" th:action="@{/csvFileUpload}" method="post" enctype="multipart/form-data" accept=".csv" >
+    <form name="csvFileForm" action="#" th:action="@{/csvFileUpload}" method="post" enctype="multipart/form-data" accept=".csv" accept-charset="UTF-8">
     	<input type="file" name="file" />
     	<input type="submit" />
     </form>

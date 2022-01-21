@@ -1,5 +1,7 @@
 package com.ropi.ropispring.util;
 
+import java.io.BufferedReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +15,8 @@ public class CSVReader {
 		if(!file.isEmpty()) {
 			try {
 				byte[] bytes = file.getBytes();
-				String line = new String(bytes);
+				String line = new String(bytes, "UTF-8");
 				System.out.println("line : " + line);
-				
 			}catch (Exception e) {
 				e.printStackTrace();
 			}
