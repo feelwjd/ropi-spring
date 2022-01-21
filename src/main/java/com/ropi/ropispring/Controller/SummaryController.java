@@ -110,7 +110,6 @@ public class SummaryController {
 		}catch (Exception e){
 			temp3 = "error";
 		}
-		logger.info(db);
 		if (db.equals(temp1)){
 			mv.addObject("list",summaryService.getSummary(no, sectorcode));
 			mv.addObject("db",db);
@@ -180,10 +179,6 @@ public class SummaryController {
 		}catch (Exception e){
 			temp3 = "error";
 		}
-		logger.info(temp1);
-		logger.info(temp2);
-		logger.info(temp3);
-		logger.info(db);
         if (db.equals(temp1)){
 			mv.addObject("list",summaryService.getSummary(no, sectorcode));
 			mv.addObject("db",db);
