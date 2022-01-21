@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,29 +15,32 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.ropi.ropispring.Service.FileService;
+
 
 @Controller
 public class FileController {
+	@Autowired
+	private FileService fileService;
+	
 	@ResponseBody
 	@PostMapping(value = "/csvFileUpload")
 	public ModelAndView uploadFile(@RequestParam("file")MultipartFile file) throws IOException {
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//		Calendar calendar = Calendar.getInstance();
-//		String today = sdf.format(calendar.getTime());
-		
-		//파일명
+		/*
 		String originalFile = file.getOriginalFilename();
-//		String originalFile = today.toString();
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		Calendar calendar = Calendar.getInstance();
+		String today = sdf.format(calendar.getTime());
+		//파일명
+		String fileName = today;
 		//확장자
 		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf(".")); 
-		
-//		String storeFileName = UUID.randomUUID().toString().replaceAll("-",  "") + originalFileExtension;
-//		System.out.println("store File Name : " + storeFileName);
-		
-		String path = "D:\\JeongWook\\ropi-spring\\src\\main\\webapp\\resource\\file\\" + originalFile + originalFileExtension;
+		String path = "D:\\JeongWook\\ropi-spring\\src\\main\\webapp\\resource\\file\\" + fileName + originalFileExtension;
 		File dest = new File(path);
 		file.transferTo(dest);
+		*/
+		
+		fileService.uploadFile(file);
 		
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;

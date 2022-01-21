@@ -4,7 +4,6 @@ import com.ropi.ropispring.DAO.SummaryDAO;
 import com.ropi.ropispring.DAO6.SummaryRopi6DAO;
 import com.ropi.ropispring.DAO7.SummaryRopi7DAO;
 import com.ropi.ropispring.Model.Summary;
-import com.ropi.ropispring.util.CSVReader;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +15,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SummaryServiceImpl implements SummaryService{
-	CSVReader csvReader = new CSVReader();
-
     @Autowired
     SummaryDAO summaryDAO;
     
