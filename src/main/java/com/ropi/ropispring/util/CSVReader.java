@@ -1,6 +1,10 @@
 package com.ropi.ropispring.util;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,14 +16,27 @@ import com.ropi.ropispring.Model.Summary;
 public class CSVReader {
 	public List<Summary> csvFileReader(MultipartFile file){
 		List<Summary> csvList = new ArrayList<>();
-		if(!file.isEmpty()) {
-			try {
-				byte[] bytes = file.getBytes();
-				String line = new String(bytes, "UTF-8");
-				System.out.println("line : " + line);
-			}catch (Exception e) {
-				e.printStackTrace();
+		try {
+			if(!file.isEmpty()) {
+				String content = new String(file.getBytes(), StandardCharsets.UTF_8);
+				BufferedReader reader = new BufferedReader(new StringReader(content));
+				
+				String line;
+				int count = 0;
+				while(true) {
+					line = reader.readLine();
+					System.out.println("line : " + line);
+					count++;
+					if(line == null) {
+						System.out.println("count : " + count);
+						break;
+					}
+				}
+
+//				System.out.println(content.);
 			}
+		}catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 		return csvList;
