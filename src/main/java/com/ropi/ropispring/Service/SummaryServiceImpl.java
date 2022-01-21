@@ -39,44 +39,58 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Override
     public void setSummary(Summary summary) {
-    	int result;
-    	
-    	//로피1
-    	result = summaryDAO.checkSummary(summary);
-    	System.out.println("service result1 : " + result);
-    	if(result == 0) {
-    		summaryDAO.setSummary(summary);
-    	}
-    	
-    	//로피6
-    	result = summaryRopi6DAO.checkSummary(summary);
-    	System.out.println("service result2 : " + result);
-    	if(result == 0) {
-    		summaryRopi6DAO.setSummary(summary);
-    	}
-    	
-    	//로피7
-//    	result = summaryRopi7DAO.checkSummary(summary);
-//    	System.out.println("service result3 : " + result);
-//    	if(result == 0) {
-//    		summaryRopi7DAO.setSummary(summary);
-//    	}
+    	try {
+            summaryDAO.setSummary(summary);
+        }catch (Exception e){}
+        try {
+            summaryRopi6DAO.setSummary(summary);
+        }catch (Exception e){}
+        try {
+            summaryRopi7DAO.setSummary(summary);
+        }catch (Exception e){}
     }
 
     @Override
     public void deleteSummary(Summary summary) {
-        summaryDAO.deleteSummary(summary);
-        summaryRopi6DAO.deleteSummary(summary);
-//        summaryRopi7DAO.deleteSummary(summary);
+        try {
+            summaryDAO.deleteSummary(summary);
+        }catch (Exception e){}
+        try {
+            summaryRopi6DAO.deleteSummary(summary);
+        }catch (Exception e){}
+        try {
+            summaryRopi7DAO.deleteSummary(summary);
+        }catch (Exception e){}
     }
 
     @Override
     public void updateSummary(Summary summary) {
-        summaryDAO.updateSummary(summary);
-        summaryRopi6DAO.updateSummary(summary);
-//        summaryRopi7DAO.updateSummary(summary);
+        try {
+            summaryDAO.updateSummary(summary);
+        }catch (Exception e){}
+        try {
+            summaryRopi6DAO.updateSummary(summary);
+        }catch (Exception e){}
+        try {
+            summaryRopi7DAO.updateSummary(summary);
+        }catch (Exception e){}
     }
 
     @Override
-    public Summary getSummary(String symbol){return summaryDAO.getSummary(symbol);}
+    public Summary getSummary(String symbol, String sectorcode){return summaryDAO.getSummary(symbol, sectorcode);}
+
+    @Override
+    public Summary getRopi6Summary(String symbol, String sectorcode){return summaryRopi6DAO.getSummary(symbol, sectorcode);}
+
+    @Override
+    public Summary getRopi7Summary(String symbol, String sectorcode){return summaryRopi7DAO.getSummary(symbol, sectorcode);}
+
+    @Override
+    public String dbCheck(){return summaryDAO.dbCheck();}
+
+    @Override
+    public String dbRopi6Check(){return summaryRopi6DAO.dbCheck();}
+
+    @Override
+    public String dbRopi7Check(){return summaryRopi7DAO.dbCheck();}
 }

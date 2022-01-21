@@ -40,6 +40,7 @@ public class SummaryController {
 			model.addAttribute(list);
 			mv.setViewName("/summary/main");
 			mv.addObject("list",summaryService.listSummary());
+			mv.addObject("db",summaryService.dbCheck());
 		}catch (Exception e){
 			mv.setViewName("/summary/page404");
 		}
@@ -52,6 +53,7 @@ public class SummaryController {
 			model.addAttribute(list);
 			mv.setViewName("/summary/main");
 			mv.addObject("list",summaryService.listRopi6Summary());
+			mv.addObject("db",summaryService.dbRopi6Check());
 		}catch (Exception e){
 			mv.setViewName("/summary/page404");
 		}
@@ -64,6 +66,7 @@ public class SummaryController {
 			model.addAttribute(list);
 			mv.setViewName("/summary/main");
 			mv.addObject("list",summaryService.listRopi7Summary());
+			mv.addObject("db",summaryService.dbRopi7Check());
 		}catch (Exception e){
 			mv.setViewName("/summary/page404");
 		}
@@ -91,11 +94,44 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping(value = "/summary/{no}")
-	public ModelAndView updateSummary(@PathVariable("no")String no, Summary summary){
+	@GetMapping(value = "/updateSummary/{db}/{no}/{sectorcode}")
+	public ModelAndView updateSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("sectorcode")String sectorcode, Summary summary){
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/summary/updateSummary");
-		mv.addObject("list",summaryService.getSummary(no));
+		String temp1,temp2,temp3;
+		try	{
+			temp1 = summaryService.dbCheck();
+		}catch (Exception e){
+			temp1 = "error";
+		}
+		try	{
+			temp2 = summaryService.dbRopi6Check();
+		}catch (Exception e){
+			temp2 = "error";
+		}
+		try	{
+			temp3 = summaryService.dbRopi7Check();
+		}catch (Exception e){
+			temp3 = "error";
+		}
+		logger.info(db);
+		if (db.equals(temp1)){
+			mv.addObject("list",summaryService.getSummary(no, sectorcode));
+			mv.addObject("db",db);
+			mv.setViewName("/summary/updateSummary");
+		}
+		else if (db.equals(temp2)){
+			mv.addObject("list",summaryService.getRopi6Summary(no, sectorcode));
+			mv.addObject("db",db);
+			mv.setViewName("/summary/updateSummary");
+		}
+		else if (db.equals(temp3)){
+			mv.addObject("list",summaryService.getRopi7Summary(no, sectorcode));
+			mv.addObject("db",db);
+			mv.setViewName("/summary/updateSummary");
+		}
+		else{
+			mv.setViewName("/summary/page404");
+		}
 		return mv;
 	}
 
@@ -107,21 +143,67 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping("/deleteSummary/{no}")
-	public ModelAndView deleteSummary(@PathVariable("no")String no,Summary summary){
+	@GetMapping("/deleteSummary/{db}/{no}/{sectorcode}")
+	public ModelAndView deleteSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("sectorcode")String sectorcode,Summary summary){
 		ModelAndView mv = new ModelAndView();
 		Summary deletesum = new Summary();
-		deletesum = summaryService.getSummary(no);
-		summaryService.deleteSummary(deletesum);
+		try	{
+			deletesum = summaryService.getSummary(no,sectorcode);
+			summaryService.deleteSummary(deletesum);
+		}catch (Exception e){}
+		try	{
+			deletesum = summaryService.getRopi6Summary(no,sectorcode);
+			summaryService.deleteSummary(deletesum);
+		}catch (Exception e){}
+		try	{
+			deletesum = summaryService.getRopi7Summary(no,sectorcode);
+			summaryService.deleteSummary(deletesum);
+		}catch (Exception e){}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
 
-	@GetMapping(value = "/detail/{no}")
-	public ModelAndView detailSummary(@PathVariable("no")String no, Summary summary){
+	@GetMapping(value = "/detail/{db}/{no}/{sectorcode}")
+	public ModelAndView detailSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("sectorcode")String sectorcode, Summary summary){
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("/summary/detailSummary");
-		mv.addObject("list",summaryService.getSummary(no));
+		String temp1,temp2,temp3;
+		try	{
+			temp1 = summaryService.dbCheck();
+		}catch (Exception e){
+			temp1 = "error";
+		}
+		try	{
+			temp2 = summaryService.dbRopi6Check();
+		}catch (Exception e){
+			temp2 = "error";
+		}
+		try	{
+			temp3 = summaryService.dbRopi7Check();
+		}catch (Exception e){
+			temp3 = "error";
+		}
+		logger.info(temp1);
+		logger.info(temp2);
+		logger.info(temp3);
+		logger.info(db);
+        if (db.equals(temp1)){
+			mv.addObject("list",summaryService.getSummary(no, sectorcode));
+			mv.addObject("db",db);
+			mv.setViewName("/summary/detailSummary");
+		}
+		else if (db.equals(temp2)){
+			mv.addObject("list",summaryService.getRopi6Summary(no, sectorcode));
+			mv.addObject("db",db);
+			mv.setViewName("/summary/detailSummary");
+		}
+		else if (db.equals(temp3)){
+			mv.addObject("list",summaryService.getRopi7Summary(no, sectorcode));
+			mv.addObject("db",db);
+			mv.setViewName("/summary/detailSummary");
+		}
+		else{
+			mv.setViewName("/summary/page404");
+		}
 		return mv;
 	}
 }

@@ -35,12 +35,21 @@ public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
     }
 
     @Override
-    public Summary getSummary(String symbol){
+    public Summary getSummary(String symbol, String sectorcode){
         return sqlSession.selectOne("getSummary");
     }
     
     @Override
     public int checkSummary(Summary summary) {
     	return sqlSession.selectOne("checkSummary", summary);    
+    }
+
+    @Override
+    public String dbCheck(){
+        try {
+            return sqlSession.selectOne("dbCheck");
+        }catch (Exception e){
+            return "db-connect-error";
+        }
     }
 }

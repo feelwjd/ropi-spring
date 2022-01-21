@@ -12,9 +12,9 @@
   <h2>Save Summary</h2>
 
   <form name="updateSummary" action="#" th:action="@{/update}" th:object="${list}" method="POST">
-    <input type="text" id="symbol" th:field="*{symbol}" placeholder="symbol" class="form-control mb-4 col-4">
+    <input type="text" id="symbol" th:field="*{symbol}" placeholder="symbol" class="form-control mb-4 col-4" readonly>
     <input type="text" id="countrycode" th:field="*{countrycode}" placeholder="countrycode" class="form-control mb-4 col-4">
-    <input type="text" id="sectorcode" th:field="*{sectorcode}" placeholder="sectorcode" class="form-control mb-4 col-4">
+    <input type="text" id="sectorcode" th:field="*{sectorcode}" placeholder="sectorcode" class="form-control mb-4 col-4" readonly>
     <input type="text" id="industrycode" th:field="*{industrycode}" placeholder="industrycode" class="form-control mb-4 col-4">
     <input type="text" id="koname" th:field="*{koname}" placeholder="koname" class="form-control mb-4 col-4" maxlength="100">
     <input type="text" id="enname" th:field="*{enname}" placeholder="enname" class="form-control mb-4 col-4" maxlength="100">
@@ -85,14 +85,14 @@
 
     if(!industrycodeCheck.test(industrycode.value)){
       alert("4자리까지 입력 가능합니다.");
-      symbol.focus();
+      industrycode.focus();
       return false;
     };
 
 
     if(!nationcodeCheck.test(nationcode.value)){
       alert("2자리까지 입력 가능합니다.");
-      industrycode.focus();
+      nationcode.focus();
       return false;
     };
 
