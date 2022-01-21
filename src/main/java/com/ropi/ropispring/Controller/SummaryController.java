@@ -27,12 +27,6 @@ public class SummaryController {
 	@Autowired
 	private SummaryService summaryService;
 
-	@GetMapping(value="/summary")
-	public ModelAndView createSummaryForm() {
-		ModelAndView mv = new ModelAndView("/summary/summaryForm");
-		return mv;
-	}
-
 	@GetMapping(value = "/")
 	public ModelAndView viewSummary( ModelAndView mv, Model model) {
 		try {
@@ -43,6 +37,7 @@ public class SummaryController {
 			mv.addObject("db",summaryService.dbCheck());
 		}catch (Exception e){
 			mv.setViewName("/summary/page404");
+			mv.addObject("error-type","409");
 		}
 		return mv;
 	}
@@ -56,6 +51,7 @@ public class SummaryController {
 			mv.addObject("db",summaryService.dbRopi6Check());
 		}catch (Exception e){
 			mv.setViewName("/summary/page404");
+			mv.addObject("error-type","409");
 		}
 		return mv;
 	}
@@ -69,6 +65,7 @@ public class SummaryController {
 			mv.addObject("db",summaryService.dbRopi7Check());
 		}catch (Exception e){
 			mv.setViewName("/summary/page404");
+			mv.addObject("error-type","409");
 		}
 		return mv;
 	}
@@ -131,6 +128,7 @@ public class SummaryController {
 		}
 		else{
 			mv.setViewName("/summary/page404");
+			mv.addObject("error-type","409");
 		}
 		return mv;
 	}
@@ -203,6 +201,7 @@ public class SummaryController {
 		}
 		else{
 			mv.setViewName("/summary/page404");
+			mv.addObject("error-type","409");
 		}
 		return mv;
 	}
