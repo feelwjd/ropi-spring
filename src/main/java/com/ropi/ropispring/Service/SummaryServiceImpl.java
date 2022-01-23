@@ -76,7 +76,7 @@ public class SummaryServiceImpl implements SummaryService{
         summaryRopi6DAO.updateSummary(summary);
 //        summaryRopi7DAO.updateSummary(summary);
     }
-
+    
     @Override
     public Summary getSummary(String symbol){return summaryDAO.getSummary(symbol);}
 }

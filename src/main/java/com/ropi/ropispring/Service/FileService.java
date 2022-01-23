@@ -9,5 +9,5 @@ import com.ropi.ropispring.Model.Summary;
 
 @Service
 public interface FileService {
-	List<Summary> uploadFile(MultipartFile file);
+	int uploadFile(MultipartFile file);
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ropi.ropispring.DAO.FileDAO">
+    <insert id="insertSummaryList" parameterType="java.util.List">
+        INSERT INTO ropi.TEST_SUMMARY_TB(
+        	SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE,
+			KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY,
+			TRADUNIT, NATIONCODE,
+			NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME
+		)
+		VALUES
+		<foreach collection="list" item="item" separator=" , ">
+			(#{item.symbol}, #{item.countrycode}, #{item.sectorcode},
+			#{item.industrycode}, #{item.koname}, #{item.enname},
+			#{item.cnname}, #{item.kosummary}, #{item.ensummary},
+			#{item.cnsummary}, #{item.jpsummary}, #{item.tradunit},
+			#{item.nationcode}, #{item.nationkoname}, #{item.nationenname},
+			#{item.nationcnname}, #{item.nationjpname})
+		</foreach>
+    </insert>
+</mapper>
