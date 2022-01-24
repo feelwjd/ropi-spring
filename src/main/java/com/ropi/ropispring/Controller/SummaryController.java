@@ -91,8 +91,8 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping(value = "/updateSummary/{db}/{no}/{sectorcode}")
-	public ModelAndView updateSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("sectorcode")String sectorcode, Summary summary){
+	@GetMapping(value = "/updateSummary/{db}/{no}/{countrycode}")
+	public ModelAndView updateSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("countrycode")String countrycode, Summary summary){
 		ModelAndView mv = new ModelAndView();
 		String temp1,temp2,temp3;
 		try	{
@@ -111,17 +111,17 @@ public class SummaryController {
 			temp3 = "error";
 		}
 		if (db.equals(temp1)){
-			mv.addObject("list",summaryService.getSummary(no, sectorcode));
+			mv.addObject("list",summaryService.getSummary(no, countrycode));
 			mv.addObject("db",db);
 			mv.setViewName("/summary/updateSummary");
 		}
 		else if (db.equals(temp2)){
-			mv.addObject("list",summaryService.getRopi6Summary(no, sectorcode));
+			mv.addObject("list",summaryService.getRopi6Summary(no, countrycode));
 			mv.addObject("db",db);
 			mv.setViewName("/summary/updateSummary");
 		}
 		else if (db.equals(temp3)){
-			mv.addObject("list",summaryService.getRopi7Summary(no, sectorcode));
+			mv.addObject("list",summaryService.getRopi7Summary(no, countrycode));
 			mv.addObject("db",db);
 			mv.setViewName("/summary/updateSummary");
 		}
@@ -140,28 +140,28 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping("/deleteSummary/{db}/{no}/{sectorcode}")
-	public ModelAndView deleteSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("sectorcode")String sectorcode,Summary summary){
+	@GetMapping("/deleteSummary/{db}/{no}/{countrycode}")
+	public ModelAndView deleteSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("countrycode")String countrycode,Summary summary){
 		ModelAndView mv = new ModelAndView();
 		Summary deletesum = new Summary();
 		try	{
-			deletesum = summaryService.getSummary(no,sectorcode);
+			deletesum = summaryService.getSummary(no, countrycode);
 			summaryService.deleteSummary(deletesum);
 		}catch (Exception e){}
 		try	{
-			deletesum = summaryService.getRopi6Summary(no,sectorcode);
+			deletesum = summaryService.getRopi6Summary(no, countrycode);
 			summaryService.deleteSummary(deletesum);
 		}catch (Exception e){}
 		try	{
-			deletesum = summaryService.getRopi7Summary(no,sectorcode);
+			deletesum = summaryService.getRopi7Summary(no, countrycode);
 			summaryService.deleteSummary(deletesum);
 		}catch (Exception e){}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
 
-	@GetMapping(value = "/detail/{db}/{no}/{sectorcode}")
-	public ModelAndView detailSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("sectorcode")String sectorcode, Summary summary){
+	@GetMapping(value = "/detail/{db}/{no}/{countrycode}")
+	public ModelAndView detailSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("countrycode")String countrycode, Summary summary){
 		ModelAndView mv = new ModelAndView();
 		String temp1,temp2,temp3;
 		try	{
@@ -180,17 +180,17 @@ public class SummaryController {
 			temp3 = "error";
 		}
         if (db.equals(temp1)){
-			mv.addObject("list",summaryService.getSummary(no, sectorcode));
+			mv.addObject("list",summaryService.getSummary(no, countrycode));
 			mv.addObject("db",db);
 			mv.setViewName("/summary/detailSummary");
 		}
 		else if (db.equals(temp2)){
-			mv.addObject("list",summaryService.getRopi6Summary(no, sectorcode));
+			mv.addObject("list",summaryService.getRopi6Summary(no, countrycode));
 			mv.addObject("db",db);
 			mv.setViewName("/summary/detailSummary");
 		}
 		else if (db.equals(temp3)){
-			mv.addObject("list",summaryService.getRopi7Summary(no, sectorcode));
+			mv.addObject("list",summaryService.getRopi7Summary(no, countrycode));
 			mv.addObject("db",db);
 			mv.setViewName("/summary/detailSummary");
 		}

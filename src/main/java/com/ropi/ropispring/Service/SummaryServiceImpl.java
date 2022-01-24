@@ -77,13 +77,13 @@ public class SummaryServiceImpl implements SummaryService{
     }
     
     @Override
-    public Summary getSummary(String symbol, String sectorcode){return summaryDAO.getSummary(symbol, sectorcode);}
+    public Summary getSummary(String symbol, String countrycode){return summaryDAO.getSummary(symbol, countrycode);}
 
     @Override
-    public Summary getRopi6Summary(String symbol, String sectorcode){return summaryRopi6DAO.getSummary(symbol, sectorcode);}
+    public Summary getRopi6Summary(String symbol, String countrycode){return summaryRopi6DAO.getSummary(symbol, countrycode);}
 
     @Override
-    public Summary getRopi7Summary(String symbol, String sectorcode){return summaryRopi7DAO.getSummary(symbol, sectorcode);}
+    public Summary getRopi7Summary(String symbol, String countrycode){return summaryRopi7DAO.getSummary(symbol, countrycode);}
 
     @Override
     public String dbCheck(){return summaryDAO.dbCheck();}

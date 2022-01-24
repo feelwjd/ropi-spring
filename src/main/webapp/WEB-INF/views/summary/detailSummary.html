@@ -55,8 +55,8 @@
     <h5>NATIONJPNAME</h5>
     <h6 th:text="${list.nationjpname}"></h6><br>
     <br>
-    <a th:href="@{/updateSummary/{db}/{id}/{sect}(db=${db}, id=${list.symbol}, sect=${list.sectorcode})}" class="btn btn-primary">Update</a>
-    <a th:href="@{/deleteSummary/{db}/{id}/{sect}(db=${db}, id=${list.symbol}, sect=${list.sectorcode})}" class="btn btn-danger" th:some-field="${list.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a>
+    <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${list.symbol}, country=${list.countrycode})}" class="btn btn-primary">Update</a>
+    <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${list.symbol}, country=${list.countrycode})}" class="btn btn-danger" th:some-field="${list.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a>
     <br><br><br>
     <a th:href="@{/}"> Back to Summary List</a>
 

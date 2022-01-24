@@ -13,9 +13,9 @@ public interface SummaryService {
     void setSummary(Summary summary);
     void deleteSummary(Summary summary);
     void updateSummary(Summary summary);
-    Summary getSummary(String symbol,String sectorcode);
-    Summary getRopi6Summary(String symbol, String sectorcode);
-    Summary getRopi7Summary(String symbol, String sectorcode);
+    Summary getSummary(String symbol, String countrycode);
+    Summary getRopi6Summary(String symbol, String countrycode);
+    Summary getRopi7Summary(String symbol, String countrycode);
     List<Summary> listRopi6Summary();
     List<Summary> listRopi7Summary();
     String dbCheck();
