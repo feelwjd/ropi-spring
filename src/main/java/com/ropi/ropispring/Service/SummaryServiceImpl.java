@@ -4,6 +4,7 @@ import com.ropi.ropispring.DAO.SummaryDAO;
 import com.ropi.ropispring.DAO6.SummaryRopi6DAO;
 import com.ropi.ropispring.DAO7.SummaryRopi7DAO;
 import com.ropi.ropispring.Model.Summary;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class SummaryServiceImpl implements SummaryService{
-
     @Autowired
     SummaryDAO summaryDAO;
     
@@ -75,7 +75,7 @@ public class SummaryServiceImpl implements SummaryService{
             summaryRopi7DAO.updateSummary(summary);
         }catch (Exception e){}
     }
-
+    
     @Override
     public Summary getSummary(String symbol, String sectorcode){return summaryDAO.getSummary(symbol, sectorcode);}
 
