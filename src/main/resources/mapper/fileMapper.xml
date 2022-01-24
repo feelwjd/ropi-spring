@@ -18,5 +18,21 @@
 			#{item.nationcode}, #{item.nationkoname}, #{item.nationenname},
 			#{item.nationcnname}, #{item.nationjpname})
 		</foreach>
+		ON DUPLICATE KEY UPDATE
+			SECTORCODE = values(SECTORCODE),
+			INDUSTRYCODE = values(INDUSTRYCODE),
+			KONAME = values(KONAME),
+			ENNAME = values(ENNAME),
+			CNNAME = values(CNNAME),
+			KOSUMMARY = values(KOSUMMARY),
+			ENSUMMARY = values(ENSUMMARY),
+			CNSUMMARY = values(CNSUMMARY),
+			JPSUMMARY = values(JPSUMMARY),
+			TRADUNIT = values(TRADUNIT),
+			NATIONCODE = values(NATIONCODE),
+			NATIONKONAME = values(NATIONKONAME),
+			NATIONENNAME = values(NATIONENNAME),
+			NATIONCNNAME = values(NATIONCNNAME),
+			NATIONJPNAME = values(NATIONJPNAME)
     </insert>
 </mapper>

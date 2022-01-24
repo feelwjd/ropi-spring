@@ -1,9 +1,6 @@
 package com.ropi.ropispring.util;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.StringReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -20,7 +17,6 @@ public class TextReader {
 			if(!file.isEmpty()) {
 				String content = new String(file.getBytes(), StandardCharsets.UTF_8);
 				BufferedReader reader = new BufferedReader(new StringReader(content));
-				
 				String line;
 				int count = 0;
 				
@@ -55,15 +51,12 @@ public class TextReader {
 								if(innerCount == 15) summary.setNationcnname(value);
 								if(innerCount == 16) summary.setNationjpname(value);
 								innerCount++;
+								
 							}
 //							System.out.println(summary.toString());
 							summaryList.add(summary);
 						}
 						count++;
-						
-						if(count > 10) {
-							break;
-						}
 					}
 				}
 			}
