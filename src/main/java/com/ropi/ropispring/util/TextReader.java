@@ -28,11 +28,24 @@ public class TextReader {
 						System.out.println("count : " + count);
 						break;
 					}else {
+						int length;
 						String[] lineArray = line.split("\t");
 						Summary summary = new Summary();
 						
+						//첫행은 칼럼명
 						if(count > 0) {
 							for(String value : lineArray) {
+								if(value != "") {
+									char firstChar = value.charAt(0);
+									if(firstChar == '"') {
+										length = value.length();
+										char lastChar = value.charAt(length - 1);
+										if(lastChar == '"') {
+											value = value.substring(1, length-1);
+										}
+									}
+								}
+								
 								if(innerCount == 0) summary.setSymbol(value);
 								if(innerCount == 1) summary.setCountrycode(value);
 								if(innerCount == 2) summary.setSectorcode(value);
@@ -52,6 +65,11 @@ public class TextReader {
 								if(innerCount == 16) summary.setNationjpname(value);
 								innerCount++;
 								
+//								if(summary.getCnname() != null) {
+//									if(summary.getCnname().length()>=100) {
+//										System.out.println("len : " + summary.getCnname().length() + "/" + summary.getCnname());
+//									}
+//								}
 							}
 //							System.out.println(summary.toString());
 							summaryList.add(summary);
