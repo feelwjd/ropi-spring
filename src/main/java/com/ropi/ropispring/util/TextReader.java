@@ -16,6 +16,7 @@ public class TextReader {
 		try {
 			if(!file.isEmpty()) {
 				String content = new String(file.getBytes(), StandardCharsets.UTF_8);
+//				String content = new String(file.getBytes(), StandardCharsets.UTF_16LE);
 				BufferedReader reader = new BufferedReader(new StringReader(content));
 				String line;
 				int count = 0;
