@@ -13,15 +13,15 @@
     </select>
 
     <select id="getSummary" resultType="com.ropi.ropispring.Model.Summary">
-        SELECT * FROM second_ropi.TEST_SUMMARY_TB where SYMBOL=#{symbol} AND SECTORCODE=#{sectorcode};
+        SELECT * FROM second_ropi.TEST_SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
     </select>
 
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        delete from second_ropi.TEST_SUMMARY_TB where SYMBOL=#{symbol} AND SECTORCODE=#{sectorcode};
+        delete from second_ropi.TEST_SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
     </delete>
 
     <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        update second_ropi.TEST_SUMMARY_TB set COUNTRYCODE=#{countrycode},INDUSTRYCODE=#{industrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNAME=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SYMBOL=#{symbol} AND SECTORCODE=#{sectorcode};
+        update second_ropi.TEST_SUMMARY_TB set SECTORCODE=#{sectorcode}, INDUSTRYCODE=#{industrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNAME=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
     </update>
 
 	<select id="checkSummary" parameterType="com.ropi.ropispring.Model.Summary" resultType="int">

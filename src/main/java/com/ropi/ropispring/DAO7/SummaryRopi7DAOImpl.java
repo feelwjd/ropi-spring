@@ -35,7 +35,7 @@ public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
     }
 
     @Override
-    public Summary getSummary(String symbol, String sectorcode){
+    public Summary getSummary(String symbol, String countrycode){
         return sqlSession.selectOne("getSummary");
     }
     

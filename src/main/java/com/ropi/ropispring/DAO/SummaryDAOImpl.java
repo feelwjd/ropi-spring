@@ -33,7 +33,7 @@ public class SummaryDAOImpl implements SummaryDAO {
     }
 
     @Override
-    public Summary getSummary(String symbol, String sectorcode){
+    public Summary getSummary(String symbol, String countrycode){
         return sqlSession.selectOne("getSummary");
     }
 
