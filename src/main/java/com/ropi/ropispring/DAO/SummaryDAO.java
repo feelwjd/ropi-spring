@@ -14,7 +14,7 @@ public interface SummaryDAO {
     void setSummary(Summary summary); //추가
     void deleteSummary(Summary summary); //삭제
     void updateSummary(Summary summary); //수정
-    Summary getSummary(@Param("symbol") String symbol, @Param("sectorcode") String sectorcode);
+    Summary getSummary(@Param("symbol") String symbol, @Param("countrycode") String countrycode);
     int checkSummary(Summary summary);
     String dbCheck();
 }
