@@ -80,11 +80,11 @@ public class SummaryController {
 		return mv;
 	}
 
-	@PostMapping("/add")
-	public ModelAndView addPostSummary(Summary summary){
-		summaryService.setSummary(summary);
+	@PostMapping("/add/{db}")
+	public ModelAndView addPostSummary(Summary summary,@PathVariable("db")String db){
+		String[] selectDB = db.toString().split(",");
+		logger.info(selectDB[0]);
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("redirect:/");
 		return mv;
 	}
 
