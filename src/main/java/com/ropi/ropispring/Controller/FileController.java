@@ -21,9 +21,12 @@ public class FileController {
 	@ResponseBody
 	@PostMapping(value = "/csvFileUpload")
 	public ModelAndView uploadFile(@RequestParam("file")MultipartFile file) throws IOException {
-		int result = fileService.uploadFile(file);
-		System.out.println("result : " + result);
-		
+		if(file == null) {
+			System.out.println("NULL ");
+		}else {
+			int result = fileService.uploadFile(file);
+			System.out.println("result : " + result);
+		}
 		ModelAndView mv = new ModelAndView("redirect:/");
 		return mv;
 	}
