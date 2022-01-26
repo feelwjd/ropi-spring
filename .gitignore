@@ -104,3 +104,6 @@ local.properties
 
 ###ropi project###
 *.csv
+
+##linux sh###
+serverOn.sh
