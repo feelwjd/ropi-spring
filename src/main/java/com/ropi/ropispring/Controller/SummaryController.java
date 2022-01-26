@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.ropi.ropispring.Model.Summary;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -198,6 +195,25 @@ public class SummaryController {
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
 		}
+		return mv;
+	}
+
+	@GetMapping(value = "/delete/{select}/{countrycode}")
+	public ModelAndView selectDelete(@PathVariable("select")String select, @PathVariable("countrycode")String ctc, ModelAndView mv){
+		String[] arrSymbol = select.toString().split(",");
+		String[] arrCountrycode = ctc.toString().split(",");
+		Summary summary = new Summary();
+		logger.info(arrSymbol[1]);
+		logger.info(arrCountrycode[1]);
+		try	{
+			for (int i =0;i<arrSymbol.length; i++){
+				String symbol = arrSymbol[i];
+				String countrycode = arrCountrycode[i];
+				summary = summaryService.getSummary(symbol, countrycode);
+				summaryService.deleteSummary(summary);
+				mv.setViewName("redirect:/");
+			}
+		}catch (Exception e){}
 		return mv;
 	}
 }
