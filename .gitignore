@@ -107,3 +107,6 @@ local.properties
 
 ##linux sh###
 serverOn.sh
+
+test.txt
+nohup.out
