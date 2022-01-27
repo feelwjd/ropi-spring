@@ -158,21 +158,21 @@ public class SummaryController {
 	@PostMapping("/update/{db}")
 	public ModelAndView updatePostSummary(Summary summary,@PathVariable("db")String db){
 		switch (db){
-			case "ropi":
+			case "ropi1":
 				logger.info("server 1 update");
 				try	{
 					summaryService.updateSummary(summary);
 				}catch (Exception e){}
 				break;
 
-			case "second_ropi":
+			case "ropi6":
 				logger.info("server 2 update");
 				try	{
 					summaryService.updateRopi6Summary(summary);
 				}catch (Exception e){}
 				break;
 
-			case "third_ropi":
+			case "ropi7":
 				logger.info("server 3 update");
 				try	{
 					summaryService.updateRopi7Summary(summary);
@@ -189,21 +189,21 @@ public class SummaryController {
 		Summary deletesum = new Summary();
 		logger.info(db);
 		switch (db){
-			case "ropi":
+			case "ropi1":
 				try	{
 					deletesum = summaryService.getSummary(no, countrycode);
 					summaryService.deleteSummary(deletesum);
 				}catch (Exception e){}
 				break;
 
-			case "second_ropi":
+			case "ropi6":
 				try	{
 					deletesum = summaryService.getRopi6Summary(no, countrycode);
 					summaryService.deleteRopi6Summary(deletesum);
 				}catch (Exception e){}
 				break;
 
-			case "third_ropi":
+			case "ropi7":
 				try	{
 					deletesum = summaryService.getRopi7Summary(no, countrycode);
 					summaryService.deleteRopi7Summary(deletesum);
@@ -264,7 +264,7 @@ public class SummaryController {
 				String symbol = arrSymbol[i];
 				String countrycode = arrCountrycode[i];
 				switch (db){
-					case "ropi":
+					case "ropi1":
 						logger.info("server 1 delete");
 						try {
 							summary = summaryService.getSummary(symbol, countrycode);
@@ -272,7 +272,7 @@ public class SummaryController {
 							break;
 						}catch (Exception e){}
 
-					case "second_ropi":
+					case "ropi6":
 						logger.info("server 2 delete");
 						try {
 							summary = summaryService.getRopi6Summary(symbol, countrycode);
@@ -280,7 +280,7 @@ public class SummaryController {
 							break;
 						}catch (Exception e){}
 
-					case "third_ropi":
+					case "ropi7":
 						logger.info("server 3 delete");
 						try {
 							summary = summaryService.getRopi7Summary(symbol, countrycode);

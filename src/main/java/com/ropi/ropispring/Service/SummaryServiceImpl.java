@@ -115,11 +115,11 @@ public class SummaryServiceImpl implements SummaryService{
     public Summary getRopi7Summary(String symbol, String countrycode){return summaryRopi7DAO.getSummary(symbol, countrycode);}
 
     @Override
-    public String dbCheck(){return summaryDAO.dbCheck();}
+    public String dbCheck(){return "ropi1";}
 
     @Override
-    public String dbRopi6Check(){return summaryRopi6DAO.dbCheck();}
+    public String dbRopi6Check(){return "ropi6";}
 
     @Override
-    public String dbRopi7Check(){return summaryRopi7DAO.dbCheck();}
+    public String dbRopi7Check(){return "ropi7";}
 }
