@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MyContextListener implements ServletContextListener{
-	private SSHConnection sshConnection;
+	private Ropi1SSH ssh1Connection;
+	private Ropi6SSH ssh6Connection;
 	
 	public MyContextListener() {
 		super();
@@ -17,7 +18,8 @@ public class MyContextListener implements ServletContextListener{
 	public void contextInitialized(ServletContextEvent sce) {
 		System.out.println("context initialzed");
 		try {
-			sshConnection = new SSHConnection();
+			ssh1Connection = new Ropi1SSH();
+			ssh6Connection = new Ropi6SSH();
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -26,6 +28,7 @@ public class MyContextListener implements ServletContextListener{
 	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		System.out.println("init destory!");
-		sshConnection.closeSSH();
+		ssh1Connection.closeSSH();
+		ssh6Connection.closeSSH();
 	}
 }

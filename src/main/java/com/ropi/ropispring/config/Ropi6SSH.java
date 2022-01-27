@@ -5,8 +5,7 @@ import java.util.Properties;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
-public class SSHConnection {
-//	private final static String HOST = "192.168.0.201";
+public class Ropi6SSH {
 	private final static String HOST = "128.134.37.244";
 	private final static int PORT = 22022; //기본포트는 22
 	private final static String SSH_USER = "ropi"; //ex) root
@@ -18,7 +17,7 @@ public class SSHConnection {
 		session.disconnect();
 	}
 	
-	public SSHConnection() {
+	public Ropi6SSH() {
 		System.out.println("ssh start");
 		try {
 			Properties config = new Properties();
@@ -29,7 +28,7 @@ public class SSHConnection {
 			session.setConfig(config);
 			session.connect();
 			
-			session.setPortForwardingL(13579, "127.0.0.1", 3306); //127.0.0.1/3316으로 접근한 포트를 연결HOST/3306으로 포트포워딩
+			session.setPortForwardingL(13580, "127.0.0.1", 3306); //127.0.0.1/3316으로 접근한 포트를 연결HOST/3306으로 포트포워딩
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
