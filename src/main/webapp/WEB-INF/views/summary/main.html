@@ -18,7 +18,7 @@
                 </div>
                 <div class="col-xs-6">
                     <a th:href="@{/addSummary}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
-                    <button class="btn btn-danger" onclick="deleteAction()"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>
+                    <button class="btn btn-danger" th:db="${db}" onclick="deleteAction(this.getAttribute('db'))"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>
                 </div>
             </div>
         </div>
@@ -110,7 +110,7 @@
 	    submitBtn.disabled = true;
     }
 
-    function deleteAction(){
+    function deleteAction(db){
         var checkRow = "";
         var checkRow2 = "";
         $( "input[name='checkRow']:checked" ).each (function (){
@@ -129,7 +129,7 @@
         if(confirm("정보를 삭제 하시겠습니까?")){
 
             //삭제처리 후 다시 불러올 리스트 url
-            location.href= "/delete/"+checkRow+"/"+checkRow2;
+            location.href= "/delete/"+ db +'/'+checkRow+"/"+checkRow2;
         }
     }
 </script>

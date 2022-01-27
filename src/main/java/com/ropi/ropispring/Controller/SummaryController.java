@@ -254,8 +254,8 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping(value = "/delete/{select}/{countrycode}")
-	public ModelAndView selectDelete(@PathVariable("select")String select, @PathVariable("countrycode")String ctc, ModelAndView mv){
+	@GetMapping(value = "/delete/{db}/{select}/{countrycode}")
+	public ModelAndView selectDelete(@PathVariable("db")String db,@PathVariable("select")String select, @PathVariable("countrycode")String ctc, ModelAndView mv){
 		String[] arrSymbol = select.toString().split(",");
 		String[] arrCountrycode = ctc.toString().split(",");
 		Summary summary = new Summary();
@@ -263,10 +263,33 @@ public class SummaryController {
 			for (int i =0;i<arrSymbol.length; i++){
 				String symbol = arrSymbol[i];
 				String countrycode = arrCountrycode[i];
-				summary = summaryService.getSummary(symbol, countrycode);
-				summaryService.deleteSummary(summary);
-				mv.setViewName("redirect:/");
+				switch (db){
+					case "ropi":
+						logger.info("server 1 delete");
+						try {
+							summary = summaryService.getSummary(symbol, countrycode);
+							summaryService.deleteSummary(summary);
+							break;
+						}catch (Exception e){}
+
+					case "second_ropi":
+						logger.info("server 2 delete");
+						try {
+							summary = summaryService.getRopi6Summary(symbol, countrycode);
+							summaryService.deleteRopi6Summary(summary);
+							break;
+						}catch (Exception e){}
+
+					case "third_ropi":
+						logger.info("server 3 delete");
+						try {
+							summary = summaryService.getRopi7Summary(symbol, countrycode);
+							summaryService.deleteRopi7Summary(summary);
+							break;
+						}catch (Exception e){}
+				}
 			}
+			mv.setViewName("redirect:/");
 		}catch (Exception e){}
 		return mv;
 	}
