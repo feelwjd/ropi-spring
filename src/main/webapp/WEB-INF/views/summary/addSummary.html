@@ -11,7 +11,7 @@
     <hr>
     <h2>Save Summary</h2>
 
-    <form name="saveSummary" th:action="@{/add}" th:object="${list}" method="POST">
+    <form name="saveSummary" id="form" th:action="@{/add}" th:object="${list}" method="POST">
         <b>데이터를 추가할 서버를 선택해주세요.</b>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" name="server" id="server1" value="1">
@@ -53,14 +53,19 @@
 </body>
 </html>
 <script th:inline="javascript">
-
+    /* <![CDATA[ */
     function form_check(){
+
         var checkServer = "";
         $( "input[name='server']:checked" ).each (function (){
             checkServer = checkServer + $(this).val()+",";
         });
         checkServer = checkServer.substring(0,checkServer.lastIndexOf( ",")); //맨끝 콤마 지우기
         console.log(checkServer);
+        if (checkServer == ""){
+            alert("서버를 선택해주세요.")
+            return false;
+        }
 
         var symbol = document.getElementById("symbol");
         var countrycode = document.getElementById("countrycode");
@@ -123,6 +128,11 @@
             return false;
         };
 
+        var url = /*[[ @{/add/} ]]*/;
+        var addr = url + checkServer;
+        console.log(addr);
+        $("#form").attr("action",addr );
         document.saveSummary.submit();
     }
+    /* ]]> */
 </script>
