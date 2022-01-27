@@ -11,7 +11,20 @@
     <hr>
     <h2>Save Summary</h2>
 
-    <form name="saveSummary" action="#" th:action="@{/add}" th:object="${list}" method="POST">
+    <form name="saveSummary" id="form" th:action="@{/add}" th:object="${list}" method="POST">
+        <b>데이터를 추가할 서버를 선택해주세요.</b>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="server" id="server1" value="1">
+            <label class="form-check-label" for="server1"><b>ROPI 1</b></label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="server" id="server2" value="2">
+            <label class="form-check-label" for="server2"><b>ROPI 2</b></label>
+        </div>
+        <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="server" id="server3" value="3">
+            <label class="form-check-label" for="server3"><b>ROPI 3</b></label>
+        </div>
         <input type="text" id="symbol" th:field="*{symbol}" placeholder="symbol" class="form-control mb-4 col-4">
         <input type="text" id="countrycode" th:field="*{countrycode}" placeholder="countrycode" class="form-control mb-4 col-4">
         <input type="text" id="sectorcode" th:field="*{sectorcode}" placeholder="sectorcode" class="form-control mb-4 col-4">
@@ -39,8 +52,21 @@
 </div>
 </body>
 </html>
-<script>
+<script th:inline="javascript">
+    /* <![CDATA[ */
     function form_check(){
+
+        var checkServer = "";
+        $( "input[name='server']:checked" ).each (function (){
+            checkServer = checkServer + $(this).val()+",";
+        });
+        checkServer = checkServer.substring(0,checkServer.lastIndexOf( ",")); //맨끝 콤마 지우기
+        console.log(checkServer);
+        if (checkServer == ""){
+            alert("서버를 선택해주세요.")
+            return false;
+        }
+
         var symbol = document.getElementById("symbol");
         var countrycode = document.getElementById("countrycode");
         var sectorcode = document.getElementById("sectorcode");
@@ -101,6 +127,12 @@
             tradunit.focus();
             return false;
         };
+
+        var url = /*[[ @{/add/} ]]*/;
+        var addr = url + checkServer;
+        console.log(addr);
+        $("#form").attr("action",addr );
         document.saveSummary.submit();
     }
+    /* ]]> */
 </script>

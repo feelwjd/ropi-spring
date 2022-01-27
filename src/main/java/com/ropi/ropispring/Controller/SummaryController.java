@@ -14,10 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import com.ropi.ropispring.Model.Summary;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -83,10 +80,36 @@ public class SummaryController {
 		return mv;
 	}
 
-	@PostMapping("/add")
-	public ModelAndView addPostSummary(Summary summary){
-		summaryService.setSummary(summary);
+	@PostMapping("/add/{db}")
+	public ModelAndView addPostSummary(Summary summary,@PathVariable("db")String db){
 		ModelAndView mv = new ModelAndView();
+		String[] selectDB = db.toString().split(",");
+		logger.info(summary.toString());
+
+		for (int i =0;i<selectDB.length; i++){
+			switch (selectDB[i]){
+				case "1":
+					logger.info("server 1 attach");
+					try	{
+						summaryService.setSummary(summary);
+					}catch (Exception e){}
+					break;
+
+				case "2":
+					logger.info("server 2 attach");
+					try	{
+						summaryService.setRopi6Summary(summary);
+					}catch (Exception e){}
+					break;
+
+				case "3":
+					logger.info("server 3 attach");
+					try	{
+						summaryService.setRopi7Summary(summary);
+					}catch (Exception e){}
+					break;
+			}
+		}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
@@ -132,9 +155,29 @@ public class SummaryController {
 		return mv;
 	}
 
-	@PostMapping("/update")
-	public ModelAndView updatePostSummary(Summary summary){
-		summaryService.updateSummary(summary);
+	@PostMapping("/update/{db}")
+	public ModelAndView updatePostSummary(Summary summary,@PathVariable("db")String db){
+		switch (db){
+			case "ropi":
+				logger.info("server 1 update");
+				try	{
+					summaryService.updateSummary(summary);
+				}catch (Exception e){}
+				break;
+
+			case "second_ropi":
+				logger.info("server 2 update");
+				try	{
+					summaryService.updateRopi6Summary(summary);
+				}catch (Exception e){}
+				break;
+
+			case "third_ropi":
+				logger.info("server 3 update");
+				try	{
+					summaryService.updateRopi7Summary(summary);
+				}catch (Exception e){}
+		}
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("redirect:/");
 		return mv;
@@ -144,18 +187,28 @@ public class SummaryController {
 	public ModelAndView deleteSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("countrycode")String countrycode,Summary summary){
 		ModelAndView mv = new ModelAndView();
 		Summary deletesum = new Summary();
-		try	{
-			deletesum = summaryService.getSummary(no, countrycode);
-			summaryService.deleteSummary(deletesum);
-		}catch (Exception e){}
-		try	{
-			deletesum = summaryService.getRopi6Summary(no, countrycode);
-			summaryService.deleteSummary(deletesum);
-		}catch (Exception e){}
-		try	{
-			deletesum = summaryService.getRopi7Summary(no, countrycode);
-			summaryService.deleteSummary(deletesum);
-		}catch (Exception e){}
+		logger.info(db);
+		switch (db){
+			case "ropi":
+				try	{
+					deletesum = summaryService.getSummary(no, countrycode);
+					summaryService.deleteSummary(deletesum);
+				}catch (Exception e){}
+				break;
+
+			case "second_ropi":
+				try	{
+					deletesum = summaryService.getRopi6Summary(no, countrycode);
+					summaryService.deleteRopi6Summary(deletesum);
+				}catch (Exception e){}
+				break;
+
+			case "third_ropi":
+				try	{
+					deletesum = summaryService.getRopi7Summary(no, countrycode);
+					summaryService.deleteRopi7Summary(deletesum);
+				}catch (Exception e){}
+		}
 		mv.setViewName("redirect:/");
 		return mv;
 	}
@@ -198,6 +251,25 @@ public class SummaryController {
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
 		}
+		return mv;
+	}
+
+	@GetMapping(value = "/delete/{select}/{countrycode}")
+	public ModelAndView selectDelete(@PathVariable("select")String select, @PathVariable("countrycode")String ctc, ModelAndView mv){
+		String[] arrSymbol = select.toString().split(",");
+		String[] arrCountrycode = ctc.toString().split(",");
+		Summary summary = new Summary();
+		logger.info(arrSymbol[1]);
+		logger.info(arrCountrycode[1]);
+		try	{
+			for (int i =0;i<arrSymbol.length; i++){
+				String symbol = arrSymbol[i];
+				String countrycode = arrCountrycode[i];
+				summary = summaryService.getSummary(symbol, countrycode);
+				summaryService.deleteSummary(summary);
+				mv.setViewName("redirect:/");
+			}
+		}catch (Exception e){}
 		return mv;
 	}
 }

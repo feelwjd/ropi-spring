@@ -164,7 +164,7 @@ public class Summary {
         this.nationjpname = nationjpname;
     }
 
-	@Override
+    @Override
 	public String toString() {
 		return "Summary [symbol=" + symbol + ", countrycode=" + countrycode + ", sectorcode=" + sectorcode
 				+ ", industrycode=" + industrycode + ", koname=" + koname + ", enname=" + enname + ", cnname=" + cnname

@@ -44,6 +44,4 @@ public class SummaryDAOImpl implements SummaryDAO {
 
     @Override
     public String dbCheck(){return sqlSession.selectOne("dbCheck");}
-    
-  
 }

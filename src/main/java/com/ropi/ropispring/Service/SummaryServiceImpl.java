@@ -42,9 +42,17 @@ public class SummaryServiceImpl implements SummaryService{
     	try {
             summaryDAO.setSummary(summary);
         }catch (Exception e){}
+    }
+
+    @Override
+    public void setRopi6Summary(Summary summary){
         try {
             summaryRopi6DAO.setSummary(summary);
         }catch (Exception e){}
+    }
+
+    @Override
+    public void setRopi7Summary(Summary summary){
         try {
             summaryRopi7DAO.setSummary(summary);
         }catch (Exception e){}
@@ -55,9 +63,17 @@ public class SummaryServiceImpl implements SummaryService{
         try {
             summaryDAO.deleteSummary(summary);
         }catch (Exception e){}
+    }
+
+    @Override
+    public void deleteRopi6Summary(Summary summary) {
         try {
             summaryRopi6DAO.deleteSummary(summary);
         }catch (Exception e){}
+    }
+
+    @Override
+    public void deleteRopi7Summary(Summary summary) {
         try {
             summaryRopi7DAO.deleteSummary(summary);
         }catch (Exception e){}
@@ -68,9 +84,17 @@ public class SummaryServiceImpl implements SummaryService{
         try {
             summaryDAO.updateSummary(summary);
         }catch (Exception e){}
+    }
+
+    @Override
+    public void updateRopi6Summary(Summary summary) {
         try {
             summaryRopi6DAO.updateSummary(summary);
         }catch (Exception e){}
+    }
+
+    @Override
+    public void updateRopi7Summary(Summary summary) {
         try {
             summaryRopi7DAO.updateSummary(summary);
         }catch (Exception e){}

@@ -11,7 +11,7 @@
   <hr>
   <h2>Save Summary</h2>
 
-  <form name="updateSummary" action="#" th:action="@{/update}" th:object="${list}" method="POST">
+  <form name="updateSummary" id="form" th:action="@{/update/{db}(db=${db})}" th:object="${list}" method="POST">
     <input type="text" id="symbol" th:field="*{symbol}" placeholder="symbol" class="form-control mb-4 col-4" readonly>
     <input type="text" id="countrycode" th:field="*{countrycode}" placeholder="countrycode" class="form-control mb-4 col-4" readonly>
     <input type="text" id="sectorcode" th:field="*{sectorcode}" placeholder="sectorcode" class="form-control mb-4 col-4">
@@ -101,6 +101,7 @@
       tradunit.focus();
       return false;
     };
+
     document.updateSummary.submit();
   }
 </script>
