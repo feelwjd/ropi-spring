@@ -259,8 +259,6 @@ public class SummaryController {
 		String[] arrSymbol = select.toString().split(",");
 		String[] arrCountrycode = ctc.toString().split(",");
 		Summary summary = new Summary();
-		logger.info(arrSymbol[1]);
-		logger.info(arrCountrycode[1]);
 		try	{
 			for (int i =0;i<arrSymbol.length; i++){
 				String symbol = arrSymbol[i];
