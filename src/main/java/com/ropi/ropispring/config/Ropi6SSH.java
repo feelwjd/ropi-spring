@@ -18,7 +18,7 @@ public class Ropi6SSH {
 	}
 	
 	public Ropi6SSH() {
-		System.out.println("ssh start");
+		System.out.println("ssh6 start");
 		try {
 			Properties config = new Properties();
 			config.put("StrictHostKeyChecking", "no");

@@ -5,11 +5,11 @@ import java.util.Properties;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
-public class Ropi1SSH {
-	private final static String HOST = "192.168.0.201";
+public class Ropi7SSH {
+	private final static String HOST = "128.134.37.247";
 	private final static int PORT = 22; //기본포트는 22
-	private final static String SSH_USER = "htone"; //ex) root
-	private final static String SSH_PW = "htone123"; //ex) 1234
+	private final static String SSH_USER = "ropi"; //ex) root
+	private final static String SSH_PW = "ropi123"; //ex) 1234
 	
 	private Session session;
 	
@@ -17,8 +17,8 @@ public class Ropi1SSH {
 		session.disconnect();
 	}
 	
-	public Ropi1SSH() {
-		System.out.println("ssh1 start");
+	public Ropi7SSH() {
+		System.out.println("ssh7 start");
 		try {
 			Properties config = new Properties();
 			config.put("StrictHostKeyChecking", "no");
@@ -28,7 +28,7 @@ public class Ropi1SSH {
 			session.setConfig(config);
 			session.connect();
 			
-			session.setPortForwardingL(13579, "127.0.0.1", 3306); //127.0.0.1/3316으로 접근한 포트를 연결HOST/3306으로 포트포워딩
+			session.setPortForwardingL(13581, "127.0.0.1", 3306); //127.0.0.1/3316으로 접근한 포트를 연결HOST/3306으로 포트포워딩
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
