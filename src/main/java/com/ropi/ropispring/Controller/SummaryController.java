@@ -30,6 +30,7 @@ public class SummaryController {
 	public ModelAndView viewSummary(@RequestParam(value="page", defaultValue="1")int curPage, ModelAndView mv, Model model) {
 		int page = (curPage - 1) * 10;
 		int listSize = summaryService.getSummaryCount();
+		System.out.println("listsize : " + listSize);
 		
 		//페이징 처리
 		Pagination pagination = new Pagination(curPage, listSize);
@@ -42,8 +43,7 @@ public class SummaryController {
 			mv.setViewName("/summary/main");
 			mv.addObject("list",list);
 			mv.addObject("db",summaryService.dbCheck());
-			mv.addObject("startIndex", startIndex);
-			mv.addObject("cntPerPage", cntPerPage);
+			mv.addObject("pagination", pagination);
 			
 		}catch (Exception e){
 			mv.setViewName("/summary/errors/500");

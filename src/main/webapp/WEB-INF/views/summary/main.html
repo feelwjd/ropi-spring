@@ -9,6 +9,20 @@
 <div class="container my-2">
     <div th:replace="/summary/layout/nav :: navFragment"></div><br><br>
 
+	<!-- 페이지네이션 -->
+    <div>
+    	<span th:text="${pagination.startPage}"></span>
+    	...
+    	<label>[prevPage</label>(<span th:text="${pagination.prevPage}"></span>)]
+    	
+    	<label>curPage</label>(<span th:text="${pagination.curPage}"></span>)
+    	<label>curRange</label>(<span th:text="${pagination.curRange}"></span>)
+    	
+    	<label>[nextPage</label>(<span th:text="${pagination.nextPage}"></span>)]
+    	...
+    	<span th:text="${pagination.endPage}"></span>
+    </div>
+    <!-- 페이지네이션 -->
 
     <div class="table-wrapper">
         <div class="table-title">
@@ -72,12 +86,14 @@
     </table>
     </div>
     
-    <!-- 페이징 -->
+    <!-- 페이지네이션 -->
+    <!-- 
     <div>
-    	<h2 th:text="${startIndex}"></h2>
-    	<h2 th:text="${cntPerPage}"></h2>
+    	<span th:text="${pagination.startPage}"></span>
+    	<span th:text="${pagination.endPage}"></span>
     </div>
-    <!-- 페이징 -->
+     -->
+    <!-- 페이지네이션 -->
     
 </div>
 </body>
