@@ -1,4 +1,4 @@
-package com.ropi.ropispring.config;
+package com.ropi.ropispring.config.ssh;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;

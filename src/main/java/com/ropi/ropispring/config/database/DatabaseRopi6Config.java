@@ -1,4 +1,4 @@
-package com.ropi.ropispring.config;
+package com.ropi.ropispring.config.database;
 
 import javax.sql.DataSource;
 
