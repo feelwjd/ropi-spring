@@ -10,11 +10,12 @@ import java.util.List;
 @Component
 @Mapper
 public interface SummaryDAO {
-    List<Summary> listSummary();
+    List<Summary> listSummary(int page);
     void setSummary(Summary summary); //추가
     void deleteSummary(Summary summary); //삭제
     void updateSummary(Summary summary); //수정
     Summary getSummary(@Param("symbol") String symbol, @Param("countrycode") String countrycode);
     int checkSummary(Summary summary);
     String dbCheck();
+	int getSummaryCount();
 }

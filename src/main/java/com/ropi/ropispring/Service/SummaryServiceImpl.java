@@ -25,9 +25,15 @@ public class SummaryServiceImpl implements SummaryService{
     SummaryRopi7DAO summaryRopi7DAO;
 
     @Override
-    public List<Summary> listSummary() {
-        return summaryDAO.listSummary();
+    public List<Summary> listSummary(int page) {
+        return summaryDAO.listSummary(page);
     }
+	@Override
+	public List<Summary> listSummary() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
     @Override
     public List<Summary> listRopi6Summary() {
         return summaryRopi6DAO.listSummary();
@@ -122,4 +128,8 @@ public class SummaryServiceImpl implements SummaryService{
 
     @Override
     public String dbRopi7Check(){return "ropi7";}
+	@Override
+	public int getSummaryCount() {
+		return summaryDAO.getSummaryCount();
+	}
 }

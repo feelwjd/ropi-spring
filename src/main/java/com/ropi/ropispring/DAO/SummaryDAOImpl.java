@@ -13,8 +13,8 @@ public class SummaryDAOImpl implements SummaryDAO {
     SqlSession sqlSession;
 
     @Override
-    public List<Summary> listSummary(){
-        return sqlSession.selectList("listSummary");
+    public List<Summary> listSummary(int page){
+        return sqlSession.selectList("listSummary", page);
     }
 
     @Override
@@ -43,5 +43,12 @@ public class SummaryDAOImpl implements SummaryDAO {
 	}
 
     @Override
-    public String dbCheck(){return sqlSession.selectOne("dbCheck");}
+    public String dbCheck(){
+    	return sqlSession.selectOne("dbCheck");
+    }
+
+	@Override
+	public int getSummaryCount() {
+		return sqlSession.selectOne("getSummaryCount");
+	}
 }

@@ -3,6 +3,8 @@ package com.ropi.ropispring.Controller;
 import com.ropi.ropispring.DAO.SummaryDAO;
 import com.ropi.ropispring.Service.SummaryService;
 import com.ropi.ropispring.Service.SummaryServiceImpl;
+import com.ropi.ropispring.util.Pagination;
+
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,19 +27,31 @@ public class SummaryController {
 	private SummaryService summaryService;
 
 	@GetMapping(value = "/")
-	public ModelAndView viewSummary( ModelAndView mv, Model model) {
+	public ModelAndView viewSummary(@RequestParam(value="page", defaultValue="1")int curPage, ModelAndView mv, Model model) {
+		int page = (curPage - 1) * 10;
+		int listSize = summaryService.getSummaryCount();
+		
+		//페이징 처리
+		Pagination pagination = new Pagination(curPage, listSize);
+		int startIndex = pagination.getStartIndex();
+		int cntPerPage = pagination.getPageSize();
+		
 		try {
-			List<Summary> list = summaryService.listSummary();
-			model.addAttribute(list);
+			List<Summary> list = summaryService.listSummary(page);
+//			model.addAttribute(list);
 			mv.setViewName("/summary/main");
-			mv.addObject("list",summaryService.listSummary());
+			mv.addObject("list",list);
 			mv.addObject("db",summaryService.dbCheck());
+			mv.addObject("startIndex", startIndex);
+			mv.addObject("cntPerPage", cntPerPage);
+			
 		}catch (Exception e){
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
+	
 	@GetMapping(value = "/ropi6")
 	public ModelAndView viewRopi6( ModelAndView mv, Model model) {
 		try {
