@@ -2,10 +2,10 @@ package com.ropi.ropispring.util;
 
 public class Pagination {
     /** 한 페이지당 게시글 수 **/
-    private int pageSize = 100;
+    private int pageSize = 5;
     
     /** 한 블럭(range)당 페이지 수 **/
-    private int rangeSize = 10;
+    private int rangeSize = 5;
     
     /** 현재 페이지 **/
     private int curPage = 1;

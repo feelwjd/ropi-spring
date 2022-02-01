@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -25,14 +28,21 @@ public class SummaryServiceImpl implements SummaryService{
     SummaryRopi7DAO summaryRopi7DAO;
 
     @Override
-    public List<Summary> listSummary(int page) {
-        return summaryDAO.listSummary(page);
+    public List<Summary> listSummary(int page, int pageSize) {
+    	System.out.println("page " + page + "/ pageSize " + pageSize);
+    	Map<String, Integer> map = new HashMap<>();
+    	map.put("page", page);
+    	map.put("pageSize", pageSize);
+    	System.out.println(map.toString());
+    	
+    	List<Summary> list = summaryDAO.listSummary(map);
+        return list;
     }
-	@Override
-	public List<Summary> listSummary() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<Summary> listSummary() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
     @Override
     public List<Summary> listRopi6Summary() {

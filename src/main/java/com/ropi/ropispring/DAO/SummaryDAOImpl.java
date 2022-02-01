@@ -1,11 +1,14 @@
 package com.ropi.ropispring.DAO;
 
 import com.ropi.ropispring.Model.Summary;
+
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class SummaryDAOImpl implements SummaryDAO {
@@ -13,8 +16,9 @@ public class SummaryDAOImpl implements SummaryDAO {
     SqlSession sqlSession;
 
     @Override
-    public List<Summary> listSummary(int page){
-        return sqlSession.selectList("listSummary", page);
+    public List<Summary> listSummary(Map<String, Integer> map){
+    	List<Summary> list = sqlSession.selectList("listSummary", map);
+        return list;
     }
 
     @Override

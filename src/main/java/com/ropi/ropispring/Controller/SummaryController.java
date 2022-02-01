@@ -26,20 +26,17 @@ public class SummaryController {
 	@Autowired
 	private SummaryService summaryService;
 
-	@GetMapping(value = "/")
-	public ModelAndView viewSummary(@RequestParam(value="page", defaultValue="1")int curPage, ModelAndView mv, Model model) {
-		int page = (curPage - 1) * 10;
+	@GetMapping(value = "/{curPage}")
+	public ModelAndView viewSummary(@PathVariable("curPage")int curPage, ModelAndView mv, Model model) {
 		int listSize = summaryService.getSummaryCount();
-		System.out.println("listsize : " + listSize);
 		
 		//페이징 처리
 		Pagination pagination = new Pagination(curPage, listSize);
-		int startIndex = pagination.getStartIndex();
-		int cntPerPage = pagination.getPageSize();
+		int pageSize = pagination.getPageSize(); 
+		int page = (curPage - 1) * pageSize;
 		
 		try {
-			List<Summary> list = summaryService.listSummary(page);
-//			model.addAttribute(list);
+			List<Summary> list = summaryService.listSummary(page, pageSize);
 			mv.setViewName("/summary/main");
 			mv.addObject("list",list);
 			mv.addObject("db",summaryService.dbCheck());
@@ -81,10 +78,10 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping(value = "/test")
-	public List<Summary> test(){
-		return summaryService.listSummary();
-	}
+//	@GetMapping(value = "/test")
+//	public List<Summary> test(){
+//		return summaryService.listSummary();
+//	}
 
 	@GetMapping(value = "/addSummary")
 	public ModelAndView addSummary(ModelAndView mv, Model model){

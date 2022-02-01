@@ -9,8 +9,7 @@ import java.util.List;
 @Service
 public interface SummaryService {
 	
-	List<Summary> listSummary(int page);
-	List<Summary> listSummary();
+	List<Summary> listSummary(int page, int pageSize);
     List<Summary> listRopi6Summary();
     List<Summary> listRopi7Summary();
 
