@@ -9,9 +9,9 @@ import java.util.List;
 @Service
 public interface SummaryService {
 	
-	List<Summary> listSummary(int page, int pageSize);
-    List<Summary> listRopi6Summary();
-    List<Summary> listRopi7Summary();
+	List<Summary> listSummary(String database, int page, int pageSize);
+//    List<Summary> listRopi6Summary();
+//    List<Summary> listRopi7Summary();
 
     void setSummary(Summary summary);
     void setRopi6Summary(Summary summary);
@@ -29,6 +29,7 @@ public interface SummaryService {
     Summary getRopi6Summary(String symbol, String countrycode);
     Summary getRopi7Summary(String symbol, String countrycode);
 
+    String dbCheck(String database);
     String dbCheck();
     String dbRopi6Check();
     String dbRopi7Check();

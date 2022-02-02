@@ -1,6 +1,7 @@
 package com.ropi.ropispring.DAO7;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,10 @@ public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
     SqlSession sqlSession;
 
     @Override
-    public List<Summary> listSummary(){
-        return sqlSession.selectList("listSummary");
+    public List<Summary> listSummary(Map<String, Integer>map){
+    	System.out.println("dao 7 : " + map.toString());
+    	List<Summary> list = sqlSession.selectList("listSummary", map);
+		return list;
     }
 
     @Override
