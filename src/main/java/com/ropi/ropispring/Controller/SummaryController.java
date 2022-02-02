@@ -20,14 +20,13 @@ import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/{database}")
 public class SummaryController {
 	private static final Logger logger = LoggerFactory.getLogger(SummaryController.class);
 
 	@Autowired
 	private SummaryService summaryService;
 
-	@GetMapping(value = "/{curPage}")
+	@GetMapping(value = "/{database}/{curPage}")
 	public ModelAndView viewSummary(@PathVariable("database")String database, @PathVariable("curPage")int curPage, ModelAndView mv) {
 		int listSize = summaryService.getSummaryCount();
 		
@@ -89,6 +88,7 @@ public class SummaryController {
 
 	@GetMapping(value = "/addSummary")
 	public ModelAndView addSummary(ModelAndView mv, Model model){
+		System.out.println("add summ");
 		Summary summary = new Summary();
 		mv.addObject("list",summary);
 		mv.setViewName("/summary/addSummary");
