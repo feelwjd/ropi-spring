@@ -27,7 +27,7 @@ public class FileController {
 			int result = fileService.uploadFile(file);
 			System.out.println("result : " + result);
 		}
-		ModelAndView mv = new ModelAndView("redirect:/");
+		ModelAndView mv = new ModelAndView("redirect:/1");
 		return mv;
 	}
 }

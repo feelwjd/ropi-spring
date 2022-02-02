@@ -9,7 +9,30 @@
 <div class="container my-2">
     <div th:replace="/summary/layout/nav :: navFragment"></div><br><br>
 
-	<!-- 페이지네이션 -->
+
+    <div class="table-wrapper">
+        <div class="table-title">
+            <div class="row">
+                <div class="col-xs-6">
+                    <a th:href="@{/addSummary}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
+                    <button class="btn btn-danger" th:db="${db}" onclick="deleteAction(this.getAttribute('db'))"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>
+                </div>
+            </div>
+        </div>
+
+		<form name="fileForm" action="#" th:action="@{/csvFileUpload}" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
+			<div class="row" style="padding : 5px 0px 5px 0px;">
+				<div class="col-md-4">
+					<input id="fileInput" class="form-control" type="file" name="file" onchange="changeFile();"/>
+				</div>
+				<div class="col-md-4 col-md-offset-4">
+					<button id="fileCancel" type="reset" class="btn btn-link" onclick="resetFile();">선택취소</button>
+					<button id="fileSubmit" type="submit" class="btn btn-primary" disabled="disabled">제출</button>
+				</div>
+			</div>
+		</form>
+		
+		<!-- 페이지네이션 -->
 	<nav aria-label="Page navigation example ">
 	  <ul class="pagination">
 	  <li class="page-item">
@@ -40,31 +63,6 @@
 	  </ul>
 	</nav>
     <!-- 페이지네이션 -->
-
-    <div class="table-wrapper">
-        <div class="table-title">
-            <div class="row">
-                <div class="col-xs-6">
-                    <h2>Manage <b>기업개요</b></h2>
-                </div>
-                <div class="col-xs-6">
-                    <a th:href="@{/addSummary}" class="btn btn-success"><i class="material-icons">&#xE147;</i> <span>Add New</span></a>
-                    <button class="btn btn-danger" th:db="${db}" onclick="deleteAction(this.getAttribute('db'))"><i class="material-icons">&#xE15C;</i> <span>Delete</span></button>
-                </div>
-            </div>
-        </div>
-
-		<form name="fileForm" action="#" th:action="@{/csvFileUpload}" method="post" enctype="multipart/form-data" accept-charset="UTF-8">
-			<div class="row" style="padding : 5px 0px 5px 0px;">
-				<div class="col-md-4">
-					<input id="fileInput" class="form-control" type="file" name="file" onchange="changeFile();"/>
-				</div>
-				<div class="col-md-4 col-md-offset-4">
-					<button id="fileCancel" type="reset" class="btn btn-link" onclick="resetFile();">선택취소</button>
-					<button id="fileSubmit" type="submit" class="btn btn-primary" disabled="disabled">제출</button>
-				</div>
-			</div>
-		</form>
 
     </div>
     <div class="table-responsive">
@@ -104,13 +102,37 @@
     </div>
     
     <!-- 페이지네이션 -->
-    <!-- 
-    <div>
-    	<span th:text="${pagination.startPage}"></span>
-    	<span th:text="${pagination.endPage}"></span>
-    </div>
-     -->
+	<nav aria-label="Page navigation example ">
+	  <ul class="pagination">
+	  <li class="page-item">
+	      <a class="page-link" th:href="@{/1}" aria-label="Previous">
+	        <span aria-hidden="true">처음</span>
+	      </a>
+	    </li>
+	    <li class="page-item" th:classappend="${pagination.curPage == 1 ? 'disabled' : ''}">
+	      <a class="page-link" th:href="@{/{page} (page = ${pagination.prevPage})}" aria-label="Previous">
+	        <span aria-hidden="true">이전</span>
+	      </a>
+	    </li>
+	    <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
+		    <li class="page-item" th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}"  th:classappend="${pagination.curPage == pageButton ? 'active' : ''}">
+		    	<a class="page-link" th:href="@{/{page} (page = ${pageButton})}" th:text=${pageButton}></a>
+		    </li>
+	    </th:block>
+	    <li class="page-item"  th:classappend="${pagination.curPage == pagination.pageCnt ? 'disabled' : ''}">
+	      <a class="page-link" th:href="@{{page} (page = ${pagination.nextPage})}" aria-label="Next">
+	        <span aria-hidden="true">다음</span>
+	      </a>
+	    </li>
+	    <li class="page-item">
+	      <a class="page-link" th:href="@{{page} (page = ${pagination.pageCnt})}" aria-label="Previous">
+	        <span aria-hidden="true">끝</span>
+	      </a>
+	    </li>
+	  </ul>
+	</nav>
     <!-- 페이지네이션 -->
+
     
 </div>
 </body>

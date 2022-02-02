@@ -3,7 +3,7 @@
 
 <mapper namespace="com.ropi.ropispring.DAO.FileDAO">
     <insert id="insertSummaryList" parameterType="java.util.List">
-        INSERT INTO ropi.TEST_SUMMARY_TB(
+        INSERT INTO ropi.SUMMARY_TB(
         	SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE,
 			KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY,
 			TRADUNIT, NATIONCODE,
