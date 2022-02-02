@@ -20,6 +20,7 @@ import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/{database}")
 public class SummaryController {
 	private static final Logger logger = LoggerFactory.getLogger(SummaryController.class);
 
@@ -27,7 +28,7 @@ public class SummaryController {
 	private SummaryService summaryService;
 
 	@GetMapping(value = "/{curPage}")
-	public ModelAndView viewSummary(@PathVariable("curPage")int curPage, ModelAndView mv, Model model) {
+	public ModelAndView viewSummary(@PathVariable("database")String database, @PathVariable("curPage")int curPage, ModelAndView mv) {
 		int listSize = summaryService.getSummaryCount();
 		
 		//페이징 처리
@@ -35,13 +36,16 @@ public class SummaryController {
 		int pageSize = pagination.getPageSize(); 
 		int page = (curPage - 1) * pageSize;
 		
+		String dbCheck = summaryService.dbCheck(database);
+		System.out.println("controller : " + dbCheck);
+		
 		try {
-			List<Summary> list = summaryService.listSummary(page, pageSize);
+			List<Summary> list = summaryService.listSummary(database, page, pageSize);
+			
 			mv.setViewName("/summary/main");
 			mv.addObject("list",list);
-			mv.addObject("db",summaryService.dbCheck());
+			mv.addObject("db",dbCheck);
 			mv.addObject("pagination", pagination);
-			
 		}catch (Exception e){
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
@@ -49,34 +53,34 @@ public class SummaryController {
 		return mv;
 	}
 	
-	@GetMapping(value = "/ropi6")
-	public ModelAndView viewRopi6( ModelAndView mv, Model model) {
-		try {
-			List<Summary> list = summaryService.listRopi6Summary();
-			model.addAttribute(list);
-			mv.setViewName("/summary/main");
-			mv.addObject("list",summaryService.listRopi6Summary());
-			mv.addObject("db",summaryService.dbRopi6Check());
-		}catch (Exception e){
-			mv.setViewName("/summary/errors/500");
-			mv.addObject("errortype","409");
-		}
-		return mv;
-	}
-	@GetMapping(value = "/ropi7")
-	public ModelAndView viewRopi7( ModelAndView mv, Model model) {
-		try {
-			List<Summary> list = summaryService.listRopi7Summary();
-			model.addAttribute(list);
-			mv.setViewName("/summary/main");
-			mv.addObject("list",summaryService.listRopi7Summary());
-			mv.addObject("db",summaryService.dbRopi7Check());
-		}catch (Exception e){
-			mv.setViewName("/summary/errors/500");
-			mv.addObject("errortype","409");
-		}
-		return mv;
-	}
+//	@GetMapping(value = "/ropi6")
+//	public ModelAndView viewRopi6( ModelAndView mv, Model model) {
+//		try {
+//			List<Summary> list = summaryService.listRopi6Summary();
+//			model.addAttribute(list);
+//			mv.setViewName("/summary/main");
+//			mv.addObject("list",summaryService.listRopi6Summary());
+//			mv.addObject("db",summaryService.dbRopi6Check());
+//		}catch (Exception e){
+//			mv.setViewName("/summary/errors/500");
+//			mv.addObject("errortype","409");
+//		}
+//		return mv;
+//	}
+//	@GetMapping(value = "/ropi7")
+//	public ModelAndView viewRopi7( ModelAndView mv, Model model) {
+//		try {
+//			List<Summary> list = summaryService.listRopi7Summary();
+//			model.addAttribute(list);
+//			mv.setViewName("/summary/main");
+//			mv.addObject("list",summaryService.listRopi7Summary());
+//			mv.addObject("db",summaryService.dbRopi7Check());
+//		}catch (Exception e){
+//			mv.setViewName("/summary/errors/500");
+//			mv.addObject("errortype","409");
+//		}
+//		return mv;
+//	}
 
 //	@GetMapping(value = "/test")
 //	public List<Summary> test(){

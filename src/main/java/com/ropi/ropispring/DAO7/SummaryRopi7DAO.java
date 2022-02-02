@@ -6,11 +6,12 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 @Component
 @Mapper
 public interface SummaryRopi7DAO {
-    List<Summary> listSummary();
+    List<Summary> listSummary(Map<String, Integer>map);
     void setSummary(Summary summary); //추가
     void deleteSummary(Summary summary); //삭제
     void updateSummary(Summary summary); //수정

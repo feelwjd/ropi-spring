@@ -30,7 +30,7 @@
 		select COUNT(*) from ropi.summary_TB WHERE countrycode = #{countrycode} and symbol = #{symbol};
 	</select>
 
-    <select id="dbCheck" parameterType="com.ropi.ropispring.Model.Summary" resultType="String">
+    <select id="dbCheck" resultType="String">
         select database();
     </select>
     

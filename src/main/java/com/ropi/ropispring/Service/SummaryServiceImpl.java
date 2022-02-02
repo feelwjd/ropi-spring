@@ -28,30 +28,38 @@ public class SummaryServiceImpl implements SummaryService{
     SummaryRopi7DAO summaryRopi7DAO;
 
     @Override
-    public List<Summary> listSummary(int page, int pageSize) {
-    	System.out.println("page " + page + "/ pageSize " + pageSize);
+    public List<Summary> listSummary(String database, int page, int pageSize) {
+    	List<Summary> list = null;
     	Map<String, Integer> map = new HashMap<>();
     	map.put("page", page);
     	map.put("pageSize", pageSize);
-    	System.out.println(map.toString());
     	
-    	List<Summary> list = summaryDAO.listSummary(map);
+    	if(database.equals("ropi1")) {
+    		System.out.println("service 1");
+    		list = summaryDAO.listSummary(map);
+    		
+    	}else if(database.equals("ropi6")) {
+    		System.out.println("service 6");
+    		list = summaryRopi6DAO.listSummary(map);
+    		
+    	}else if(database.equals("ropi7")) {
+    		System.out.println("service 7");
+    		list = summaryRopi7DAO.listSummary(map);
+    		
+    	}
+    	System.out.println("service return : " + list.toString());
+    	
         return list;
     }
-//	@Override
-//	public List<Summary> listSummary() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-    @Override
-    public List<Summary> listRopi6Summary() {
-        return summaryRopi6DAO.listSummary();
-    }
-    @Override
-    public List<Summary> listRopi7Summary() {
-        return summaryRopi7DAO.listSummary();
-    }
+//
+//    @Override
+//    public List<Summary> listRopi6Summary() {
+//        return summaryRopi6DAO.listSummary();
+//    }
+//    @Override
+//    public List<Summary> listRopi7Summary() {
+//        return summaryRopi7DAO.listSummary();
+//    }
 
     @Override
     public void setSummary(Summary summary) {
@@ -124,20 +132,34 @@ public class SummaryServiceImpl implements SummaryService{
     	return summary; 
     }
 
-    @Override
-    public Summary getRopi6Summary(String symbol, String countrycode){return summaryRopi6DAO.getSummary(symbol, countrycode);}
+	@Override
+	public Summary getRopi6Summary(String symbol, String countrycode) {
+		return summaryRopi6DAO.getSummary(symbol, countrycode);
+	}
+
+	@Override
+	public Summary getRopi7Summary(String symbol, String countrycode) {
+		return summaryRopi7DAO.getSummary(symbol, countrycode);
+	}
 
     @Override
-    public Summary getRopi7Summary(String symbol, String countrycode){return summaryRopi7DAO.getSummary(symbol, countrycode);}
+    public String dbCheck(String database){
+    	String result = null;
+		if (database.equals("ropi1")) {
+			result = summaryDAO.dbCheck();
+		} else if (database.equals("ropi6")) {
+			result = summaryRopi6DAO.dbCheck();
+		} else if (database.equals("ropi7")) {
+			result = summaryRopi7DAO.dbCheck();
+		}
+		
+		if(result != null) {
+			return database;
+		}else {
+			return "";
+		}
+    }
 
-    @Override
-    public String dbCheck(){return "ropi1";}
-
-    @Override
-    public String dbRopi6Check(){return "ropi6";}
-
-    @Override
-    public String dbRopi7Check(){return "ropi7";}
 	@Override
 	public int getSummaryCount() {
 		return summaryDAO.getSummaryCount();
