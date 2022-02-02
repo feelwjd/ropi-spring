@@ -47,8 +47,6 @@ public class SummaryServiceImpl implements SummaryService{
     		list = summaryRopi7DAO.listSummary(map);
     		
     	}
-    	System.out.println("service return : " + list.toString());
-    	
         return list;
     }
 //
@@ -163,5 +161,23 @@ public class SummaryServiceImpl implements SummaryService{
 	@Override
 	public int getSummaryCount() {
 		return summaryDAO.getSummaryCount();
+	}
+
+	@Override
+	public String dbCheck() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String dbRopi6Check() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String dbRopi7Check() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

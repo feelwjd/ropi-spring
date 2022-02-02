@@ -30,8 +30,9 @@ public interface SummaryService {
     Summary getRopi7Summary(String symbol, String countrycode);
 
     String dbCheck(String database);
-//    String dbRopi6Check();
-//    String dbRopi7Check();
+    String dbCheck();
+    String dbRopi6Check();
+    String dbRopi7Check();
     
     int getSummaryCount();
 }
