@@ -9,7 +9,7 @@
     </insert>
 
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
-        SELECT * FROM second_ropi.summary_tb.SUMMARY_TB limit 20;
+        SELECT * FROM second_ropi.summary_tb limit 20;
     </select>
 
     <select id="getSummary" resultType="com.ropi.ropispring.Model.Summary">
