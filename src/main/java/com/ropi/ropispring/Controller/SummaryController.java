@@ -207,6 +207,7 @@ public class SummaryController {
 		if(!(dbName.equals("error"))) {
 			summary = summaryService.getSummary(dbName, symbol, countrycode);
 			mv.addObject("summary", summary);
+			mv.addObject("db", dbName);
 			System.out.println("detail Summary : " + summary.toString());
 		}else {
 			mv.setViewName("/summary/errors/500");
@@ -253,5 +254,15 @@ public class SummaryController {
 			mv.setViewName("redirect:/");
 		}catch (Exception e){}
 		return mv;
+	}
+	
+	@ResponseBody
+	@PostMapping(value = "/copySummary/{database}/{symbol}/{countrycode}")
+	public int copySummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")int countrycode) {
+		System.out.println("copy Summary database : " + database + "/ symbol : " + symbol + "/ countrycode : " + countrycode);
+		
+		
+		
+		return 0;
 	}
 }

@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebListener;
 
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class MyContextListener implements ServletContextListener{
 	private Ropi1SSH ssh1Connection;
 	private Ropi6SSH ssh6Connection;
