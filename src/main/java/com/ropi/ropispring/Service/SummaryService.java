@@ -25,6 +25,7 @@ public interface SummaryService {
     void updateRopi6Summary(Summary summary);
     void updateRopi7Summary(Summary summary);
 
+    Summary getSummary(String database, String symbol, String countrycode);
     Summary getSummary(String symbol, String countrycode);
     Summary getRopi6Summary(String symbol, String countrycode);
     Summary getRopi7Summary(String symbol, String countrycode);

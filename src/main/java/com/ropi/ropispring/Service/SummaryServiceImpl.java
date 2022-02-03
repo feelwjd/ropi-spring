@@ -123,6 +123,13 @@ public class SummaryServiceImpl implements SummaryService{
     }
     
     @Override
+	public Summary getSummary(String database, String symbol, String countrycode) {
+    	Summary summary = new Summary();
+    	summary = summaryDAO.getSummary(symbol, countrycode);
+		return null;
+	}
+    
+    @Override
     public Summary getSummary(String symbol, String countrycode){
     	Summary summary = new Summary();
     	summary = summaryDAO.getSummary(symbol, countrycode);
@@ -154,7 +161,7 @@ public class SummaryServiceImpl implements SummaryService{
 		if(result != null) {
 			return database;
 		}else {
-			return "";
+			return "error";
 		}
     }
 
@@ -180,4 +187,6 @@ public class SummaryServiceImpl implements SummaryService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 }
