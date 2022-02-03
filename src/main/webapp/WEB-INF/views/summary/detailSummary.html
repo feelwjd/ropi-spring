@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 
-<head>
-    <div th:replace="/summary/layout/header :: headerFragment"></div>
-</head>
 <body>
 <div class="container my-2">
+    <div th:replace="/summary/layout/header :: headerFragment"></div>
     <div th:replace="/summary/layout/nav :: navFragment"></div>
     <h1>Management System</h1>
 
@@ -22,7 +20,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="col:${list}" style="cursor: pointer">
+        <tr th:each="col:${summary}" style="cursor: pointer">
             <td th:text="${col.symbol}"></td>
             <td th:text="${col.countrycode}"></td>
             <td th:text="${col.sectorcode}"></td>
@@ -35,30 +33,30 @@
     </table>
     </div>
     <h5>KONAME</h5>
-    <h6 th:text="${list.koname}"></h6><br>
+    <h6 th:text="${summary.koname}"></h6><br>
     <h5>ENNAME</h5>
-    <h6 th:text="${list.enname}"></h6><br>
+    <h6 th:text="${summary.enname}"></h6><br>
     <h5>CNNAME</h5>
-    <h6 th:text="${list.cnname}"></h6><br>
+    <h6 th:text="${summary.cnname}"></h6><br>
     <h5>KOSUMMARY</h5>
-    <h6 th:text="${list.kosummary}"></h6><br>
+    <h6 th:text="${summary.kosummary}"></h6><br>
     <h5>ENSUMMARY</h5>
-    <h6 th:text="${list.ensummary}"></h6><br>
+    <h6 th:text="${summary.ensummary}"></h6><br>
     <h5>CNSUMMARY</h5>
-    <h6 th:text="${list.cnsummary}"></h6><br>
+    <h6 th:text="${summary.cnsummary}"></h6><br>
     <h5>JPSUMMARY</h5>
-    <h6 th:text="${list.jpsummary}"></h6><br>
+    <h6 th:text="${summary.jpsummary}"></h6><br>
     <h5>NATIONKONAME</h5>
-    <h6 th:text="${list.nationkoname}"></h6><br>
+    <h6 th:text="${summary.nationkoname}"></h6><br>
     <h5>NATIONENNAME</h5>
-    <h6 th:text="${list.nationenname}"></h6><br>
+    <h6 th:text="${summary.nationenname}"></h6><br>
     <h5>NATIONCNNAME</h5>
-    <h6 th:text="${list.nationcnname}"></h6><br>
+    <h6 th:text="${summary.nationcnname}"></h6><br>
     <h5>NATIONJPNAME</h5>
-    <h6 th:text="${list.nationjpname}"></h6><br>
+    <h6 th:text="${summary.nationjpname}"></h6><br>
     <br>
-    <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${list.symbol}, country=${list.countrycode})}" class="btn btn-primary">Update</a>
-    <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${list.symbol}, country=${list.countrycode})}" class="btn btn-danger" th:some-field="${list.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a>
+    <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-primary">Update</a>
+    <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-danger" th:some-field="${summary.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a>
     <br><br><br>
     <a th:href="@{/}"> Back to Summary List</a>
 

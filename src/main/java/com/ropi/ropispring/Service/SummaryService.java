@@ -35,5 +35,5 @@ public interface SummaryService {
     String dbRopi6Check();
     String dbRopi7Check();
     
-    int getSummaryCount();
+    int getSummaryCount(String database);
 }

@@ -55,4 +55,9 @@ public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
             return "db-connect-error";
         }
     }
+
+	@Override
+	public int getSummaryCount() {
+		return sqlSession.selectOne("getSummaryCount");
+	}
 }

@@ -51,4 +51,9 @@ public class SummaryRopi6DAOImpl implements SummaryRopi6DAO {
 	public String dbCheck() {
 		return sqlSession.selectOne("dbCheck");
 	}
+
+	@Override
+	public int getSummaryCount() {
+		return sqlSession.selectOne("getSummaryCount");
+	}
 }

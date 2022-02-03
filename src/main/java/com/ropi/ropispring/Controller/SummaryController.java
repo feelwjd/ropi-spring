@@ -26,23 +26,22 @@ public class SummaryController {
 	@Autowired
 	private SummaryService summaryService;
 
-	@GetMapping(value = "/{database}/{curPage}")
+	@GetMapping(value = "/{database}/list/{curPage}")
 	public ModelAndView viewSummary(@PathVariable("database")String database, @PathVariable("curPage")int curPage, ModelAndView mv) {
-		int listSize = summaryService.getSummaryCount();
+		String dbName = summaryService.dbCheck(database);
+		
+		int listSize = summaryService.getSummaryCount(database);
 		
 		//페이징 처리
 		Pagination pagination = new Pagination(curPage, listSize);
 		int pageSize = pagination.getPageSize(); 
 		int page = (curPage - 1) * pageSize;
 		
-		String dbCheck = summaryService.dbCheck(database);
-		
 		try {
 			List<Summary> list = summaryService.listSummary(database, page, pageSize);
-			
 			mv.setViewName("/summary/main");
 			mv.addObject("list",list);
-			mv.addObject("db",dbCheck);
+			mv.addObject("dbName",dbName);
 			mv.addObject("pagination", pagination);
 		}catch (Exception e){
 			mv.setViewName("/summary/errors/500");
@@ -201,52 +200,18 @@ public class SummaryController {
 	@GetMapping(value = "{database}/detail/{symbol}/{countrycode}")
 	public ModelAndView detailSummary(@PathVariable("database") String database, @PathVariable("symbol") String symbol, @PathVariable("countrycode") String countrycode) {
 		System.out.println("chekc");
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("summary/detailSummary");
 		Summary summary = new Summary();
-//		String temp1,temp2,temp3;
-//		try	{
-//			temp1 = summaryService.dbCheck();
-//		}catch (Exception e){
-//			temp1 = "error";
-//		}
-//		try	{
-//			temp2 = summaryService.dbRopi6Check();
-//		}catch (Exception e){
-//			temp2 = "error";
-//		}
-//		try	{
-//			temp3 = summaryService.dbRopi7Check();
-//		}catch (Exception e){
-//			temp3 = "error";
-//		}
+		
 		String dbName = summaryService.dbCheck(database);
 		if(!(dbName.equals("error"))) {
 			summary = summaryService.getSummary(dbName, symbol, countrycode);
+			mv.addObject("summary", summary);
+			System.out.println("detail Summary : " + summary.toString());
 		}else {
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
 		}
-		
-		
-//        if (database.equals(result)){
-//			mv.addObject("list",summaryService.getSummary(symbol, countrycode));
-//			mv.addObject("database",database);
-//			mv.setViewName("/summary/detailSummary");
-//		}
-//		else if (database.equals(temp2)){
-//			mv.addObject("list",summaryService.getRopi6Summary(symbol, countrycode));
-//			mv.addObject("database",database);
-//			mv.setViewName("/summary/detailSummary");
-//		}
-//		else if (database.equals(temp3)){
-//			mv.addObject("list",summaryService.getRopi7Summary(symbol, countrycode));
-//			mv.addObject("database",database);
-//			mv.setViewName("/summary/detailSummary");
-//		}
-//		else{
-//			mv.setViewName("/summary/errors/500");
-//			mv.addObject("errortype","409");
-//		}
 		return mv;
 	}
 

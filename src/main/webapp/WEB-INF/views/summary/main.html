@@ -35,18 +35,18 @@
 		<nav aria-label="Page navigation example ">
 		  <ul class="pagination">
 		  <li class="page-item">
-		      <a class="page-link" th:href="@{/1}" aria-label="Previous">
+		      <a class="page-link" th:href="@{1}" aria-label="Previous">
 		        <span aria-hidden="true">처음</span>
 		      </a>
 		    </li>
 		    <li class="page-item" th:classappend="${pagination.curPage == 1 ? 'disabled' : ''}">
-		      <a class="page-link" th:href="@{/{page} (page = ${pagination.prevPage})}" aria-label="Previous">
+		      <a class="page-link" th:href="@{{page} (page = ${pagination.prevPage})}" aria-label="Previous">
 		        <span aria-hidden="true">이전</span>
 		      </a>
 		    </li>
 		    <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
 			    <li class="page-item" th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}"  th:classappend="${pagination.curPage == pageButton ? 'active' : ''}">
-			    	<a class="page-link" th:href="@{/{page} (page = ${pageButton})}" th:text=${pageButton}></a>
+			    	<a class="page-link" th:href="@{{page} (page = ${pageButton})}" th:text=${pageButton}></a>
 			    </li>
 		    </th:block>
 		    <li class="page-item"  th:classappend="${pagination.curPage == pagination.pageCnt ? 'disabled' : ''}">
@@ -73,6 +73,7 @@
                 <label class="btn btn-outline-primary" for="selectAll"><b>-ALL-</b></label>
             </th>
             <th>SYMBOL</th>
+            <th>CountryCode</th>
             <th>SECTORCODE</th>
             <th>INDUSTRYCODE</th>
             <th>KONAME</th>
@@ -88,6 +89,7 @@
                 <label class="btn btn-outline-primary" th:for="${col.symbol}">Check</label><br>
             </td>
             <td th:text="${col.symbol}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}" onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
+            <td th:text="${col.countrycode}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}" onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
             <td th:text="${col.sectorcode}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
             <td th:text="${col.industrycode}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
             <td th:text="${col.koname}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
@@ -99,40 +101,6 @@
         </tbody>
     </table>
     </div>
-    
-    <!-- 페이지네이션 -->
-	<nav aria-label="Page navigation example ">
-	  <ul class="pagination">
-	  <li class="page-item">
-	      <a class="page-link" th:href="@{/1}" aria-label="Previous">
-	        <span aria-hidden="true">처음</span>
-	      </a>
-	    </li>
-	    <li class="page-item" th:classappend="${pagination.curPage == 1 ? 'disabled' : ''}">
-	      <a class="page-link" th:href="@{/{page} (page = ${pagination.prevPage})}" aria-label="Previous">
-	        <span aria-hidden="true">이전</span>
-	      </a>
-	    </li>
-	    <th:block  th:with="start = ${pagination.startPage}, end = ${pagination.endPage}">
-		    <li class="page-item" th:with="start = ${pagination.startPage}, end = ${pagination.endPage}" th:each="pageButton : ${#numbers.sequence(start, end)}"  th:classappend="${pagination.curPage == pageButton ? 'active' : ''}">
-		    	<a class="page-link" th:href="@{/{page} (page = ${pageButton})}" th:text=${pageButton}></a>
-		    </li>
-	    </th:block>
-	    <li class="page-item"  th:classappend="${pagination.curPage == pagination.pageCnt ? 'disabled' : ''}">
-	      <a class="page-link" th:href="@{{page} (page = ${pagination.nextPage})}" aria-label="Next">
-	        <span aria-hidden="true">다음</span>
-	      </a>
-	    </li>
-	    <li class="page-item">
-	      <a class="page-link" th:href="@{{page} (page = ${pagination.pageCnt})}" aria-label="Previous">
-	        <span aria-hidden="true">끝</span>
-	      </a>
-	    </li>
-	  </ul>
-	</nav>
-    <!-- 페이지네이션 -->
-
-    
 </div>
 </body>
 
@@ -140,7 +108,7 @@
 
 <script>
     function rowClicked(database, symbol, country) {
-        location.href = "detail/" + symbol + '/' + country;
+        location.href = "../detail/" + symbol + '/' + country;
     }
     function deleteClicked(value){
         alert("SYMBOL : "+value + " 가 삭제되었습니다.");

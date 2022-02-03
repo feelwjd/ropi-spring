@@ -35,29 +35,14 @@ public class SummaryServiceImpl implements SummaryService{
     	map.put("pageSize", pageSize);
     	
     	if(database.equals("ropi1")) {
-    		System.out.println("service 1");
     		list = summaryDAO.listSummary(map);
-    		
     	}else if(database.equals("ropi6")) {
-    		System.out.println("service 6");
     		list = summaryRopi6DAO.listSummary(map);
-    		
     	}else if(database.equals("ropi7")) {
-    		System.out.println("service 7");
     		list = summaryRopi7DAO.listSummary(map);
-    		
     	}
         return list;
     }
-//
-//    @Override
-//    public List<Summary> listRopi6Summary() {
-//        return summaryRopi6DAO.listSummary();
-//    }
-//    @Override
-//    public List<Summary> listRopi7Summary() {
-//        return summaryRopi7DAO.listSummary();
-//    }
 
     @Override
     public void setSummary(Summary summary) {
@@ -125,8 +110,15 @@ public class SummaryServiceImpl implements SummaryService{
     @Override
 	public Summary getSummary(String database, String symbol, String countrycode) {
     	Summary summary = new Summary();
-    	summary = summaryDAO.getSummary(symbol, countrycode);
-		return null;
+    	
+    	if(database.equals("ropi1")) {
+    		summary = summaryDAO.getSummary(symbol, countrycode);
+    	}else if(database.equals("ropi6")) {
+    		summary = summaryRopi6DAO.getSummary(symbol, countrycode);
+    	}else if(database.equals("ropi6")) {
+    		summary = summaryRopi7DAO.getSummary(symbol, countrycode);
+    	}
+		return summary;
 	}
     
     @Override
@@ -134,7 +126,7 @@ public class SummaryServiceImpl implements SummaryService{
     	Summary summary = new Summary();
     	summary = summaryDAO.getSummary(symbol, countrycode);
     	summary.toString();
-    	return summary; 
+    	return null; 
     }
 
 	@Override
@@ -166,8 +158,16 @@ public class SummaryServiceImpl implements SummaryService{
     }
 
 	@Override
-	public int getSummaryCount() {
-		return summaryDAO.getSummaryCount();
+	public int getSummaryCount(String database) {
+		int result = 0;
+		if (database.equals("ropi1")) {
+			result = summaryDAO.getSummaryCount();
+		} else if (database.equals("ropi6")) {
+			result = summaryRopi6DAO.getSummaryCount();
+		} else if (database.equals("ropi7")) {
+			result = summaryRopi7DAO.getSummaryCount();
+		}
+		return result;
 	}
 
 	@Override
@@ -187,6 +187,4 @@ public class SummaryServiceImpl implements SummaryService{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	
 }
