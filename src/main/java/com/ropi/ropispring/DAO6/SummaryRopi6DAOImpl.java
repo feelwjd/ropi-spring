@@ -55,7 +55,6 @@ public class SummaryRopi6DAOImpl implements SummaryDAO {
 
 	@Override
 	public int getSummaryCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectOne("getSummaryCount");
 	}
 }
