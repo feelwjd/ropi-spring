@@ -167,33 +167,35 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping("/deleteSummary/{db}/{no}/{countrycode}")
-	public ModelAndView deleteSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("countrycode")String countrycode,Summary summary){
+	@PostMapping("/{database}/deleteSummary/{symbol}/{countrycode}")
+//	public ModelAndView deleteSummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")String countrycode, Summary summary){
+	public ModelAndView deleteSummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")String countrycode){
 		ModelAndView mv = new ModelAndView();
-		Summary deletesum = new Summary();
-		logger.info(db);
-		switch (db){
-			case "ropi1":
-				try	{
-					deletesum = summaryService.getSummary(no, countrycode);
-					summaryService.deleteSummary(deletesum);
-				}catch (Exception e){}
-				break;
-
-			case "ropi6":
-				try	{
-					deletesum = summaryService.getRopi6Summary(no, countrycode);
-					summaryService.deleteRopi6Summary(deletesum);
-				}catch (Exception e){}
-				break;
-
-			case "ropi7":
-				try	{
-					deletesum = summaryService.getRopi7Summary(no, countrycode);
-					summaryService.deleteRopi7Summary(deletesum);
-				}catch (Exception e){}
-		}
-		mv.setViewName("redirect:/");
+		
+		
+//		Summary deletesum = new Summary();
+//		switch (database){
+//			case "ropi1":
+//				try	{
+//					deletesum = summaryService.getSummary(symbol, countrycode);
+//					summaryService.deleteSummary(deletesum);
+//				}catch (Exception e){}
+//				break;
+//
+//			case "ropi6":
+//				try	{
+//					deletesum = summaryService.getRopi6Summary(symbol, countrycode);
+//					summaryService.deleteRopi6Summary(deletesum);
+//				}catch (Exception e){}
+//				break;
+//
+//			case "ropi7":
+//				try	{
+//					deletesum = summaryService.getRopi7Summary(symbol, countrycode);
+//					summaryService.deleteRopi7Summary(deletesum);
+//				}catch (Exception e){}
+//		}
+		mv.setViewName("redirect:/{database}/list/1");
 		return mv;
 	}
 
