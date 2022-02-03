@@ -7,10 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ropi.ropispring.DAO.SummaryDAO;
 import com.ropi.ropispring.Model.Summary;
 
 @Repository
-public class SummaryRopi6DAOImpl implements SummaryRopi6DAO {
+public class SummaryRopi6DAOImpl implements SummaryDAO {
 	@Autowired
 	SqlSession sqlSession;
 
@@ -50,5 +51,11 @@ public class SummaryRopi6DAOImpl implements SummaryRopi6DAO {
 	@Override
 	public String dbCheck() {
 		return sqlSession.selectOne("dbCheck");
+	}
+
+	@Override
+	public int getSummaryCount() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

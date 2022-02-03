@@ -7,10 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.ropi.ropispring.DAO.SummaryDAO;
 import com.ropi.ropispring.Model.Summary;
 
 @Repository
-public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
+public class SummaryRopi7DAOImpl implements SummaryDAO {
     @Autowired
     SqlSession sqlSession;
 
@@ -55,4 +56,10 @@ public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
             return "db-connect-error";
         }
     }
+
+	@Override
+	public int getSummaryCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
