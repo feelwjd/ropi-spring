@@ -104,4 +104,4 @@ local.properties
 
 ###ropi project###
 *.csv
-test-*.txt
+test*.txt

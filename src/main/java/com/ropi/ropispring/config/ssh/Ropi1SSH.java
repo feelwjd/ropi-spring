@@ -6,7 +6,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 
 public class Ropi1SSH {
-	private final static String HOST = "192.168.1.156";
+	private final static String HOST = "192.168.0.201";
 	private final static int PORT = 22; //기본포트는 22
 	private final static String SSH_USER = "htone"; //ex) root
 	private final static String SSH_PW = "htone123"; //ex) 1234

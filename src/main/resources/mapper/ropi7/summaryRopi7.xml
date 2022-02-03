@@ -11,7 +11,7 @@
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
         SELECT * FROM
 		ropi.SUMMARY_TB
-		LIMIT #{page}, #{pageSize};;
+		LIMIT #{page}, #{pageSize};
     </select>
 
     <select id="getSummary" resultType="com.ropi.ropispring.Model.Summary">
