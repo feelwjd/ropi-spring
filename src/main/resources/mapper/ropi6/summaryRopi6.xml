@@ -4,30 +4,30 @@
 <mapper namespace="com.ropi.ropispring.DAO6.SummaryRopi6DAO">
 
     <insert id="setSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        INSERT INTO ropi.SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
+        INSERT INTO SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
             VALUES (#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
     </insert>
 
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
         SELECT *
-        FROM ropi.SUMMARY_TB
+        FROM SUMMARY_TB
         LIMIT #{page}, #{pageSize};
     </select>
 
     <select id="getSummary" resultType="com.ropi.ropispring.Model.Summary">
-        SELECT * FROM ropi.SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
+        SELECT * FROM SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
     </select>
 
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        delete from ropi.SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
+        delete from SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
     </delete>
 
     <update id="updateSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        update ropi.SUMMARY_TB set SECTORCODE=#{sectorcode}, INDUSTRYCODE=#{industrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNAME=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
+        update SUMMARY_TB set SECTORCODE=#{sectorcode}, INDUSTRYCODE=#{industrycode}, KONAME=#{koname}, ENNAME=#{enname}, CNNAME=#{cnname}, KOSUMMARY=#{kosummary}, ENSUMMARY=#{ensummary}, CNSUMMARY=#{cnsummary}, JPSUMMARY=#{jpsummary}, TRADUNIT=#{tradunit}, NATIONCODE=#{nationcode}, NATIONKONAME=#{nationkoname}, NATIONENNAME=#{nationenname}, NATIONCNNAME=#{nationcnname}, NATIONJPNAME=#{nationjpname} where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
     </update>
 
 	<select id="checkSummary" parameterType="com.ropi.ropispring.Model.Summary" resultType="int">
-		select COUNT(*) from ropi.SUMMARY_TB WHERE countrycode = #{countrycode} and symbol = #{symbol};
+		select COUNT(*) from SUMMARY_TB WHERE countrycode = #{countrycode} and symbol = #{symbol};
 	</select>
 
     <select id="dbCheck" resultType="String">
@@ -35,6 +35,6 @@
     </select>
     
     <select id="getSummaryCount" resultType="int">
-    	select count(*) from ropi.SUMMARY_TB;
+    	select count(*) from SUMMARY_TB;
     </select>
 </mapper>

@@ -242,4 +242,14 @@ public class SummaryController {
 		}catch (Exception e){}
 		return mv;
 	}
+	
+	@ResponseBody
+	@PostMapping(value = "/copySummary/{database}/{symbol}/{countrycode}")
+	public int copySummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")int countrycode) {
+		System.out.println("copy Summary database : " + database + "/ symbol : " + symbol + "/ countrycode : " + countrycode);
+		
+		
+		
+		return 0;
+	}
 }

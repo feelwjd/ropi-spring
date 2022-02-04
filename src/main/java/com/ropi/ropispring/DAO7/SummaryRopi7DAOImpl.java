@@ -11,7 +11,7 @@ import com.ropi.ropispring.DAO.SummaryDAO;
 import com.ropi.ropispring.Model.Summary;
 
 @Repository
-public class SummaryRopi7DAOImpl implements SummaryDAO {
+public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
     @Autowired
     SqlSession sqlSession;
 
