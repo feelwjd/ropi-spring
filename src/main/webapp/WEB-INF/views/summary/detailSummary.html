@@ -61,36 +61,51 @@
     	<button type="button" class="btn btn-primary" onclick="updateSummary();">update</button>
     	<button type="button" class="btn btn-danger" onclick="deleteSummary();">delete</button>
     </form>
-    <!-- <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-primary">Update</a> -->
-    <!-- <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-danger" th:some-field="${summary.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a> -->
     <br><br><br>
     <a href="javascript:history.back()">돌아가기</a>
 
-	<div style="border: black solid 1px;">
-		<form method="POST" th:action="@{/copySummary/{db}/{symbol}/{countrycode} (db=${db}, symbol=${summary.symbol}, countrycode=${summary.countrycode})}">
-			<button type="submit">copy</button>
-		</form>
-	</div>
+	<form method="POST" id="copyForm" th:action="@{/copySummary/{database} (database=${database})}" >
+		<input type="checkbox" name="inputCheck[]" value="ropi1">ropi1
+		<input type="checkbox" name="inputCheck[]" value="ropi6">ropi6
+		<input type="checkbox" name="inputCheck[]" value="ropi7">ropi7
+		<input type="hidden" id="selectedDB" name="selectedDB">
+		<input type="hidden" name="symbol" th:field="*{summary.symbol}">
+		<input type="hidden" name="countrycode" th:field="*{summary.countrycode}">
+		<button type="button" onclick="copySummary();">copy</button>
+	</form>
 </div>
 </body>
 
 </html>
 <script>
-    function deleteClicked(value){
-        alert("SYMBOL : "+value + " 가 삭제되었습니다.");
-    }
-    
     function deleteSummary(){
     	if(confirm("삭제하시겠습니까?")){
     		var database = $("#database").val();
     		$("#summaryForm").attr("action", "/" + database + "/deleteSummary");
     		$("#summaryForm").submit();
-    	}else{
-    		console.log('2');
     	}
     }
     
     function updateSummary(){
     	$("#summaryForm").attr("action", "update")
+    }
+    
+    function copySummary(){
+    	var checkArray = new Array();
+    	
+    	$("input[name='inputCheck[]']:checked").each(function(){
+    		var tmpVal = $(this).val();
+    		console.log(tmpVal);
+    		checkArray.push(tmpVal);
+    	});
+    	
+    	if(checkArray.length < 1 ){
+   	    	alert("값을 선택해주시기 바랍니다.");
+   	    	return;
+   	    }else{
+   	    	$("#selectedDB").val(checkArray);
+   	    	alert(checkArray);
+   	    	$("#copyForm").submit();
+   	    }
     }
 </script>

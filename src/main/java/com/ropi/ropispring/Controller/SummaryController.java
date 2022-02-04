@@ -18,6 +18,8 @@ import com.ropi.ropispring.Model.Summary;
 
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequiredArgsConstructor
 public class SummaryController {
@@ -187,7 +189,6 @@ public class SummaryController {
 
 	@GetMapping(value = "{database}/detail/{symbol}/{countrycode}")
 	public ModelAndView detailSummary(@PathVariable("database") String database, @PathVariable("symbol") String symbol, @PathVariable("countrycode") String countrycode) {
-		System.out.println("chekc");
 		ModelAndView mv = new ModelAndView("summary/detailSummary");
 		Summary summary = new Summary();
 		
@@ -243,13 +244,15 @@ public class SummaryController {
 		return mv;
 	}
 	
-	@ResponseBody
-	@PostMapping(value = "/copySummary/{database}/{symbol}/{countrycode}")
-	public int copySummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")int countrycode) {
-		System.out.println("copy Summary database : " + database + "/ symbol : " + symbol + "/ countrycode : " + countrycode);
+	@PostMapping(value = "/copySummary/{database}")
+	public ModelAndView copySummary(@PathVariable("database")String database, @ModelAttribute Summary summary, @RequestParam("selectedDB")String selectedDB) {
+		String symbol = summary.getSymbol();
+		String countrycode = summary.getCountrycode();
+		ModelAndView mv = new ModelAndView("redirect:/{database}/detail/" + symbol +"/"+ countrycode);
 		
+		summary = summaryService.getSummary(database, symbol, countrycode);
+		System.out.println("selected db : " + selectedDB.toString());
 		
-		
-		return 0;
+		return mv;
 	}
 }
