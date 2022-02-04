@@ -16,7 +16,7 @@ public interface SummaryRopi7DAO {
 	
     List<Summary> listSummary(Map<String, Integer>map);	//리스트
     void setSummary(Summary summary); //추가
-    void deleteSummary(Summary summary); //삭제
+    int deleteSummary(Summary summary); //삭제
     void updateSummary(Summary summary); //수정
     
     Summary getSummary(@Param("symbol") String symbol, @Param("countrycode") String countrycode);

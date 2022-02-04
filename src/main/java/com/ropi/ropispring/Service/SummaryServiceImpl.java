@@ -149,7 +149,6 @@ public class SummaryServiceImpl implements SummaryService{
 		} else if (database.equals("ropi7")) {
 			result = summaryRopi7DAO.dbCheck();
 		}
-		
 		if(result != null) {
 			return database;
 		}else {
@@ -169,7 +168,21 @@ public class SummaryServiceImpl implements SummaryService{
 		}
 		return result;
 	}
-
+	
+	@Override
+	public int deleteSummary(String database, Summary summary) {
+		int result = 0;
+		
+		if (database.equals("ropi1")) {
+			result = summaryDAO.deleteSummary(summary);
+		} else if (database.equals("ropi6")) {
+			result = summaryRopi6DAO.deleteSummary(summary);
+		} else if (database.equals("ropi7")) {
+			result = summaryRopi7DAO.deleteSummary(summary);
+		}
+		return result;
+	}
+	
 	@Override
 	public String dbCheck() {
 		// TODO Auto-generated method stub

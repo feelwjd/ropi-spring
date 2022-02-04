@@ -29,8 +29,8 @@ public class SummaryRopi7DAOImpl implements SummaryDAO {
     }
 
     @Override
-    public void deleteSummary(Summary summary) {
-        sqlSession.delete("deleteSummary",summary);
+    public int deleteSummary(Summary summary) {
+        return sqlSession.delete("deleteSummary",summary);
     }
 
     @Override

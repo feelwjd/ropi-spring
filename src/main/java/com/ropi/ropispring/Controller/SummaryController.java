@@ -94,7 +94,7 @@ public class SummaryController {
 					break;
 			}
 		}
-		mv.setViewName("redirect:/ropi1/1");
+		mv.setViewName("redirect:/ropi1/list/1");
 		return mv;
 	}
 
@@ -167,35 +167,21 @@ public class SummaryController {
 		return mv;
 	}
 
-	@PostMapping("/{database}/deleteSummary/{symbol}/{countrycode}")
-//	public ModelAndView deleteSummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")String countrycode, Summary summary){
-	public ModelAndView deleteSummary(@PathVariable("database")String database, @PathVariable("symbol")String symbol, @PathVariable("countrycode")String countrycode){
+	@PostMapping("/{database}/deleteSummary")
+	public ModelAndView deleteSummary(@PathVariable("database")String database, @ModelAttribute Summary summary){
 		ModelAndView mv = new ModelAndView();
+		System.out.println("delete " + database + "/ summary : " + summary.toString());
 		
+		String dbName = summaryService.dbCheck(database);
+		int result = summaryService.deleteSummary(dbName, summary);
 		
-//		Summary deletesum = new Summary();
-//		switch (database){
-//			case "ropi1":
-//				try	{
-//					deletesum = summaryService.getSummary(symbol, countrycode);
-//					summaryService.deleteSummary(deletesum);
-//				}catch (Exception e){}
-//				break;
-//
-//			case "ropi6":
-//				try	{
-//					deletesum = summaryService.getRopi6Summary(symbol, countrycode);
-//					summaryService.deleteRopi6Summary(deletesum);
-//				}catch (Exception e){}
-//				break;
-//
-//			case "ropi7":
-//				try	{
-//					deletesum = summaryService.getRopi7Summary(symbol, countrycode);
-//					summaryService.deleteRopi7Summary(deletesum);
-//				}catch (Exception e){}
-//		}
-		mv.setViewName("redirect:/{database}/list/1");
+		if(result == 1) {	//삭제 성공
+			mv.setViewName("redirect:/{database}/list/1");
+		}else {	//삭제 실패
+			mv.setViewName("redirect:/{database}/detail/"+ summary.getSymbol() + "/" + summary.getCountrycode());
+		}
+		
+		System.out.println(mv.getViewName());
 		return mv;
 	}
 
@@ -209,7 +195,7 @@ public class SummaryController {
 		if(!(dbName.equals("error"))) {
 			summary = summaryService.getSummary(dbName, symbol, countrycode);
 			mv.addObject("summary", summary);
-			System.out.println("detail Summary : " + summary.toString());
+			mv.addObject("database", dbName);
 		}else {
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");

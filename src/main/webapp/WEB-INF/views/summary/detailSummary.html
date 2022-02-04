@@ -54,11 +54,15 @@
     <h5>NATIONJPNAME</h5>
     <h6 th:text="${summary.nationjpname}"></h6><br>
     <br>
-    <form method="post" action="@{delete}>">
-    	<button type="submit">test</button>
+    <form method="post" id="summaryForm">
+    	<input type="hidden" name="database" th:id="database" th:value="${database}">
+    	<input type="hidden" name="symbol" th:field="*{summary.symbol}">
+    	<input type="hidden" name="countrycode" th:field="*{summary.countrycode}">
+    	<button type="button" class="btn btn-primary" onclick="updateSummary();">update</button>
+    	<button type="button" class="btn btn-danger" onclick="deleteSummary();">delete</button>
     </form>
-    <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-primary">Update</a>
-    <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-danger" th:some-field="${summary.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a>
+    <!-- <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-primary">Update</a> -->
+    <!-- <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${summary.symbol}, country=${summary.countrycode})}" class="btn btn-danger" th:some-field="${summary.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a> -->
     <br><br><br>
     <a th:href="@{/}"> Back to Summary List</a>
 
@@ -69,5 +73,19 @@
 <script>
     function deleteClicked(value){
         alert("SYMBOL : "+value + " 가 삭제되었습니다.");
+    }
+    
+    function deleteSummary(){
+    	if(confirm("삭제하시겠습니까?")){
+    		var database = $("#database").val();
+    		$("#summaryForm").attr("action", "/" + database + "/deleteSummary");
+    		$("#summaryForm").submit();
+    	}else{
+    		console.log('2');
+    	}
+    }
+    
+    function updateSummary(){
+    	$("#summaryForm").attr("action", "update")
     }
 </script>

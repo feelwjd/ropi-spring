@@ -36,4 +36,5 @@ public interface SummaryService {
     String dbRopi7Check();
     
     int getSummaryCount(String database);
+	int deleteSummary(String database, Summary summary);
 }
