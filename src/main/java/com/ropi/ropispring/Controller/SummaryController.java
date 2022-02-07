@@ -253,10 +253,9 @@ public class SummaryController {
 		
 		summary = summaryService.getSummary(database, symbol, countrycode);
 		System.out.println("selected db : " + selectedDB.toString());
-		String databases[] = selectedDB.split(",");
-		
-		
-		
+//		String databases[] = selectedDB.split(",");
+		int result = summaryService.setSummary(selectedDB, summary);
+		System.out.println("controller : " + result);
 		
 		return mv;
 	}

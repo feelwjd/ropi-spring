@@ -209,6 +209,7 @@ public class SummaryServiceImpl implements SummaryService{
 		String databases[] = selectedDB.split(",");
 		int result = 0;
 		for (String database : databases) {
+			System.out.println("service : databases : " + database);
 			if (database.equals("ropi1")) {
 				System.out.println("in ropi1");
 				result = summaryDAO.setSummary(summary);

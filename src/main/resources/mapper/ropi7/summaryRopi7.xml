@@ -4,8 +4,26 @@
 <mapper namespace="com.ropi.ropispring.DAO7.SummaryRopi7DAO">
 
     <insert id="setSummary" parameterType="com.ropi.ropispring.Model.Summary">
-        INSERT INTO SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
-            VALUES (#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
+        INSERT INTO
+        	SUMMARY_TB (SYMBOL, COUNTRYCODE, SECTORCODE, INDUSTRYCODE, KONAME, ENNAME, CNNAME, KOSUMMARY, ENSUMMARY, CNSUMMARY, JPSUMMARY, TRADUNIT, NATIONCODE, NATIONKONAME, NATIONENNAME, NATIONCNNAME, NATIONJPNAME)
+		VALUES
+			(#{symbol}, #{countrycode}, #{sectorcode}, #{industrycode}, #{koname}, #{enname}, #{cnname}, #{kosummary}, #{ensummary}, #{cnsummary}, #{jpsummary}, #{tradunit}, #{nationcode}, #{nationkoname}, #{nationenname}, #{nationcnname}, #{nationjpname})
+ 		ON DUPLICATE KEY UPDATE
+			SECTORCODE = values(SECTORCODE),
+			INDUSTRYCODE = values(INDUSTRYCODE),
+			KONAME = values(KONAME),
+			ENNAME = values(ENNAME),
+			CNNAME = values(CNNAME),
+			KOSUMMARY = values(KOSUMMARY),
+			ENSUMMARY = values(ENSUMMARY),
+			CNSUMMARY = values(CNSUMMARY),
+			JPSUMMARY = values(JPSUMMARY),
+			TRADUNIT = values(TRADUNIT),
+			NATIONCODE = values(NATIONCODE),
+			NATIONKONAME = values(NATIONKONAME),
+			NATIONENNAME = values(NATIONENNAME),
+			NATIONCNNAME = values(NATIONCNNAME),
+			NATIONJPNAME = values(NATIONJPNAME)
     </insert>
 
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
