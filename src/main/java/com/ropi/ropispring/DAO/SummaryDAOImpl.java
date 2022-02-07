@@ -22,8 +22,11 @@ public class SummaryDAOImpl implements SummaryDAO {
     }
 
     @Override
-    public void setSummary(Summary summary) {
-        sqlSession.insert("setSummary",summary);
+    public int setSummary(Summary summary) {
+    	System.out.println("impl summ : " + summary.toString());
+        int result = sqlSession.insert("setSummary",summary);
+        System.out.println("implresult : " + result);
+        return result;
     }
 
     @Override

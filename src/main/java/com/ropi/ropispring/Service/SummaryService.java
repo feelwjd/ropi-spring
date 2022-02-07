@@ -13,6 +13,7 @@ public interface SummaryService {
 //    List<Summary> listRopi6Summary();
 //    List<Summary> listRopi7Summary();
 
+	int setSummary(String selectedDB, Summary summary);
     void setSummary(Summary summary);
     void setRopi6Summary(Summary summary);
     void setRopi7Summary(Summary summary);

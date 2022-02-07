@@ -69,33 +69,34 @@ public class SummaryController {
 	@PostMapping("/add/{db}")
 	public ModelAndView addPostSummary(Summary summary,@PathVariable("db")String db){
 		ModelAndView mv = new ModelAndView();
-		String[] selectDB = db.toString().split(",");
-		logger.info(summary.toString());
+		System.out.println(summary.toString());
+		int result = summaryService.setSummary(db, summary);
+		System.out.println("controller result : " + result);
 
-		for (int i =0;i<selectDB.length; i++){
-			switch (selectDB[i]){
-				case "1":
-					logger.info("server 1 attach");
-					try	{
-						summaryService.setSummary(summary);
-					}catch (Exception e){}
-					break;
-
-				case "2":
-					logger.info("server 2 attach");
-					try	{
-						summaryService.setRopi6Summary(summary);
-					}catch (Exception e){}
-					break;
-
-				case "3":
-					logger.info("server 3 attach");
-					try	{
-						summaryService.setRopi7Summary(summary);
-					}catch (Exception e){}
-					break;
-			}
-		}
+//		for (int i =0;i<selectDB.length; i++){
+//			switch (selectDB[i]){
+//				case "1":
+//					logger.info("server 1 attach");
+//					try	{
+//						summaryService.setSummary(summary);
+//					}catch (Exception e){}
+//					break;
+//
+//				case "2":
+//					logger.info("server 2 attach");
+//					try	{
+//						summaryService.setRopi6Summary(summary);
+//					}catch (Exception e){}
+//					break;
+//
+//				case "3":
+//					logger.info("server 3 attach");
+//					try	{
+//						summaryService.setRopi7Summary(summary);
+//					}catch (Exception e){}
+//					break;
+//			}
+//		}
 		mv.setViewName("redirect:/ropi1/list/1");
 		return mv;
 	}
@@ -252,6 +253,10 @@ public class SummaryController {
 		
 		summary = summaryService.getSummary(database, symbol, countrycode);
 		System.out.println("selected db : " + selectedDB.toString());
+		String databases[] = selectedDB.split(",");
+		
+		
+		
 		
 		return mv;
 	}

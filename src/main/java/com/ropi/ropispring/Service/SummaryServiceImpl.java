@@ -18,7 +18,7 @@ import java.util.Map;
 @Service
 @RequiredArgsConstructor
 public class SummaryServiceImpl implements SummaryService{
-    @Autowired
+	@Autowired
     SummaryDAO summaryDAO;
     
     @Autowired
@@ -47,7 +47,9 @@ public class SummaryServiceImpl implements SummaryService{
     @Override
     public void setSummary(Summary summary) {
     	try {
-            summaryDAO.setSummary(summary);
+    		System.out.println("serviceimpl summ : " + summary.toString());
+            int result = summaryDAO.setSummary(summary);
+            System.out.println("service result : " + result);
         }catch (Exception e){}
     }
 
@@ -199,5 +201,24 @@ public class SummaryServiceImpl implements SummaryService{
 	public String dbRopi7Check() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public int setSummary(String selectedDB, Summary summary) {
+		System.out.println("service im db : " + selectedDB + " / summ : " + summary.toString());
+		String databases[] = selectedDB.split(",");
+		int result = 0;
+		for (String database : databases) {
+			if (database.equals("ropi1")) {
+				System.out.println("in ropi1");
+				result = summaryDAO.setSummary(summary);
+			} else if (database.equals("ropi6")) {
+				summaryRopi6DAO.setSummary(summary);
+			} else if (database.equals("ropi7")) {
+				summaryRopi7DAO.setSummary(summary);
+			}
+		}
+		System.out.println("service result : " + result);
+		return result;
 	}
 }
