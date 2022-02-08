@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 
-<head>
-    <div th:replace="/summary/layout/header :: headerFragment"></div>
-</head>
 <body>
 <div class="container my-2">
+    <div th:replace="/summary/layout/header :: headerFragment"></div>
     <div th:replace="/summary/layout/nav :: navFragment"></div>
-    <h1>기업 개요</h1>
 
+    <div class="table-responsive">
     <table border="1" class="table table-striped table-responsive-md">
         <thead>
         <tr>
@@ -21,7 +19,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="col:${list}" style="cursor: pointer">
+        <tr th:each="col:${summary}" style="cursor: pointer">
             <td th:text="${col.symbol}"></td>
             <td th:text="${col.countrycode}"></td>
             <td th:text="${col.sectorcode}"></td>
@@ -32,40 +30,82 @@
         </tr>
         </tbody>
     </table>
+    </div>
     <h5>KONAME</h5>
-    <h6 th:text="${list.koname}"></h6><br>
+    <h6 th:text="${summary.koname}"></h6><br>
     <h5>ENNAME</h5>
-    <h6 th:text="${list.enname}"></h6><br>
+    <h6 th:text="${summary.enname}"></h6><br>
     <h5>CNNAME</h5>
-    <h6 th:text="${list.cnname}"></h6><br>
+    <h6 th:text="${summary.cnname}"></h6><br>
     <h5>KOSUMMARY</h5>
-    <h6 th:text="${list.kosummary}"></h6><br>
+    <h6 th:text="${summary.kosummary}"></h6><br>
     <h5>ENSUMMARY</h5>
-    <h6 th:text="${list.ensummary}"></h6><br>
+    <h6 th:text="${summary.ensummary}"></h6><br>
     <h5>CNSUMMARY</h5>
-    <h6 th:text="${list.cnsummary}"></h6><br>
+    <h6 th:text="${summary.cnsummary}"></h6><br>
     <h5>JPSUMMARY</h5>
-    <h6 th:text="${list.jpsummary}"></h6><br>
+    <h6 th:text="${summary.jpsummary}"></h6><br>
     <h5>NATIONKONAME</h5>
-    <h6 th:text="${list.nationkoname}"></h6><br>
+    <h6 th:text="${summary.nationkoname}"></h6><br>
     <h5>NATIONENNAME</h5>
-    <h6 th:text="${list.nationenname}"></h6><br>
+    <h6 th:text="${summary.nationenname}"></h6><br>
     <h5>NATIONCNNAME</h5>
-    <h6 th:text="${list.nationcnname}"></h6><br>
+    <h6 th:text="${summary.nationcnname}"></h6><br>
     <h5>NATIONJPNAME</h5>
-    <h6 th:text="${list.nationjpname}"></h6><br>
+    <h6 th:text="${summary.nationjpname}"></h6><br>
     <br>
-    <a th:href="@{/updateSummary/{db}/{id}/{country}(db=${db}, id=${list.symbol}, country=${list.countrycode})}" class="btn btn-primary">Update</a>
-    <a th:href="@{/deleteSummary/{db}/{id}/{country}(db=${db}, id=${list.symbol}, country=${list.countrycode})}" class="btn btn-danger" th:some-field="${list.symbol}" onclick="deleteClicked(this.getAttribute('some-field'))"> Delete </a>
+    <form method="post" id="summaryForm">
+    	<input type="hidden" name="database" th:id="database" th:value="${database}">
+    	<input type="hidden" name="symbol" th:field="*{summary.symbol}">
+    	<input type="hidden" name="countrycode" th:field="*{summary.countrycode}">
+    	<button type="button" class="btn btn-primary" onclick="updateSummary();">update</button>
+    	<button type="button" class="btn btn-danger" onclick="deleteSummary();">delete</button>
+    </form>
     <br><br><br>
-    <a th:href="@{/}"> Back to Summary List</a>
+    <a href="javascript:history.back()">돌아가기</a>
 
+	<form method="POST" id="copyForm" th:action="@{/copySummary/{database} (database=${database})}" >
+		<input type="checkbox" name="inputCheck[]" value="ropi1">ropi1
+		<input type="checkbox" name="inputCheck[]" value="ropi6">ropi6
+		<input type="checkbox" name="inputCheck[]" value="ropi7">ropi7
+		<input type="hidden" id="selectedDB" name="selectedDB">
+		<input type="hidden" name="symbol" th:field="*{summary.symbol}">
+		<input type="hidden" name="countrycode" th:field="*{summary.countrycode}">
+		<button type="button" onclick="copySummary();">copy</button>
+	</form>
 </div>
 </body>
 
 </html>
 <script>
-    function deleteClicked(value){
-        alert("SYMBOL : "+value + " 가 삭제되었습니다.");
+    function deleteSummary(){
+    	if(confirm("삭제하시겠습니까?")){
+    		var database = $("#database").val();
+    		$("#summaryForm").attr("action", "/" + database + "/deleteSummary");
+    		$("#summaryForm").submit();
+    	}
+    }
+    
+    function updateSummary(){
+    	$("#summaryForm").attr("action", "update")
+    }
+    
+    function copySummary(){
+    	var checkArray = new Array();
+    	
+    	$("input[name='inputCheck[]']:checked").each(function(){
+    		var tmpVal = $(this).val();
+    		console.log(tmpVal);
+    		checkArray.push(tmpVal);
+    	});
+    	
+    	if(checkArray.length < 1 ){
+   	    	alert("값을 선택해주시기 바랍니다.");
+   	    	return;
+   	    }else{
+   	    	$("#selectedDB").val(checkArray);
+   	    	alert(checkArray);
+   	    	$("#copyForm").submit();
+   	    }
     }
 </script>

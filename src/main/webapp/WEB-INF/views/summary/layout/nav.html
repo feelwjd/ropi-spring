@@ -2,18 +2,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="navFragment">
-  <ul class="nav nav-pills nav-fill">
-    <li class="nav-item">
-      <a class="nav-link" th:classappend="${#httpServletRequest.getRequestURI() == '/' ? 'nav-link active':''}" data-toggle="tab" aria-current="page" th:href="@{/}">ROPI 1</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" th:classappend="${#httpServletRequest.getRequestURI() == '/ropi6' ? 'nav-link active':''}" data-toggle="tab" th:href="@{/ropi6}">ROPI 6</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" th:classappend="${#httpServletRequest.getRequestURI() == '/ropi7' ? 'nav-link active':''}" data-toggle="tab" th:href="@{/ropi7}">ROPI 7</a>
-    </li>
-  </ul>
+	<ul class="nav nav-tabs">
+		<li role="presentation" class="active">
+			<a th:classappend="${#httpServletRequest.getRequestURI() == '/ropi1' ? 'nav-link active':''}" th:href="@{/ropi1/list/1}">ROPI 1</a>
+ 		</li>
+ 		<li role="presentation">
+			<a th:classappend="${#httpServletRequest.getRequestURI() == '/ropi6' ? 'nav-link active':''}" th:href="@{/ropi6/list/1}">ROPI 6</a>
+		</li>
+		<li role="presentation">
+			<a th:classappend="${#httpServletRequest.getRequestURI() == '/ropi7' ? 'nav-link active':''}" th:href="@{/ropi7/list/1}">ROPI 7</a>
+		</li>
+	</ul>
 </div>
+
 </html>
 <script>
   $(document).ready(function() {

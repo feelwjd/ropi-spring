@@ -1,4 +1,4 @@
-package com.ropi.ropispring.config;
+package com.ropi.ropispring.config.database;
 
 import javax.sql.DataSource;
 
@@ -16,24 +16,27 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
-@MapperScan(basePackages = "com.ropi.ropispring.DAO7", sqlSessionFactoryRef = "ropi7SqlSessionFactory")
-public class DatabaseRopi7Config {
-	@Bean(name="ropi7DataSource")
-	@ConfigurationProperties(prefix = "spring.ropi7.datasource")
+@MapperScan(basePackages = "com.ropi.ropispring.DAO", sqlSessionFactoryRef = "ropi1SqlSessionFactory")
+public class DatabaseRopi1Config {
+	@Bean(name="ropi1DataSource")
+	@Primary
+	@ConfigurationProperties(prefix = "spring.ropi1.datasource")
 	public DataSource ropi1DataSource() {
 		return DataSourceBuilder.create().build();
 	}
 	
-	@Bean(name="ropi7SqlSessionFactory")
-	public SqlSessionFactory ropi1SqlSessionFactory(@Qualifier("ropi7DataSource") DataSource ropi7DataSource, ApplicationContext applicationContext)throws Exception {
+	@Bean(name="ropi1SqlSessionFactory")
+	@Primary
+	public SqlSessionFactory ropi1SqlSessionFactory(@Qualifier("ropi1DataSource") DataSource ropi1DataSource, ApplicationContext applicationContext)throws Exception {
 		SqlSessionFactoryBean sqlSessionFactoryBean =new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(ropi7DataSource);
-        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/ropi7/*.xml"));
+        sqlSessionFactoryBean.setDataSource(ropi1DataSource);
+        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mapper/*.xml"));
         return sqlSessionFactoryBean.getObject();
 	}
 	
-	 @Bean(name ="ropi7SqlSessionTemplate")
-	    public SqlSessionTemplate db1SqlSessionTemplate(SqlSessionFactory ropi7DataSource)throws Exception {
-	        return new SqlSessionTemplate(ropi7DataSource);
-	    }
+	@Bean(name ="ropi1SqlSessionTemplate")
+    @Primary
+    public SqlSessionTemplate db1SqlSessionTemplate(SqlSessionFactory ropi1DataSource)throws Exception {
+        return new SqlSessionTemplate(ropi1DataSource);
+    }
 }

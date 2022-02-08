@@ -9,16 +9,33 @@ import java.util.List;
 @Service
 public interface SummaryService {
 	
-    List<Summary> listSummary();
+	List<Summary> listSummary(String database, int page, int pageSize);
+//    List<Summary> listRopi6Summary();
+//    List<Summary> listRopi7Summary();
+
+	int setSummary(String selectedDB, Summary summary);
     void setSummary(Summary summary);
+    void setRopi6Summary(Summary summary);
+    void setRopi7Summary(Summary summary);
+
     void deleteSummary(Summary summary);
+    void deleteRopi6Summary(Summary summary);
+    void deleteRopi7Summary(Summary summary);
+
     void updateSummary(Summary summary);
+    void updateRopi6Summary(Summary summary);
+    void updateRopi7Summary(Summary summary);
+
+    Summary getSummary(String database, String symbol, String countrycode);
     Summary getSummary(String symbol, String countrycode);
     Summary getRopi6Summary(String symbol, String countrycode);
     Summary getRopi7Summary(String symbol, String countrycode);
-    List<Summary> listRopi6Summary();
-    List<Summary> listRopi7Summary();
+
+    String dbCheck(String database);
     String dbCheck();
     String dbRopi6Check();
     String dbRopi7Check();
+    
+    int getSummaryCount(String database);
+	int deleteSummary(String database, Summary summary);
 }

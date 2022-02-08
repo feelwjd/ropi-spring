@@ -1,11 +1,14 @@
 package com.ropi.ropispring.DAO;
 
 import com.ropi.ropispring.Model.Summary;
+
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class SummaryDAOImpl implements SummaryDAO {
@@ -13,18 +16,22 @@ public class SummaryDAOImpl implements SummaryDAO {
     SqlSession sqlSession;
 
     @Override
-    public List<Summary> listSummary(){
-        return sqlSession.selectList("listSummary");
+    public List<Summary> listSummary(Map<String, Integer> map){
+    	List<Summary> list = sqlSession.selectList("listSummary", map);
+        return list;
     }
 
     @Override
-    public void setSummary(Summary summary) {
-        sqlSession.insert("setSummary",summary);
+    public int setSummary(Summary summary) {
+    	System.out.println("impl summ : " + summary.toString());
+        int result = sqlSession.insert("setSummary",summary);
+        System.out.println("implresult : " + result);
+        return result;
     }
 
     @Override
-    public void deleteSummary(Summary summary) {
-        sqlSession.delete("deleteSummary",summary);
+    public int deleteSummary(Summary summary) {
+        return sqlSession.delete("deleteSummary",summary);
     }
 
     @Override
@@ -43,7 +50,12 @@ public class SummaryDAOImpl implements SummaryDAO {
 	}
 
     @Override
-    public String dbCheck(){return sqlSession.selectOne("dbCheck");}
-    
-  
+    public String dbCheck(){
+    	return sqlSession.selectOne("dbCheck");
+    }
+
+	@Override
+	public int getSummaryCount() {
+		return sqlSession.selectOne("getSummaryCount");
+	}
 }
