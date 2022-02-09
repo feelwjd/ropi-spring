@@ -2,6 +2,7 @@
 <html xmlns:th="http://thymeleaf.org">
 
 <head>
+	<script src="/js/summaryForm.js" defer></script>
 </head>
 <body>
     <div th:replace="/summary/layout/header :: headerFragment"></div>
@@ -9,6 +10,7 @@
     <div th:replace="/summary/layout/nav :: navFragment"></div>
     <hr>
     <h2>기업개요 추가</h2>
+    <button onclick="a();">asd</button>
 	<hr>
     <form name="saveSummary" id="form" th:action="@{/add}" th:object="${list}" method="POST">
         <b>데이터를 추가할 서버를 선택해주세요.</b>
