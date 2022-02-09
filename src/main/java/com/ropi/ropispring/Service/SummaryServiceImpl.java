@@ -202,9 +202,9 @@ public class SummaryServiceImpl implements SummaryService{
 	}
 
 	@Override
-	public int setSummary(String selectedDB, Summary summary) {
-		System.out.println("service im db : " + selectedDB + " / summ : " + summary.toString());
-		String databases[] = selectedDB.split(",");
+	public int setSummary(String selectedDBList, Summary summary) {
+		System.out.println("service im db : " + selectedDBList + " / summ : " + summary.toString());
+		String databases[] = selectedDBList.split(",");
 		int result = 0;
 		for (String database : databases) {
 			System.out.println("service : databases : " + database);

@@ -59,7 +59,7 @@ public class SummaryController {
 //	}
 
 	@GetMapping(value = "/addSummary")
-	public ModelAndView addSummary(ModelAndView mv){
+	public ModelAndView addSummaryForm(ModelAndView mv){
 		Summary summary = new Summary();
 		mv.addObject("list",summary);
 		mv.setViewName("/summary/addSummary");
