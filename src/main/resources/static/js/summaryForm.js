@@ -1,7 +1,3 @@
-function a(){
-	console.log('a');
-}
-
 function form_check(){
         var checkServer = "";
         $( "input[name='server']:checked" ).each (function (){
