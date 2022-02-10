@@ -39,22 +39,59 @@
         		<input type="text" id="countrycode" th:field="*{countrycode}" placeholder="countrycode" class="form-control">
         	</div>
         </div>
-        
-        
+
+		<div class="row">
+			<label class="col-sm-1 ">sectorcode</label>
+			<div class="col-sm-3">
+				<input type="hidden" id="sectorcode" th:field="*{sectorcode}">
+		        <div class="dropdown">
+		        	<button class="btn btn-default dropdown-toggle" type="button" id="sectorDropdown" data-toggle="dropdown" aria-expanded="true">
+		        		<span id="sectorName">sectorcode</span><span class="caret"></span>
+		        	</button>
+		        	<ul class="dropdown-menu" role="menu" aria-labelledby="sectorDropdown">
+		        		<li th:each="sector:${sectorList}">
+		        			<a class="sectorList" role="menuitem" tabindex="-1" href="#" th:text="'(' + ${sector.sectorcode} + ') ' + ${sector.kosectorname}" th:data-value="${sector.sectorcode}"></a>
+		        		</li>
+		        		
+		        	</ul>
+		        </div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<label class="col-sm-1 ">industrycode</label>
+			<div class="col-sm-3">
+				<input type="hidden" id="industrycode" th:field="*{industrycode}">
+		        <div class="dropdown">
+		        	<button class="btn btn-default dropdown-toggle" type="button" id="industryDropdown" data-toggle="dropdown" aria-expanded="true">
+		        		<span id="industryName">industrycode</span><span class="caret"></span>
+		        	</button>
+		        	<ul class="dropdown-menu" role="menu" aria-labelledby="industryDropdown">
+		        		<li th:each="industry:${industryList}">
+		        			<a class="industryList" role="menuitem" tabindex="-1" href="#" th:text="'(' + ${industry.industrycode} + ') ' + ${industry.koindustryname}" th:data-value="${industry.industrycode}"></a>
+		        		</li>
+		        		
+		        	</ul>
+		        </div>
+			</div>
+		</div>
+		
+        <!-- 
         <div class="row">
 			<label class="col-sm-1 ">sectorcode</label>
         	<div class="col-sm-3">
         		<input type="text" id="sectorcode" th:field="*{sectorcode}" placeholder="sectorcode" class="form-control">
        		</div>
 		</div>
-		
+		 -->
+		<!-- 
         <div class="row">
 			<label class="col-sm-1 ">industrycode</label>
         	<div class="col-sm-3">
         		<input type="text" id="industrycode" th:field="*{industrycode}" placeholder="industrycode" class="form-control">
      		</div>
         </div>
-        
+         -->
         <div class="row">
 			<label class="col-sm-1 ">koname</label>
         	<div class="col-sm-3">
