@@ -1,5 +1,7 @@
 package com.ropi.ropispring.Service;
 
+import com.ropi.ropispring.Model.Industry;
+import com.ropi.ropispring.Model.Sector;
 import com.ropi.ropispring.Model.Summary;
 
 import org.springframework.stereotype.Service;
@@ -38,4 +40,7 @@ public interface SummaryService {
     
     int getSummaryCount(String database);
 	int deleteSummary(String database, Summary summary);
+
+	List<Sector> getSectorList(String database);
+	List<Industry> getIndustryList(String database);
 }

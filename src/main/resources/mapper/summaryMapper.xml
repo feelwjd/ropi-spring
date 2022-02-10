@@ -61,4 +61,12 @@
     <select id="getSummaryCount" resultType="int">
     	select count(*) from SUMMARY_TB;
     </select>
+    
+	<select id="getSectorList" resultType="com.ropi.ropispring.Model.Sector">
+    	select * from sector_tb;
+	</select>
+	
+	<select id="getIndustryList" resultType="com.ropi.ropispring.Model.Industry">
+    	select * from industry_tb;    
+    </select>
 </mapper>

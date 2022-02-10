@@ -1,17 +1,21 @@
 package com.ropi.ropispring.Service;
 
-import com.ropi.ropispring.DAO.SummaryDAO;
-import com.ropi.ropispring.DAO6.SummaryRopi6DAO;
-import com.ropi.ropispring.DAO7.SummaryRopi7DAO;
-import com.ropi.ropispring.Model.Summary;
-
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ropi.ropispring.DAO.SummaryDAO;
+import com.ropi.ropispring.DAO6.SummaryRopi6DAO;
+import com.ropi.ropispring.DAO7.SummaryRopi7DAO;
+import com.ropi.ropispring.Model.Industry;
+import com.ropi.ropispring.Model.Sector;
+import com.ropi.ropispring.Model.Summary;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -219,5 +223,31 @@ public class SummaryServiceImpl implements SummaryService{
 		}
 		System.out.println("service result : " + result);
 		return result;
+	}
+
+	@Override
+	public List<Sector> getSectorList(String database) {
+		List<Sector> list = new ArrayList<>();
+		if(database.equals("ropi1")) {
+			list = summaryDAO.getSectorList();
+		}else if(database.equals("ropi6")) {
+			list = summaryRopi6DAO.getSectorList();
+		}else if(database.equals("ropi7")) {
+			list = summaryRopi7DAO.getSectorList();
+		}
+		return list;
+	}
+
+	@Override
+	public List<Industry> getIndustryList(String database) {
+		List<Industry> list = new ArrayList<>();
+		if(database.equals("ropi1")) {
+			list = summaryDAO.getIndustryList();
+		}else if(database.equals("ropi6")) {
+			list = summaryRopi6DAO.getIndustryList();
+		}else if(database.equals("ropi7")) {
+			list = summaryRopi7DAO.getIndustryList();
+		}
+		return list;
 	}
 }

@@ -14,6 +14,9 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.ropi.ropispring.Model.Industry;
+import com.ropi.ropispring.Model.Sector;
 import com.ropi.ropispring.Model.Summary;
 
 import java.util.*;
@@ -29,9 +32,8 @@ public class SummaryController {
 	private SummaryService summaryService;
 
 	@GetMapping(value = "/{database}/list/{curPage}")
-	public ModelAndView viewSummary(@PathVariable("database")String database, @PathVariable("curPage")int curPage, ModelAndView mv) {
-		String dbName = summaryService.dbCheck(database);
-		
+	public ModelAndView listSummary(@PathVariable("database")String selectedDB, @PathVariable("curPage")int curPage, ModelAndView mv) {
+		String database = summaryService.dbCheck(selectedDB);
 		int listSize = summaryService.getSummaryCount(database);
 		
 		//페이징 처리
@@ -43,7 +45,7 @@ public class SummaryController {
 			List<Summary> list = summaryService.listSummary(database, page, pageSize);
 			mv.setViewName("/summary/main");
 			mv.addObject("list",list);
-			mv.addObject("dbName",dbName);
+			mv.addObject("database",database);
 			mv.addObject("pagination", pagination);
 		}catch (Exception e){
 			mv.setViewName("/summary/errors/500");
@@ -58,11 +60,18 @@ public class SummaryController {
 //		return summaryService.listSummary();
 //	}
 
-	@GetMapping(value = "/addSummary")
-	public ModelAndView addSummaryForm(ModelAndView mv){
-		Summary summary = new Summary();
-		mv.addObject("list",summary);
-		mv.setViewName("/summary/addSummary");
+	@GetMapping(value = "/{database}/addSummary")
+	public ModelAndView addSummaryForm(@PathVariable("database")String selectedDB , ModelAndView mv, @ModelAttribute("summary")Summary summary){
+		String database = summaryService.dbCheck(selectedDB);
+		
+		List<Sector> sectorList = summaryService.getSectorList(database);
+		List<Industry> industryList = summaryService.getIndustryList(database);
+
+		mv.addObject("summary",summary);
+		mv.addObject("sectorList", sectorList);
+		mv.addObject("industryList", industryList);
+		
+		mv.setViewName("summary/addSummary");
 		return mv;
 	}
 

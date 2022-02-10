@@ -11,7 +11,7 @@
     <hr>
     <h2>기업개요 추가</h2>
 	<hr>
-    <form name="saveSummary" id="form" th:action="@{/add}" th:object="${list}" method="POST">
+    <form name="saveSummary" id="form" th:action="@{/add}" th:object="${summary}" method="POST">
         <b>데이터를 추가할 서버를 선택해주세요.</b>
         <div class="form-check form-switch">
             <input class="form-check-input" type="checkbox" name="server" id="server1" value="ropi1">
