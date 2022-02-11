@@ -31,8 +31,8 @@ public class SummaryController {
 	@Autowired
 	private SummaryService summaryService;
 
-	@GetMapping(value = "/{database}/list/{curPage}")
-	public ModelAndView listSummary(@PathVariable("database")String selectedDB, @PathVariable("curPage")int curPage, ModelAndView mv) {
+	@GetMapping(value = "/{database}/list/{page}")
+	public ModelAndView getSummaryList(@PathVariable("database")String selectedDB, @PathVariable("page")int curPage, ModelAndView mv) {
 		String database = summaryService.dbCheck(selectedDB);
 		int listSize = summaryService.getSummaryCount(database);
 		
@@ -61,18 +61,18 @@ public class SummaryController {
 //	}
 
 	@GetMapping(value = "/{database}/addSummary")
-	public ModelAndView addSummaryForm(@PathVariable("database")String selectedDB, ModelAndView mv, @ModelAttribute("summary")Summary summary){
+	public ModelAndView goSummaryForm(@PathVariable("database")String selectedDB, ModelAndView mv, @ModelAttribute("summary")Summary summary){
 		String database = summaryService.dbCheck(selectedDB);
 		
 		List<Sector> sectorList = summaryService.getSectorList(database);
 		List<Industry> industryList = summaryService.getIndustryList(database);
 
-		mv.addObject("summary",summary);
 		mv.addObject("sectorList", sectorList);
 		mv.addObject("industryList", industryList);
+		mv.addObject("summary",summary);
 		mv.addObject("database", database);
 		
-		mv.setViewName("summary/addSummary");
+		mv.setViewName("summary/formSummary");
 		return mv;
 	}
 
@@ -111,47 +111,78 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping(value = "/updateSummary/{db}/{no}/{countrycode}")
-	public ModelAndView updateSummary(@PathVariable("no")String no,@PathVariable("db")String db,@PathVariable("countrycode")String countrycode, Summary summary){
-		ModelAndView mv = new ModelAndView();
-		String temp1,temp2,temp3;
-		try	{
-			temp1 = summaryService.dbCheck();
-		}catch (Exception e){
-			temp1 = "error";
-		}
-		try	{
-			temp2 = summaryService.dbRopi6Check();
-		}catch (Exception e){
-			temp2 = "error";
-		}
-		try	{
-			temp3 = summaryService.dbRopi7Check();
-		}catch (Exception e){
-			temp3 = "error";
-		}
-		if (db.equals(temp1)){
-			mv.addObject("list",summaryService.getSummary(no, countrycode));
-			mv.addObject("db",db);
-			mv.setViewName("/summary/updateSummary");
-		}
-		else if (db.equals(temp2)){
-			mv.addObject("list",summaryService.getRopi6Summary(no, countrycode));
-			mv.addObject("db",db);
-			mv.setViewName("/summary/updateSummary");
-		}
-		else if (db.equals(temp3)){
-			mv.addObject("list",summaryService.getRopi7Summary(no, countrycode));
-			mv.addObject("db",db);
-			mv.setViewName("/summary/updateSummary");
-		}
-		else{
+	@GetMapping(value = "{database}/detail/{symbol}/{countrycode}")
+	public ModelAndView detailSummary(@PathVariable("database") String database, @PathVariable("symbol") String symbol, @PathVariable("countrycode") String countrycode) {
+		ModelAndView mv = new ModelAndView("summary/detailSummary");
+		Summary summary = new Summary();
+		
+		String dbName = summaryService.dbCheck(database);
+		if(!(dbName.equals("error"))) {
+			summary = summaryService.getSummary(dbName, symbol, countrycode);
+			mv.addObject("summary", summary);
+			mv.addObject("database", dbName);
+		}else {
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
 		}
 		return mv;
 	}
+	
+//	@GetMapping(value = "/updateSummary/{database}/{symbol}/{countrycode}")
+//	public ModelAndView updateSummary(@PathVariable("symbol")String symbol, @PathVariable("database")String database,@PathVariable("countrycode")String countrycode, Summary summary){
+//		ModelAndView mv = new ModelAndView();
+//		String temp1,temp2,temp3;
+//		try	{
+//			temp1 = summaryService.dbCheck();
+//		}catch (Exception e){
+//			temp1 = "error";
+//		}
+//		try	{
+//			temp2 = summaryService.dbRopi6Check();
+//		}catch (Exception e){
+//			temp2 = "error";
+//		}
+//		try	{
+//			temp3 = summaryService.dbRopi7Check();
+//		}catch (Exception e){
+//			temp3 = "error";
+//		}
+//		if (database.equals(temp1)){
+//			mv.addObject("list",summaryService.getSummary(symbol, countrycode));
+//			mv.addObject("db",database);
+//			mv.setViewName("/summary/updateSummary");
+//		}
+//		else if (database.equals(temp2)){
+//			mv.addObject("list",summaryService.getRopi6Summary(symbol, countrycode));
+//			mv.addObject("db",database);
+//			mv.setViewName("/summary/updateSummary");
+//		}
+//		else if (database.equals(temp3)){
+//			mv.addObject("list",summaryService.getRopi7Summary(symbol, countrycode));
+//			mv.addObject("db",database);
+//			mv.setViewName("/summary/updateSummary");
+//		}
+//		else{
+//			mv.setViewName("/summary/errors/500");
+//			mv.addObject("errortype","409");
+//		}
+//		return mv;
+//	}
+	@PostMapping(value="/{database}/updateSummary")
+	public ModelAndView goSummaryForm(@PathVariable("database")String database, @ModelAttribute Summary summary) {
+		ModelAndView mv = new ModelAndView("/summary/formSummary");
+		summary = summaryService.getSummary(database, summary.getSymbol(), summary.getCountrycode());
+		List<Sector> sectorList = summaryService.getSectorList(database);
+		List<Industry> industryList = summaryService.getIndustryList(database);
 
+		mv.addObject("sectorList", sectorList);
+		mv.addObject("industryList", industryList);
+		mv.addObject("summary", summary);
+		System.out.println("update form post " + summary.toString());
+		
+		return mv;
+	}
+	
 	@PostMapping("/update/{db}")
 	public ModelAndView updatePostSummary(Summary summary,@PathVariable("db")String db){
 		switch (db){
@@ -198,22 +229,7 @@ public class SummaryController {
 		return mv;
 	}
 
-	@GetMapping(value = "{database}/detail/{symbol}/{countrycode}")
-	public ModelAndView detailSummary(@PathVariable("database") String database, @PathVariable("symbol") String symbol, @PathVariable("countrycode") String countrycode) {
-		ModelAndView mv = new ModelAndView("summary/detailSummary");
-		Summary summary = new Summary();
-		
-		String dbName = summaryService.dbCheck(database);
-		if(!(dbName.equals("error"))) {
-			summary = summaryService.getSummary(dbName, symbol, countrycode);
-			mv.addObject("summary", summary);
-			mv.addObject("database", dbName);
-		}else {
-			mv.setViewName("/summary/errors/500");
-			mv.addObject("errortype","409");
-		}
-		return mv;
-	}
+
 
 //	@GetMapping(value = "/delete/{db}/{select}/{countrycode}")
 //	public ModelAndView selectDelete(@PathVariable("db")String db,@PathVariable("select")String select, @PathVariable("countrycode")String ctc, ModelAndView mv){

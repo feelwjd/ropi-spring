@@ -7,7 +7,9 @@ function deleteSummary(){
     }
     
     function updateSummary(){
-    	$("#summaryForm").attr("action", "update")
+		var database = $("#database").val();
+    	$("#summaryForm").attr("action", "/" + database + "/updateSummary");
+    	$("#summaryForm").submit(); 
     }
     
     function copySummary(){
