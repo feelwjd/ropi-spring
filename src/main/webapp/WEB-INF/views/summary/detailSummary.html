@@ -95,7 +95,6 @@
     	
     	$("input[name='inputCheck[]']:checked").each(function(){
     		var tmpVal = $(this).val();
-    		console.log(tmpVal);
     		checkArray.push(tmpVal);
     	});
     	
@@ -104,7 +103,6 @@
    	    	return;
    	    }else{
    	    	$("#selectedDB").val(checkArray);
-   	    	alert(checkArray);
    	    	$("#copyForm").submit();
    	    }
     }

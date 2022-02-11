@@ -61,7 +61,7 @@ public class SummaryController {
 //	}
 
 	@GetMapping(value = "/{database}/addSummary")
-	public ModelAndView addSummaryForm(@PathVariable("database")String selectedDB , ModelAndView mv, @ModelAttribute("summary")Summary summary){
+	public ModelAndView addSummaryForm(@PathVariable("database")String selectedDB, ModelAndView mv, @ModelAttribute("summary")Summary summary){
 		String database = summaryService.dbCheck(selectedDB);
 		
 		List<Sector> sectorList = summaryService.getSectorList(database);
@@ -70,16 +70,18 @@ public class SummaryController {
 		mv.addObject("summary",summary);
 		mv.addObject("sectorList", sectorList);
 		mv.addObject("industryList", industryList);
+		mv.addObject("database", database);
 		
 		mv.setViewName("summary/addSummary");
 		return mv;
 	}
 
-	@PostMapping("/add/{db}")
-	public ModelAndView addPostSummary(Summary summary,@PathVariable("db")String db){
-		ModelAndView mv = new ModelAndView();
+	@PostMapping("/{database}/add")
+	public ModelAndView addPostSummary(@PathVariable("database")String database, Summary summary, @RequestParam("selectedDB")String selectedDB){
+		ModelAndView mv = new ModelAndView("redirect:/{database}/list/1");
 		System.out.println(summary.toString());
-		int result = summaryService.setSummary(db, summary);
+		
+		int result = summaryService.setSummary(selectedDB, summary);
 		System.out.println("controller result : " + result);
 
 //		for (int i =0;i<selectDB.length; i++){
@@ -106,7 +108,6 @@ public class SummaryController {
 //					break;
 //			}
 //		}
-		mv.setViewName("redirect:/ropi1/list/1");
 		return mv;
 	}
 

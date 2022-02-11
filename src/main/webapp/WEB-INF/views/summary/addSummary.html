@@ -11,21 +11,13 @@
     <hr>
     <h2>기업개요 추가</h2>
 	<hr>
-    <form name="saveSummary" id="form" th:action="@{/add}" th:object="${summary}" method="POST">
+    <form name="saveSummary" id="form" th:action="@{/{database}/add (database=${database})}" th:object="${summary}" method="POST">
         <b>데이터를 추가할 서버를 선택해주세요.</b>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" name="server" id="server1" value="ropi1">
-            <label class="form-check-label" for="server1"><b>ROPI 1</b></label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" name="server" id="server2" value="ropi6">
-            <label class="form-check-label" for="server2"><b>ROPI 2</b></label>
-        </div>
-        <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" name="server" id="server3" value="ropi7">
-            <label class="form-check-label" for="server3"><b>ROPI 3</b></label>
-        </div>
-        
+        <input type="checkbox" name="inputCheck[]" value="ropi1">ropi1
+		<input type="checkbox" name="inputCheck[]" value="ropi6">ropi6
+		<input type="checkbox" name="inputCheck[]" value="ropi7">ropi7
+		<input type="hidden" id="selectedDB" name="selectedDB">
+		
         <div class="row">
         	<label class="col-sm-1">symbol</label>
 	        <div class="col-sm-3">
@@ -192,8 +184,3 @@
 </div>
 </body>
 </html>
-<script th:inline="javascript">
-    /* <![CDATA[ */
-    
-    /* ]]> */
-</script>

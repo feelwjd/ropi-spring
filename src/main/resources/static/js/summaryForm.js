@@ -1,14 +1,20 @@
 function form_check(){
-	var checkServer = "";
-	$( "input[name='server']:checked" ).each (function (){
-	    checkServer = checkServer + $(this).val()+",";
+	var checkArray = new Array();
+    	
+	$("input[name='inputCheck[]']:checked").each(function(){
+		var tmpVal = $(this).val();
+		checkArray.push(tmpVal);
 	});
-	checkServer = checkServer.substring(0,checkServer.lastIndexOf( ",")); //맨끝 콤마 지우기
-	console.log(checkServer);
-	if (checkServer == ""){
-	    alert("서버를 선택해주세요.")
-	    return false;
-	}
+	
+	console.log('check: ' + checkArray);
+	
+	if(checkArray.length < 1 ){
+    	alert("값을 선택해주시기 바랍니다.");
+    	return;
+    }else{
+    	$("#selectedDB").val(checkArray);
+    	alert($("#selectedDB").val());
+    }
 	
 	var symbol = document.getElementById("symbol");
 	var countrycode = document.getElementById("countrycode");
@@ -71,11 +77,6 @@ function form_check(){
 	    return false;
 	};
 	
-	var url = "";
-	var addr = url + checkServer;
-	
-	alert(addr);
-	$("#form").attr("action",addr );
 	document.saveSummary.submit();
 }
 
