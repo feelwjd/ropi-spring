@@ -80,13 +80,16 @@ function form_check(){
 	document.saveSummary.submit();
 }
 
+$(document).ready(function(){
+});
 
 $('.sectorList').click(function(){
 	$("#sectorcode").val($(this).data("value"));
-	$("#sectorName").text($(this).text());
+	$("#sectorName").val($(this).text());
 });
 
 $('.industryList').click(function(){
 	$("#industrycode").val($(this).data("value"));
-	$("#industryName").text($(this).text());
+	$("#industryName").val($(this).text());
 });
+
