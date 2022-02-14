@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
 
+<head>
+	<script src="/js/summaryList.js" defer></script>
+</head>
+
 <body>
 <div class="container">
     <div th:replace="/summary/layout/header :: headerFragment"></div>
@@ -88,28 +92,27 @@
 	                <input type="checkbox" class="btn-check" id="selectAll" autocomplete="off" onclick="selectAll(this)" name="symbol">
 	                <label class="btn btn-outline-primary" for="selectAll"><b>-ALL-</b></label>
 	            </th>-->
-	            <th>SYMBOL</th>
-	            <th>CountryCode</th>
-	            <th>SECTORCODE</th>
-	            <th>INDUSTRYCODE</th>
-	            <th>KONAME</th>
-	            <th>ENNAME</th>
-	            <th>CNNAME</th>
+	            <th>
+	            
+	            </th>
+	            <th>종목코드</th>
+	            <th>국가코드</th>
+	            <th>섹터코드</th>
+	            <th>산업코드</th>
+	            <th>종목명(국문)</th>
+	            <th>종목명(영문)</th>
+	            <th>종목명(중문)</th>
 	        </tr>
 	        </thead>
 	        <tbody>
-	        <tr th:each="col:${list}" style="cursor: pointer" onclick="">
-	            <!--<td>
-	                <input type="checkbox" class="btn-check" name="checkRow" th:value="${col.symbol}" th:value2="${col.countrycode}" th:id="${col.symbol}" autocomplete="off">
-	                <label class="btn btn-outline-primary" th:for="${col.symbol}">Check</label><br>
-	            </td>-->
-	            <td th:text="${col.symbol}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}" onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
-	            <td th:text="${col.countrycode}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}" onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
-	            <td th:text="${col.sectorcode}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
-	            <td th:text="${col.industrycode}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
-	            <td th:text="${col.koname}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
-	            <td th:text="${col.enname}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
-	            <td th:text="${col.cnname}" th:symbol="${col.symbol}" th:database="${database}" th:country="${col.countrycode}"  onclick="rowClicked(this.getAttribute('database'),this.getAttribute('symbol'),this.getAttribute('country'))"></td>
+	        <tr th:each="summary:${list}" style="cursor: pointer" th:attr="onclick=|goDetail('${summary.symbol}', '${summary.countrycode}')|">
+	            <td th:text="${summary.symbol}"></td>
+	            <td th:text="${summary.countrycode}"></td>
+	            <td th:text="${summary.kosectorname}"></td>
+	            <td th:text="${summary.koindustryname}"></td>
+	            <td th:text="${summary.koname}"></td>
+	            <td th:text="${summary.enname}"></td>
+	            <td th:text="${summary.cnname}"></td>
 	        </tr>
 	        </tbody>
 	    </table>
@@ -120,9 +123,6 @@
 </html>
 
 <script>
-    function rowClicked(database, symbol, country) {
-        location.href = "../detail/" + symbol + '/' + country;
-    }
     function selectAll(selectAll)  {
         const checkboxes
             = document.getElementsByName('checkRow');
@@ -130,24 +130,6 @@
         checkboxes.forEach((checkbox) => {
             checkbox.checked = selectAll.checked;
         })
-    }
-
-    function changeFile(){
-    	submitFile = document.getElementById('fileInput');
-	    submitBtn = document.getElementById('fileSubmit');
-
-	    if(submitFile.value.length > 0){
-	    	submitBtn.disabled = false;
-	    }else{
-	    	submitBtn.disabled = true;
-	    }
-    }
-
-    function resetFile(){
-    	submitFile = document.getElementById('fileInput');
-	    submitBtn = document.getElementById('fileSubmit');
-
-	    submitBtn.disabled = true;
     }
 
     function deleteAction(database){

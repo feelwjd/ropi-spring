@@ -27,8 +27,27 @@ public class Summary {
     private String nationenname;
     private String nationcnname;
     private String nationjpname;
+    
+    private String kosectorname;
+    private String koindustryname;
 
-    public String getSymbol() {
+    public String getKoindustryname() {
+		return koindustryname;
+	}
+
+	public void setKoindustryname(String koindustryname) {
+		this.koindustryname = koindustryname;
+	}
+
+	public String getKosectorname() {
+		return kosectorname;
+	}
+
+	public void setKosectorname(String kosectorname) {
+		this.kosectorname = kosectorname;
+	}
+
+	public String getSymbol() {
         return symbol;
     }
 
@@ -171,6 +190,6 @@ public class Summary {
 				+ ", kosummary=" + kosummary + ", ensummary=" + ensummary + ", cnsummary=" + cnsummary + ", jpsummary="
 				+ jpsummary + ", tradunit=" + tradunit + ", nationcode=" + nationcode + ", nationkoname=" + nationkoname
 				+ ", nationenname=" + nationenname + ", nationcnname=" + nationcnname + ", nationjpname=" + nationjpname
-				+ "]";
+				+ ", kosectorname=" + kosectorname + ", koindustryname=" + koindustryname + "]";
 	}
 }

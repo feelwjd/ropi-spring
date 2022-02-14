@@ -80,8 +80,6 @@ function form_check(){
 	document.saveSummary.submit();
 }
 
-$(document).ready(function(){
-});
 
 $('.sectorList').click(function(){
 	$("#sectorcode").val($(this).data("value"));

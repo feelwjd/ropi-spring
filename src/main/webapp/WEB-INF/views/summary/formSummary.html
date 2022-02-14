@@ -35,7 +35,7 @@
 		<div class="row">
 			<label class="col-sm-1">sectorcode</label>
 			<div class="col-sm-2">
-				<input class="form-control" type="text" id="sectorName" readonly>
+				<input class="form-control" type="text" id="sectorName" th:field="*{kosectorname}" readonly>
 				<input type="hidden" id="sectorcode" th:field="*{sectorcode}">
 			</div>
 			<div class="col-sm-1">
@@ -45,7 +45,8 @@
 		        	</button>
 		        	<ul class="dropdown-menu" role="menu" aria-labelledby="sectorDropdown">
 		        		<li th:each="sector:${sectorList}">
-		        			<a class="sectorList" role="menuitem" tabindex="-1" href="#" th:text="'(' + ${sector.sectorcode} + ') ' + ${sector.kosectorname}" th:data-value="${sector.sectorcode}"></a>
+		        			<!--/* <a class="sectorList" role="menuitem" tabindex="-1" href="#" th:text="'(' + ${sector.sectorcode} + ') ' + ${sector.kosectorname}" th:data-value="${sector.sectorcode}"></a> */-->
+		        			<a class="sectorList" role="menuitem" tabindex="-1" href="#" th:text="${sector.kosectorname}" th:data-value="${sector.sectorcode}"></a>
 		        		</li>
 		        	</ul>
 		        </div>
@@ -55,7 +56,7 @@
 		<div class="row">
 			<label class="col-sm-1 ">industrycode</label>
 			<div class="col-sm-2">
-				<input class="form-control" type="text" id="industryName" readonly>
+				<input class="form-control" type="text" id="industryName" th:field="*{koindustryname}" readonly>
 				<input type="hidden" id="industrycode" th:field="*{industrycode}">
 			</div>
 			<div class="col-sm-1">	
@@ -65,8 +66,8 @@
 		        	</button>
 		        	<ul class="dropdown-menu" role="menu" aria-labelledby="industryDropdown">
 		        		<li th:each="industry:${industryList}">
-		        			<a class="industryList" role="menuitem" tabindex="-1" href="#" th:text="'(' + ${industry.industrycode} + ') ' + ${industry.koindustryname}" th:data-value="${industry.industrycode}">
-		        			</a>
+		        			<!--/* <a class="industryList" role="menuitem" tabindex="-1" href="#" th:text="'(' + ${industry.industrycode} + ') ' + ${industry.koindustryname}" th:data-value="${industry.industrycode}"></a> */-->
+		        			<a class="industryList" role="menuitem" tabindex="-1" href="#" th:text="${industry.koindustryname}" th:data-value="${industry.industrycode}"></a>
 		        		</li>
 		        		
 		        	</ul>
@@ -74,22 +75,6 @@
 			</div>
 		</div>
 		
-        <!-- 
-        <div class="row">
-			<label class="col-sm-1 ">sectorcode</label>
-        	<div class="col-sm-3">
-        		<input type="text" id="sectorcode" th:field="*{sectorcode}" placeholder="sectorcode" class="form-control">
-       		</div>
-		</div>
-		 -->
-		<!-- 
-        <div class="row">
-			<label class="col-sm-1 ">industrycode</label>
-        	<div class="col-sm-3">
-        		<input type="text" id="industrycode" th:field="*{industrycode}" placeholder="industrycode" class="form-control">
-     		</div>
-        </div>
-         -->
         <div class="row">
 			<label class="col-sm-1 ">koname</label>
         	<div class="col-sm-3">

@@ -43,10 +43,17 @@ public class SummaryController {
 		
 		try {
 			List<Summary> list = summaryService.listSummary(database, page, pageSize);
-			mv.setViewName("/summary/main");
+			mv.setViewName("summary/main");
 			mv.addObject("list",list);
 			mv.addObject("database",database);
 			mv.addObject("pagination", pagination);
+
+			for (Summary summary : list) {
+				System.out.println(summary.toString());
+			}
+			System.out.println("[controller]list count : " + list.size());
+
+
 		}catch (Exception e){
 			mv.setViewName("/summary/errors/500");
 			mv.addObject("errortype","409");
@@ -170,7 +177,7 @@ public class SummaryController {
 //	}
 	@PostMapping(value="/{database}/updateSummary")
 	public ModelAndView goSummaryForm(@PathVariable("database")String database, @ModelAttribute Summary summary) {
-		ModelAndView mv = new ModelAndView("/summary/formSummary");
+		ModelAndView mv = new ModelAndView("summary/formSummary");
 		summary = summaryService.getSummary(database, summary.getSymbol(), summary.getCountrycode());
 		List<Sector> sectorList = summaryService.getSectorList(database);
 		List<Industry> industryList = summaryService.getIndustryList(database);
