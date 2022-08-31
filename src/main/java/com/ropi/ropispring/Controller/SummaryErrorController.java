@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 
-@Controller
+//@Controller
 public class SummaryErrorController implements ErrorController {
     private String VIEW_PATH = "/summary/errors/";
 

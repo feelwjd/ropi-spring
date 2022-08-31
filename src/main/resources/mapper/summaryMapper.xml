@@ -28,15 +28,28 @@
 
     <select id="listSummary" resultType="com.ropi.ropispring.Model.Summary">
         SELECT
-			*
+			A.*, B.kosectorname, C.koindustryname
 		FROM
-			SUMMARY_TB
+			SUMMARY_TB AS A
+		LEFT OUTER JOIN
+			SECTOR_TB AS B ON B.sectorcode = A.sectorcode
+		LEFT OUTER JOIN
+			INDUSTRY_TB AS C ON C.industrycode = A.industrycode
         LIMIT
 			#{page}, #{pageSize};
     </select>
 
     <select id="getSummary" resultType="com.ropi.ropispring.Model.Summary">
-        SELECT * FROM SUMMARY_TB where SYMBOL=#{symbol} AND COUNTRYCODE=#{countrycode};
+        SELECT
+			A.*, B.kosectorname, C.koindustryname
+		FROM
+			SUMMARY_TB AS A
+		LEFT OUTER JOIN
+			SECTOR_TB AS B ON B.sectorcode = A.sectorcode
+		LEFT OUTER JOIN
+			INDUSTRY_TB AS C ON C.industrycode = A.industrycode
+		WHERE
+			symbol=#{symbol} AND COUNTRYCODE=#{countrycode};
     </select>
 
     <delete id="deleteSummary" parameterType="com.ropi.ropispring.Model.Summary">
@@ -60,5 +73,13 @@
     
     <select id="getSummaryCount" resultType="int">
     	select count(*) from SUMMARY_TB;
+    </select>
+    
+	<select id="getSectorList" resultType="com.ropi.ropispring.Model.Sector">
+    	select * from sector_tb;
+	</select>
+	
+	<select id="getIndustryList" resultType="com.ropi.ropispring.Model.Industry">
+    	select * from industry_tb;    
     </select>
 </mapper>

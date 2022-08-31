@@ -1,5 +1,7 @@
 package com.ropi.ropispring.DAO;
 
+import com.ropi.ropispring.Model.Industry;
+import com.ropi.ropispring.Model.Sector;
 import com.ropi.ropispring.Model.Summary;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -22,4 +24,6 @@ public interface SummaryDAO {
     Summary getSummary(@Param("symbol") String symbol, @Param("countrycode") String countrycode);
     
     int checkSummary(Summary summary);
+	List<Sector> getSectorList();
+	List<Industry> getIndustryList();
 }

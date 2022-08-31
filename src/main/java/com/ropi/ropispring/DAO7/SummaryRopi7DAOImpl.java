@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ropi.ropispring.DAO.SummaryDAO;
+import com.ropi.ropispring.Model.Industry;
+import com.ropi.ropispring.Model.Sector;
 import com.ropi.ropispring.Model.Summary;
 
 @Repository
@@ -60,5 +62,17 @@ public class SummaryRopi7DAOImpl implements SummaryRopi7DAO {
 	@Override
 	public int getSummaryCount() {
 		return sqlSession.selectOne("getSummaryCount");
+	}
+
+	@Override
+	public List<Sector> getSectorList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Industry> getIndustryList() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
